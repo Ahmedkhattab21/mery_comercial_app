@@ -1,0 +1,119 @@
+import 'package:flutter/material.dart';
+import 'package:mery_comercial_app/core/utils/app_colors_white_theme.dart';
+import 'package:mery_comercial_app/core/utils/assets_manager.dart';
+import 'package:mery_comercial_app/core/utils/enums.dart';
+
+extension NavigationScreens on BuildContext {
+  Future<dynamic> pushNamed(String routeName, {Object? arguments}) {
+    return Navigator.of(this).pushNamed(routeName, arguments: arguments);
+  }
+
+  Future<dynamic> pushReplacementNamed(String routeName, {Object? arguments}) {
+    return Navigator.of(this)
+        .pushReplacementNamed(routeName, arguments: arguments);
+  }
+
+  Future<dynamic> pushNamedAndRemoveUntil(String routeName,
+      {Object? arguments, required RoutePredicate predicate}) {
+    return Navigator.of(this)
+        .pushNamedAndRemoveUntil(routeName, predicate, arguments: arguments);
+  }
+
+  void pop() => Navigator.of(this).pop();
+}
+
+extension MediaQueryValues on BuildContext {
+  double get height => MediaQuery.of(this).size.height;
+
+  double get width => MediaQuery.of(this).size.width;
+
+  double get topPadding => MediaQuery.of(this).padding.top;
+
+  double get bottomPadding => MediaQuery.of(this).padding.bottom;
+
+  double get viewInsetsBottom => MediaQuery.of(this).viewInsets.bottom;
+}
+
+extension StringExtension on String? {
+  bool isNullOrEmpty() => this == null || this == "";
+}
+
+extension ListExtension<T> on List<T>? {
+  bool isNullOrEmpty() => this == null || this!.isEmpty;
+}
+
+extension OrderRequestStatusInfo on OrderRequestStatus {
+  String get orderName {
+    switch (this) {
+      case OrderRequestStatus.underMedicalExamination:
+        return "قيد الفحص الطبى";
+      case OrderRequestStatus.contractFeePaymentPending:
+        return "قيد دفع رسوم العقد";
+      case OrderRequestStatus.rejectedByTheWorker:
+        return "تم الرفض من العاملة";
+      case OrderRequestStatus.theFlightTicketHasBeenBooked:
+        return "تم حجز تذكرة الطيران";
+      case OrderRequestStatus.inProgress:
+        return "قيد التنفيذ";
+    }
+  }
+
+  String get orderImage {
+    switch (this) {
+      case OrderRequestStatus.underMedicalExamination:
+        return ImageAsset.requestStatusIcon1;
+      case OrderRequestStatus.contractFeePaymentPending:
+        return ImageAsset.requestStatusIcon2;
+      case OrderRequestStatus.rejectedByTheWorker:
+        return ImageAsset.requestStatusIcon3;
+      case OrderRequestStatus.theFlightTicketHasBeenBooked:
+        return ImageAsset.requestStatusIcon4;
+      case OrderRequestStatus.inProgress:
+        return ImageAsset.requestStatusIcon2;
+    }
+  }
+
+  Color get borderColor {
+    switch (this) {
+      case OrderRequestStatus.underMedicalExamination:
+        return AppColors.greyColorD1;
+      case OrderRequestStatus.contractFeePaymentPending:
+        return AppColors.orangeColor7A;
+      case OrderRequestStatus.rejectedByTheWorker:
+        return AppColors.redColor9B;
+      case OrderRequestStatus.theFlightTicketHasBeenBooked:
+        return AppColors.greenColorA6;
+      case OrderRequestStatus.inProgress:
+        return AppColors.orangeColor7A;
+    }
+  }
+  Color get textColor {
+    switch (this) {
+      case OrderRequestStatus.underMedicalExamination:
+        return AppColors.blackColor13;
+      case OrderRequestStatus.contractFeePaymentPending:
+        return AppColors.orangeColor2D;
+      case OrderRequestStatus.rejectedByTheWorker:
+        return AppColors.redColor20;
+      case OrderRequestStatus.theFlightTicketHasBeenBooked:
+        return AppColors.greenColor55;
+      case OrderRequestStatus.inProgress:
+        return AppColors.orangeColor2D;
+    }
+  }
+
+  Color get backgroundColor {
+    switch (this) {
+      case OrderRequestStatus.underMedicalExamination:
+        return AppColors.greyColorF7;
+      case OrderRequestStatus.contractFeePaymentPending:
+        return AppColors.orangeColorE9;
+      case OrderRequestStatus.rejectedByTheWorker:
+        return AppColors.redColorF2;
+      case OrderRequestStatus.theFlightTicketHasBeenBooked:
+        return AppColors.greenColorF3;
+      case OrderRequestStatus.inProgress:
+        return AppColors.orangeColorE9;
+    }
+  }
+}
