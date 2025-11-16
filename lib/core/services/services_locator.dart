@@ -6,6 +6,8 @@ import 'package:mery_comercial_app/core/utils/app_colors_white_theme.dart';
 import 'package:mery_comercial_app/core/utils/app_constant.dart';
 import 'package:mery_comercial_app/features/login/data/repo/login_repo.dart';
 import 'package:mery_comercial_app/features/login/data/services/login_service.dart';
+import 'package:mery_comercial_app/features/register/data/repo/register_repo.dart';
+import 'package:mery_comercial_app/features/register/data/services/register_service.dart';
 
 import '../api/api_consumer.dart';
 import '../api/app_interceptor.dart';
@@ -15,10 +17,16 @@ final getIt = GetIt.instance;
 
 class ServicesLocator {
   static Future<void> init() async {
-    /// OnBoarding
+    /// Login
     getIt.registerLazySingleton<LoginRepo>(() => LoginRepo(getIt()));
     getIt.registerFactory<LoginService>(
       () => LoginService(apiConsumer: getIt()),
+    );
+
+    /// Register
+    getIt.registerLazySingleton<RegisterRepo>(() => RegisterRepo(getIt()));
+    getIt.registerFactory<RegisterService>(
+      () => RegisterService(apiConsumer: getIt()),
     );
 
 

@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mery_comercial_app/config/routes/app_routes.dart';
 import 'package:mery_comercial_app/core/services/check_network.dart';
 import 'package:mery_comercial_app/core/widgets/offline_alert_dialog.dart';
@@ -39,19 +40,32 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: AppColors.whiteColor,
-      child: MaterialApp(
-        localizationsDelegates: context.localizationDelegates,
-        supportedLocales: context.supportedLocales,
-        locale: context.locale,
-        debugShowCheckedModeBanner: false,
-        navigatorKey: navigatorKey,
-        title: "mery DashBoard",
-        theme: themeData(),
-        initialRoute: widget.initialRoute,
-        onGenerateRoute: RouteGenerator.generateRoute,
-      ),
+    return ScreenUtilInit(
+      designSize: const Size(375, 812),
+      minTextAdapt: true,
+      splitScreenMode: true,
+
+      builder: (context, snapshot) {
+        // getIt<AppConstant>().setLanguage(context.locale.languageCode);
+
+        return Container(
+          color: AppColors.whiteColor,
+          child: MaterialApp(
+
+            localizationsDelegates: context.localizationDelegates,
+            supportedLocales: context.supportedLocales,
+            locale: context.locale,
+            debugShowCheckedModeBanner: false,
+            navigatorKey: navigatorKey,
+            title: "mery App",
+            theme: themeData(),
+            initialRoute: widget.initialRoute,
+            onGenerateRoute: RouteGenerator.generateRoute,
+
+          ),
+        );
+      },
+
     );
   }
 }

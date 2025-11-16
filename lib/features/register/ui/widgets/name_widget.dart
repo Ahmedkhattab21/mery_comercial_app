@@ -2,22 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:mery_comercial_app/core/utils/app_colors_white_theme.dart';
 import 'package:mery_comercial_app/core/utils/styles.dart';
 import 'package:mery_comercial_app/core/widgets/app_text_field.dart';
- import 'package:mery_comercial_app/features/login/logic/login_cubit.dart';
+import 'package:mery_comercial_app/features/register/logic/register_cubit.dart';
 
-class EmailWidget extends StatelessWidget {
-  const EmailWidget({super.key});
+class NameWidget extends StatelessWidget {
+  const NameWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
     return AppTextFormField(
-      hintText: "mery@gmail.com",
+      hintText: "الاسم",
       hintStyle: TextStyles.font14blackColor13W400.copyWith(
         color: AppColors.blackColor13.withValues(alpha: .4),
       ),
       contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
 
       textStyle: TextStyles.font14blackColor13W400,
-      controller: LoginCubit.get(context).emailController,
+      controller: RegisterCubit.get(context).nameController,
       backgroundColor: AppColors.whiteColor,
       enabledBorder: OutlineInputBorder(
         borderSide: BorderSide(color: AppColors.greenColor55, width: 1),
@@ -41,7 +41,7 @@ class EmailWidget extends StatelessWidget {
         }
         return null;
       },
-      keyboardType: TextInputType.emailAddress,
+      keyboardType: TextInputType.text,
     );
   }
 }

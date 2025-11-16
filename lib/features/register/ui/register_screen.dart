@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mery_comercial_app/config/routes/routes.dart';
 import 'package:mery_comercial_app/core/utils/app_colors_white_theme.dart';
 import 'package:mery_comercial_app/core/utils/app_constant.dart';
 import 'package:mery_comercial_app/core/utils/extentions.dart';
 import 'package:mery_comercial_app/core/utils/spacing.dart';
 import 'package:mery_comercial_app/core/utils/styles.dart';
 import 'package:mery_comercial_app/core/widgets/button_widget.dart';
-import 'package:mery_comercial_app/features/login/logic/login_cubit.dart';
-import 'package:mery_comercial_app/features/login/logic/login_state.dart';
-import 'package:mery_comercial_app/features/login/ui/widgets/national_id_widget.dart';
-import 'package:mery_comercial_app/features/login/ui/widgets/forget_me_widget.dart';
-import 'package:mery_comercial_app/features/login/ui/widgets/password_widget.dart';
+import 'package:mery_comercial_app/features/register/logic/register_cubit.dart';
+import 'package:mery_comercial_app/features/register/logic/register_state.dart';
+import 'package:mery_comercial_app/features/register/ui/widgets/forget_me_widget.dart';
+import 'package:mery_comercial_app/features/register/ui/widgets/name_widget.dart';
+import 'package:mery_comercial_app/features/register/ui/widgets/password_widget.dart';
+import 'package:mery_comercial_app/features/register/ui/widgets/phone_widget.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+class RegisterScreen extends StatelessWidget {
+  const RegisterScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +23,14 @@ class LoginScreen extends StatelessWidget {
       backgroundColor: AppColors.whiteColor,
       appBar: AppBar(
         backgroundColor: AppColors.greenColor31,
+        leading: IconButton(
+          onPressed: () {
+            if (Navigator.canPop(context)) {
+              context.pop();
+            }
+          },
+          icon: Icon(Icons.arrow_back, color: AppColors.whiteColor),
+        ),
         title: Text(
           'تطبيق ميرى للعمالة المنزلية',
           style: TextStyles.font18WhiteColorW600,
@@ -33,8 +40,8 @@ class LoginScreen extends StatelessWidget {
         child: Center(
           child: SingleChildScrollView(
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 18.w),
-              margin: EdgeInsets.symmetric(horizontal: 24.w),
+              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+              padding: EdgeInsets.symmetric(horizontal: 32, vertical: 30),
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 color: AppColors.whiteColor,
@@ -42,20 +49,48 @@ class LoginScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(16),
               ),
               child: Form(
-                key: LoginCubit.get(context).loginKey,
+                key: RegisterCubit.get(context).cubitKey,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     verticalSpace(30),
                     Text(
-                      'تسجيل الدخول',
+                      'تسجيل حساب جديد',
                       style: TextStyles.font24BlackColorBold,
                     ),
+
                     verticalSpace(24),
 
                     Align(
                       alignment: Alignment.centerRight,
                       child: Text.rich(
+                        selectionColor: AppColors.greenColor31.withValues(
+                          alpha: .2,
+                        ),
+                        TextSpan(
+                          children: [
+                            TextSpan(
+                              text: "الاسم ",
+                              style: TextStyles.font14greenColor31W500,
+                            ),
+                            TextSpan(
+                              text: '  *',
+                              style: TextStyles.font14orangeColor09W500,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    verticalSpace(8),
+                    NameWidget(),
+                    verticalSpace(24),
+
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: Text.rich(
+                        selectionColor: AppColors.greenColor31.withValues(
+                          alpha: .2,
+                        ),
                         TextSpan(
                           children: [
                             TextSpan(
@@ -71,11 +106,15 @@ class LoginScreen extends StatelessWidget {
                       ),
                     ),
                     verticalSpace(8),
-                    NationalIdWidget(),
+                    PhoneWidget(),
                     verticalSpace(24),
+
                     Align(
                       alignment: Alignment.centerRight,
                       child: Text.rich(
+                        selectionColor: AppColors.greenColor31.withValues(
+                          alpha: .2,
+                        ),
                         TextSpan(
                           children: [
                             TextSpan(
@@ -92,55 +131,24 @@ class LoginScreen extends StatelessWidget {
                     ),
                     verticalSpace(8),
                     PasswordWidget(),
-
-                    verticalSpace(8),
-
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: GestureDetector(
-                        onTap: () {
-                          // context.pushNamed(
-                          // Routes.officeForgetPasswordScreen,
-                          // );
-                        },
-                        child: Text(
-                          'نسيت كلمة المرور ؟',
-                          selectionColor: AppColors.greenColor31.withValues(
-                            alpha: .2,
-                          ),
-                          style: TextStyles.font14greenColor31Bold.copyWith(
-                            decoration: TextDecoration.underline,
-                            decorationColor: AppColors.greenColor31,
-                          ),
-                        ),
-                      ),
-                    ),
-
                     verticalSpace(24),
 
                     ForgetMeWidget(),
                     verticalSpace(24),
-                    BlocConsumer<LoginCubit, LoginState>(
+                    BlocConsumer<RegisterCubit, RegisterState>(
                       buildWhen: (previous, current) {
-                        return current is OnLoginCatchErrorState ||
-                            current is OnLoginSuccessState ||
-                            current is OnLoginLoadingState ||
-                            current is OnLoginErrorState;
+                        return current is OnRegisterCatchErrorState ||
+                            current is OnRegisterSuccessState ||
+                            current is OnRegisterLoadingState ||
+                            current is OnRegisterErrorState;
                       },
                       listener: (context, state) {
-                        if (state is OnLoginErrorState ||
-                            state is OnLoginCatchErrorState) {
-                          AppConstant.toast(
-                            "حدث خطأ أثناء تسجيل الدخول",
-                            false,
-                            context,
-                          );
-                        } else if (state is OnLoginSuccessState) {
-                          AppConstant.toast(
-                            "تم تسجيل الدخول بنجاح",
-                            true,
-                            context,
-                          );
+                        if (state is OnRegisterErrorState) {
+                          AppConstant.toast(state.message, false, context);
+                        } else if (state is OnRegisterCatchErrorState) {
+                          AppConstant.toast(state.message, false, context);
+                        } else if (state is OnRegisterSuccessState) {
+                          AppConstant.toast(state.message, true, context);
                           // context.pushNamedAndRemoveUntil(
                           //   Routes.sideBarScreen,
                           //   predicate: (predicate) => false,
@@ -149,10 +157,10 @@ class LoginScreen extends StatelessWidget {
                       },
                       builder: (context, state) {
                         return ButtonWidget(
-                          isLoading: state is OnLoginLoadingState,
+                          isLoading: state is OnRegisterLoadingState,
                           buttonText: 'تسجيل الدخول',
-                          buttonHeight: 48,
-                          borderRadius: 12,
+                          buttonHeight: 44,
+                          borderRadius: 8,
                           backGroundColor: AppColors.greenColor31,
                           borderColor: AppColors.greenColor31,
                           textStyle: TextStyles.font16whiteColorBold,
@@ -165,10 +173,10 @@ class LoginScreen extends StatelessWidget {
                     verticalSpace(24),
                     GestureDetector(
                       onTap: () {
-                        context.pushNamed(Routes.registerScreen);
+                        context.pop();
                       },
                       child: Text(
-                        'ليس لديك حساب ؟',
+                        'لديك حساب ؟',
                         selectionColor: AppColors.greenColor31.withValues(
                           alpha: .2,
                         ),
@@ -190,8 +198,8 @@ class LoginScreen extends StatelessWidget {
   }
 
   void validateRegister(BuildContext context) {
-    if (LoginCubit.get(context).loginKey.currentState!.validate()) {
-      LoginCubit.get(context).login();
+    if (RegisterCubit.get(context).cubitKey.currentState!.validate()) {
+      RegisterCubit.get(context).register();
     }
   }
 }

@@ -4,6 +4,8 @@ import 'package:mery_comercial_app/config/routes/routes.dart';
 import 'package:mery_comercial_app/core/services/services_locator.dart';
 import 'package:mery_comercial_app/features/login/logic/login_cubit.dart';
 import 'package:mery_comercial_app/features/login/ui/login_screen.dart';
+import 'package:mery_comercial_app/features/register/logic/register_cubit.dart';
+import 'package:mery_comercial_app/features/register/ui/register_screen.dart';
 
 class RouteGenerator {
   static Route<dynamic>? generateRoute(RouteSettings settings) {
@@ -21,6 +23,13 @@ class RouteGenerator {
           builder: (_) => BlocProvider(
             create: (context) => LoginCubit(getIt()),
             child: LoginScreen(),
+          ),
+        );
+     case Routes.registerScreen:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => RegisterCubit(getIt()),
+            child: RegisterScreen(),
           ),
         );
 

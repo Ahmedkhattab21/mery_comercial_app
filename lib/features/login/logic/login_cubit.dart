@@ -13,7 +13,7 @@ class LoginCubit extends Cubit<LoginState> {
   LoginCubit(this._loginRepo) : super(InitialState());
 
   GlobalKey<FormState> loginKey = GlobalKey<FormState>();
-  TextEditingController emailController = TextEditingController();
+  TextEditingController nationalIdController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
   bool isPasswordVisible = false;
@@ -34,7 +34,7 @@ class LoginCubit extends Cubit<LoginState> {
     _loginRepo
         .login(
           LoginRequestModel(
-            email: emailController.text,
+            nationalId: nationalIdController.text,
             password: passwordController.text,
           ),
         )

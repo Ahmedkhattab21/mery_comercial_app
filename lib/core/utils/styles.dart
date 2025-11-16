@@ -55,6 +55,12 @@ class TextStyles {
     fontWeight: FontWeight.bold,
   );
 
+  static TextStyle font24WhiteColorBold = TextStyle(
+    fontSize: 24,
+    color: AppColors.whiteColor,
+    fontWeight: FontWeight.bold,
+  );
+
   static TextStyle font14BlackColorBold = TextStyle(
     fontSize: 14,
     color: AppColors.blackColor,
