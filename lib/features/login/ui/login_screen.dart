@@ -20,10 +20,18 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       backgroundColor: AppColors.whiteColor,
       appBar: AppBar(
         backgroundColor: AppColors.greenColor31,
+        leading: IconButton(
+          onPressed: () {
+            if (Navigator.canPop(context)) {
+              context.pop();
+            }
+          },
+          icon: Icon(Icons.arrow_back, color: AppColors.whiteColor),
+        ),
         title: Text(
           'تطبيق ميرى للعمالة المنزلية',
           style: TextStyles.font18WhiteColorW600,
@@ -99,9 +107,9 @@ class LoginScreen extends StatelessWidget {
                       alignment: Alignment.centerLeft,
                       child: GestureDetector(
                         onTap: () {
-                          // context.pushNamed(
-                          // Routes.officeForgetPasswordScreen,
-                          // );
+                          context.pushNamed(
+                          Routes.forgetPasswordScreen,
+                          );
                         },
                         child: Text(
                           'نسيت كلمة المرور ؟',

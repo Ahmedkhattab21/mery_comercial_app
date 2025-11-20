@@ -1,25 +1,24 @@
 class ForgetPasswordResponseModel {
   String message;
-  UseModel useModel;
+  TokenModel tokenModel;
 
   ForgetPasswordResponseModel({
-    required this.useModel,
+    required this.tokenModel,
     required this.message,
   });
 
-  factory ForgetPasswordResponseModel.fromJson(
-    Map<String, dynamic> json,
-  ) => ForgetPasswordResponseModel(
-    message: json['message'] ?? '',
-    useModel: UseModel.fromJson(json['data']),
-  );
+  factory ForgetPasswordResponseModel.fromJson(Map<String, dynamic> json) =>
+      ForgetPasswordResponseModel(
+        message: json['message'] ?? '',
+        tokenModel: TokenModel.fromJson(json['data']),
+      );
 }
 
-class UseModel {
+class TokenModel {
   String token;
 
-  UseModel({required this.token});
+  TokenModel({required this.token});
 
-  factory UseModel.fromJson(Map<String, dynamic> json) =>
-      UseModel(token: json['token']);
+  factory TokenModel.fromJson(Map<String, dynamic> json) =>
+      TokenModel(token: json['token']);
 }

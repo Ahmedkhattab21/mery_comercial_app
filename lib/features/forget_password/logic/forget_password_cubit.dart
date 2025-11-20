@@ -1,33 +1,31 @@
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mery_dashboard/features/office/office_auth/office_forget_password/data/models/forget_password_request_model.dart';
-import 'package:mery_dashboard/features/office/office_auth/office_forget_password/data/repo/forget_password_repo.dart';
-import 'package:mery_dashboard/features/office/office_auth/office_forget_password/logic/forget_password_state.dart';
+import 'package:mery_comercial_app/features/forget_password/data/models/forget_password_request_model.dart';
+import 'package:mery_comercial_app/features/forget_password/data/repo/forget_password_repo.dart';
+import 'package:mery_comercial_app/features/forget_password/logic/forget_password_state.dart';
 
-class OfficeForgetPasswordCubit extends Cubit<OfficeForgetPasswordState> {
-  final OfficeForgetPasswordRepo _officeForgetPasswordRepo;
+class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
+  final ForgetPasswordRepo _forgetPasswordRepo;
 
-  OfficeForgetPasswordCubit(this._officeForgetPasswordRepo)
-    : super(InitialState());
+  ForgetPasswordCubit(this._forgetPasswordRepo) : super(InitialState());
 
   GlobalKey<FormState> cubitKey = GlobalKey<FormState>();
-  TextEditingController emailController = TextEditingController();
+  TextEditingController nationalIdController = TextEditingController();
 
   forgetPassword() async {
     emit(OnForgetPasswordLoadingState());
-    _officeForgetPasswordRepo
+    _forgetPasswordRepo
         .forgetPassword(
-          OfficeForgetPasswordRequestModel(email: emailController.text),
+          ForgetPasswordRequestModel(nationalId: nationalIdController.text),
         )
         .then((value) {
           value.fold(
             (l) {
               emit(OnForgetPasswordErrorState(message: l.message));
             },
-            (r) async {
-              // await cashUserData(r.useModel.token);
-              emit(OnForgetPasswordSuccessState(message: r.message??''));
+            (r) {
+              emit(OnForgetPasswordSuccessState(message: r.tokenModel.token));
             },
           );
         })
@@ -38,9 +36,5 @@ class OfficeForgetPasswordCubit extends Cubit<OfficeForgetPasswordState> {
         });
   }
 
-  // Future<void> cashUserData(String token) async {
-  //   await CacheHelper.setSecuredString(ConstantKeys.saveTokenToShared, token);
-  // }
-
-  static OfficeForgetPasswordCubit get(context) => BlocProvider.of(context);
+  static ForgetPasswordCubit get(context) => BlocProvider.of(context);
 }

@@ -1,7 +1,7 @@
 class ForgetPasswordRequestModel {
-  String email;
+  String nationalId;
 
-  ForgetPasswordRequestModel({required this.email});
+  ForgetPasswordRequestModel({required this.nationalId});
 
-  Map<String, dynamic> toJson() => {"email": email};
+  Map<String, dynamic> toJson() => {"national_id": nationalId};
 }

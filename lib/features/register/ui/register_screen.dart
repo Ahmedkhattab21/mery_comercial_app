@@ -12,6 +12,7 @@ import 'package:mery_comercial_app/features/register/ui/widgets/forget_me_widget
 import 'package:mery_comercial_app/features/register/ui/widgets/name_widget.dart';
 import 'package:mery_comercial_app/features/register/ui/widgets/password_widget.dart';
 import 'package:mery_comercial_app/features/register/ui/widgets/phone_widget.dart';
+import 'package:mery_comercial_app/features/register/ui/widgets/register_national_id_widget.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});
@@ -19,7 +20,7 @@ class RegisterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       backgroundColor: AppColors.whiteColor,
       appBar: AppBar(
         backgroundColor: AppColors.greenColor31,
@@ -84,7 +85,32 @@ class RegisterScreen extends StatelessWidget {
                     verticalSpace(8),
                     NameWidget(),
                     verticalSpace(24),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: Text.rich(
+                        selectionColor: AppColors.greenColor31.withValues(
+                          alpha: .2,
+                        ),
+                        TextSpan(
+                          children: [
+                            TextSpan(
+                              text: "قم الهوية ",
+                              style: TextStyles.font14greenColor31W500,
+                            ),
+                            TextSpan(
+                              text: '  *',
+                              style: TextStyles.font14orangeColor09W500,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    verticalSpace(8),
 
+                    RegisterNationalIdWidget(),
+
+
+                    verticalSpace(24),
                     Align(
                       alignment: Alignment.centerRight,
                       child: Text.rich(
