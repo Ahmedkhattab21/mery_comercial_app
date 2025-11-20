@@ -11,7 +11,7 @@ class RegisterNationalIdWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppTextFormField(
-      hintText:"قم الهوية ",
+      hintText:"رقم الهوية ",
       hintStyle: TextStyles.font14blackColor13W400.copyWith(
         color: AppColors.blackColor13.withValues(alpha: .4),
       ),

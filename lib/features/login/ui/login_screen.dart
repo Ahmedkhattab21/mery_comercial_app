@@ -67,7 +67,7 @@ class LoginScreen extends StatelessWidget {
                         TextSpan(
                           children: [
                             TextSpan(
-                              text: 'رقم الجوال',
+                              text: 'رقم الهوية ',
                               style: TextStyles.font14greenColor31W500,
                             ),
                             TextSpan(

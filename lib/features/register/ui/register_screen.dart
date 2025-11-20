@@ -94,7 +94,7 @@ class RegisterScreen extends StatelessWidget {
                         TextSpan(
                           children: [
                             TextSpan(
-                              text: "قم الهوية ",
+                              text: "رقم الهوية ",
                               style: TextStyles.font14greenColor31W500,
                             ),
                             TextSpan(

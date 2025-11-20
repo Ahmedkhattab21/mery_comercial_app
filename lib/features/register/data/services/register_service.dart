@@ -28,8 +28,7 @@ class RegisterService {
             "${ConstantKeys.appBearer} ${await CacheHelper.getSecuredString(ConstantKeys.saveTokenToShared)}",
       },
     );
-    print(response.statusCode);
-    print(response.body);
+
     if (response.statusCode == StatusCode.ok ||
         response.statusCode == StatusCode.created) {
       return RegisterResponseModel.fromJson(jsonDecode(response.body));

@@ -10,7 +10,7 @@ class NationalIdWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppTextFormField(
-      hintText: "+966.......",
+      hintText: "رقم الهوية ",
       hintStyle: TextStyles.font14blackColor13W400.copyWith(
         color: AppColors.blackColor13.withValues(alpha: .4),
       ),
