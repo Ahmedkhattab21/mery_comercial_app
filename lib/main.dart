@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mery_comercial_app/config/routes/routes.dart';
 import 'package:mery_comercial_app/core/utils/app_colors_white_theme.dart';
@@ -25,7 +24,6 @@ import 'observer.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
 
   // SystemChrome.setPreferredOrientations([
   //   DeviceOrientation.portraitUp,
@@ -60,7 +58,7 @@ Future<void> main() async {
   // }
 
   runZonedGuarded(
-        () {
+    () {
       FlutterError.onError = (FlutterErrorDetails details) {
         // هنا نقدر نطبع الخطأ أو نرسله لـ Firebase Crashlytics أو نعرض شاشة
         FlutterError.presentError(details);
@@ -106,7 +104,8 @@ Future<void> main() async {
           path: 'assets/languages',
           fallbackLocale: const Locale('ar', 'EG'),
           child: MyApp(
-            initialRoute: Routes.loginScreen,
+            initialRoute: Routes.buttonNavigationBarScreen,
+            // initialRoute: Routes.loginScreen,
             // isLoggedInUser
             //     ? Routes.sideBarScreen
             //     : Routes.loginScreen,
@@ -114,7 +113,7 @@ Future<void> main() async {
         ),
       );
     },
-        (error, stack) {
+    (error, stack) {
       // لو حصل أي Exception خارج إطار Flutter UI
       print('🟠 Unhandled error: $error');
     },

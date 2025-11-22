@@ -149,10 +149,10 @@ class LoginScreen extends StatelessWidget {
                             true,
                             context,
                           );
-                          // context.pushNamedAndRemoveUntil(
-                          //   Routes.sideBarScreen,
-                          //   predicate: (predicate) => false,
-                          // );
+                          context.pushNamedAndRemoveUntil(
+                            Routes.buttonNavigationBarScreen,
+                            predicate: (predicate) => false,
+                          );
                         }
                       },
                       builder: (context, state) {

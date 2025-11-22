@@ -4,18 +4,29 @@ class ImageAsset {
 
   ///images
 
-   static const String goodRateImage = 'assets/images/good_rate_image.svg';
-   static const String badRateImage = 'assets/images/bad_rate_image.svg';
-   static const String landingPageImage = 'assets/images/landing_page_image.png';
-   static const String aboutImage = 'assets/images/about_image.png';
-   static const String about2Image = 'assets/images/about_2_image.png';
-   static const String about3Image = 'assets/images/about_3_image.png';
-   static const String about4Image = 'assets/images/about_4_image.png';
+  static const String goodRateImage = 'assets/images/good_rate_image.svg';
+  static const String badRateImage = 'assets/images/bad_rate_image.svg';
+  static const String landingPageImage = 'assets/images/landing_page_image.png';
+  static const String aboutImage = 'assets/images/about_image.png';
+  static const String about2Image = 'assets/images/about_2_image.png';
+  static const String about3Image = 'assets/images/about_3_image.png';
+  static const String about4Image = 'assets/images/about_4_image.png';
 
   ///icons
-  static const String notificationIcon = 'assets/icons/notification_icon.svg';
-  static const String searchIcon = 'assets/icons/search_icon.svg';
+  static const String homeIcon = 'assets/icons/home.svg';
+  static const String selectedHomeIcon = 'assets/icons/selected_home.svg';
+  static const String favoriteIcon = 'assets/icons/favorite.svg';
+  static const String selectedFavoriteIcon = 'assets/icons/selected_favorite.svg';
+  static const String orderIcon = 'assets/icons/order.svg';
+  static const String selectedOrderIcon = 'assets/icons/selected_order.svg';
 
+  static const String profileIcon = 'assets/icons/profile.svg';
+  static const String selectedProfileIcon = 'assets/icons/selected_profile.svg';
+  static const String meryIcon = 'assets/icons/mery_icon.png';
+
+
+
+  ///
   static const String analysisIcon = 'assets/icons/analysis_icon.svg';
   static const String moneyIcon = 'assets/icons/money_icon.svg';
   static const String newRequestsIcon = 'assets/icons/new_requests_icon.svg';
@@ -31,7 +42,6 @@ class ImageAsset {
   static const String courcesIcon = 'assets/icons/cources_icon.svg';
   static const String notification2Icon = 'assets/icons/notification2_icon.svg';
 
-
   static const String logoIcon = 'assets/icons/logo_icon.png';
   static const String employeeIcon = 'assets/icons/employee_icon.svg';
   static const String rolesIcon = 'assets/icons/roles_icon.svg';
@@ -39,14 +49,19 @@ class ImageAsset {
   static const String copyIcon = 'assets/icons/copy_icon.svg';
   static const String calenderIcon = 'assets/icons/calender_icon.svg';
 
-  static const String requestStatusIcon1 = 'assets/icons/request_status_icon_1.svg';
-  static const String requestStatusIcon2 = 'assets/icons/request_status_icon_2.svg';
-  static const String requestStatusIcon3 = 'assets/icons/request_status_icon_3.svg';
-  static const String requestStatusIcon4 = 'assets/icons/request_status_icon_4.svg';
+  static const String requestStatusIcon1 =
+      'assets/icons/request_status_icon_1.svg';
+  static const String requestStatusIcon2 =
+      'assets/icons/request_status_icon_2.svg';
+  static const String requestStatusIcon3 =
+      'assets/icons/request_status_icon_3.svg';
+  static const String requestStatusIcon4 =
+      'assets/icons/request_status_icon_4.svg';
   static const String deleteIcon = 'assets/icons/delete_icon.svg';
   static const String activeIcon = 'assets/icons/active_icon.svg';
   static const String notActiveIcon = 'assets/icons/not_active_icon.svg';
-  static const String cloudDownloadIcon = 'assets/icons/cloud_download_icon.svg';
+  static const String cloudDownloadIcon =
+      'assets/icons/cloud_download_icon.svg';
   static const String trueIcon = 'assets/icons/true_icon.svg';
   static const String countryIcon = 'assets/icons/country_icon.svg';
   static const String countryIcon2 = 'assets/icons/country_icon2.svg';
@@ -55,4 +70,4 @@ class ImageAsset {
   static const String diamondIcon = 'assets/icons/diamond_icon.svg';
   static const String loveIcon = 'assets/icons/love_icon.svg';
   static const String pdfImage = 'assets/icons/pdf_image.svg';
- }
+}

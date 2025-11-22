@@ -2,12 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mery_comercial_app/config/routes/routes.dart';
 import 'package:mery_comercial_app/core/services/services_locator.dart';
+import 'package:mery_comercial_app/features/button_navigation_bar/button_navigation_bar_sceen.dart';
+import 'package:mery_comercial_app/features/button_navigation_bar/logic/button_navigation_bar_cubit.dart';
+import 'package:mery_comercial_app/features/edit_profile/logic/edit_profile_cubit.dart';
+import 'package:mery_comercial_app/features/edit_profile/ui/edit_profile_screen.dart';
 import 'package:mery_comercial_app/features/forget_password/logic/forget_password_cubit.dart';
 import 'package:mery_comercial_app/features/forget_password/ui/forget_password_screen.dart';
 import 'package:mery_comercial_app/features/forget_password_2/logic/forget_password_2_cubit.dart';
 import 'package:mery_comercial_app/features/forget_password_2/ui/forget_password_2_screen.dart';
 import 'package:mery_comercial_app/features/login/logic/login_cubit.dart';
 import 'package:mery_comercial_app/features/login/ui/login_screen.dart';
+import 'package:mery_comercial_app/features/page_contain_content/logic/page_contain_content_cubit.dart';
+import 'package:mery_comercial_app/features/page_contain_content/ui/page_contain_content_screen.dart';
 import 'package:mery_comercial_app/features/register/logic/register_cubit.dart';
 import 'package:mery_comercial_app/features/register/ui/register_screen.dart';
 import 'package:mery_comercial_app/features/reset_password/logic/reset_password_cubit.dart';
@@ -51,14 +57,35 @@ class RouteGenerator {
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
             create: (context) => ForgetPassword2Cubit(getIt()),
-            child: ForgetPassword2Screen(token:args['token']),
+            child: ForgetPassword2Screen(token: args['token']),
           ),
         );
       case Routes.resetPasswordScreen:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
             create: (context) => ResetPasswordCubit(getIt()),
-            child:ResetPasswordScreen(token:args['token']),
+            child: ResetPasswordScreen(token: args['token']),
+          ),
+        );
+      case Routes.buttonNavigationBarScreen:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => ButtonNavigationBarCubit(),
+            child: ButtonNavigationBarScreen(),
+          ),
+        );
+      case Routes.pageContainContentScreen:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => PageContainContentCubit(getIt()),
+            child: PageContainContentScreen(title: args['title']),
+          ),
+        );
+      case Routes.editProfileScreen:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => EditProfileCubit(getIt(), getIt()),
+            child: EditProfileScreen(),
           ),
         );
 
