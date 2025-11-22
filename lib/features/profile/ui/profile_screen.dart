@@ -1,17 +1,12 @@
-import 'dart:io';
 
-import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mery_comercial_app/config/routes/routes.dart';
 import 'package:mery_comercial_app/core/utils/app_colors_white_theme.dart';
 import 'package:mery_comercial_app/core/utils/assets_manager.dart';
 import 'package:mery_comercial_app/core/utils/extentions.dart';
 import 'package:mery_comercial_app/core/utils/spacing.dart';
 import 'package:mery_comercial_app/core/utils/styles.dart';
-import 'package:mery_comercial_app/features/profile/logic/profile_cubit.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -43,7 +38,7 @@ class ProfileScreen extends StatelessWidget {
               ),
               verticalSpace(50),
               GestureDetector(
-                onTap: (){
+                onTap: () {
                   context.pushNamed(Routes.editProfileScreen);
                 },
                 child: Row(
@@ -225,6 +220,79 @@ class ProfileScreen extends StatelessWidget {
                       size: 16.r,
                       color: AppColors.greenColor31,
                     ),
+                  ],
+                ),
+              ),
+              verticalSpace(8),
+              Divider(color: AppColors.greyColor.withValues(alpha: .6)),
+              verticalSpace(8),
+              GestureDetector(
+                onTap: () {
+                  // context.pushNamed(
+                  //   Routes.pageContainContentScreen,
+                  //   arguments: {'title': 'من نحن'},
+                  // );
+                },
+                child: Row(
+                  children: [
+                    Container(
+                      height: 35.r,
+                      width: 35.r,
+                      padding: EdgeInsets.all(8.r),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        gradient: LinearGradient(
+                          begin: Alignment.topRight,
+                          end: Alignment.bottomLeft,
+                          colors: [
+                            AppColors.greenColor31,
+                            AppColors.greenColor31,
+                          ],
+                        ),
+                      ),
+                      child: Icon(
+                        Icons.headset_mic,
+                        color: AppColors.whiteColor,
+                        size: 15.r,
+                      ),
+                    ),
+                    horizontalSpace(16),
+                    Expanded(
+                      child: Text(
+                        'الدعم الفني',
+                        style: TextStyles.font14blackColor13w500,
+                      ),
+                    ),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      size: 16.r,
+                      color: AppColors.greenColor31,
+                    ),
+                  ],
+                ),
+              ),
+              verticalSpace(8),
+              Divider(color: AppColors.greyColor.withValues(alpha: .6)),
+              verticalSpace(24),
+
+              GestureDetector(
+                onTap: () {
+                  // context.pushNamed(
+                  //   Routes.pageContainContentScreen,
+                  //   arguments: {'title': 'من نحن'},
+                  // );
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+
+                  children: [
+                    Icon(Icons.logout, size: 16.r, color: AppColors.redColor26),
+                    horizontalSpace(14),
+                    Text(
+                      'تسجيل الخروج',
+                      style: TextStyles.font16bredColor26Bold,
+                    ),
+                    horizontalSpace(24),
                   ],
                 ),
               ),

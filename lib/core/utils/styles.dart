@@ -155,6 +155,11 @@ class TextStyles {
     color: AppColors.blackColor13,
     fontWeight: FontWeight.w500,
   );
+static TextStyle font16bredColor26Bold = TextStyle(
+    fontSize: 16,
+    color: AppColors.redColor26,
+    fontWeight: FontWeight.bold,
+  );
 
   static TextStyle font16greyColor64w400 = TextStyle(
     fontSize: 16,
