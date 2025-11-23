@@ -128,6 +128,15 @@ class TextStyles {
     color: AppColors.blackColor13,
     fontWeight: FontWeight.w400,
   );
+  static TextStyle font16BlackColor13bold = TextStyle(
+    fontSize: 16,
+    color: AppColors.blackColor13,
+    fontWeight: FontWeight.bold,
+  );  static TextStyle font18BlackColor13bold = TextStyle(
+    fontSize: 18,
+    color: AppColors.blackColor13,
+    fontWeight: FontWeight.bold,
+  );
   static TextStyle font20greenColor31W400 = TextStyle(
     fontSize: 20,
     color: AppColors.greenColor31,
@@ -178,6 +187,11 @@ static TextStyle font16bredColor26Bold = TextStyle(
     color: AppColors.blackColor,
     fontWeight: FontWeight.w400,
   );
+  static TextStyle font14BlackColor13W400 = TextStyle(
+    fontSize: 14,
+    color: AppColors.blackColor13,
+    fontWeight: FontWeight.w400,
+  );
   static TextStyle font14BlackColorW500 = TextStyle(
     fontSize: 14,
     color: AppColors.blackColor,
@@ -188,11 +202,7 @@ static TextStyle font16bredColor26Bold = TextStyle(
     color: AppColors.redColor,
     fontWeight: FontWeight.bold,
   );
-  static TextStyle font16whiteColorBold = TextStyle(
-    fontSize: 16,
-    color: AppColors.whiteColor,
-    fontWeight: FontWeight.bold,
-  );
+
   static TextStyle font16BlackColorBold = TextStyle(
     fontSize: 16,
     color: AppColors.blackColor,
@@ -310,6 +320,11 @@ static TextStyle font16bredColor26Bold = TextStyle(
   static TextStyle font14blackColor13Bold = TextStyle(
     fontSize: 14,
     color: AppColors.blackColor13,
+    fontWeight: FontWeight.bold,
+  );
+  static TextStyle font14whiteColorBold = TextStyle(
+    fontSize: 14,
+    color: AppColors.whiteColor,
     fontWeight: FontWeight.bold,
   );
 

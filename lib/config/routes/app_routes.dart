@@ -10,6 +10,8 @@ import 'package:mery_comercial_app/features/forget_password/logic/forget_passwor
 import 'package:mery_comercial_app/features/forget_password/ui/forget_password_screen.dart';
 import 'package:mery_comercial_app/features/forget_password_2/logic/forget_password_2_cubit.dart';
 import 'package:mery_comercial_app/features/forget_password_2/ui/forget_password_2_screen.dart';
+import 'package:mery_comercial_app/features/home/logic/home_cubit.dart';
+import 'package:mery_comercial_app/features/home/ui/home_screen.dart';
 import 'package:mery_comercial_app/features/login/logic/login_cubit.dart';
 import 'package:mery_comercial_app/features/login/ui/login_screen.dart';
 import 'package:mery_comercial_app/features/page_contain_content/logic/page_contain_content_cubit.dart';

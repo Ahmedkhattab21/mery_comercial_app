@@ -5,6 +5,8 @@ import 'package:mery_comercial_app/features/button_navigation_bar/logic/button_n
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mery_comercial_app/features/button_navigation_bar/models/buttom_model.dart';
+import 'package:mery_comercial_app/features/home/logic/home_cubit.dart';
+import 'package:mery_comercial_app/features/home/ui/home_screen.dart';
 import 'package:mery_comercial_app/features/profile/logic/profile_cubit.dart';
 import 'package:mery_comercial_app/features/profile/ui/profile_screen.dart';
 
@@ -46,6 +48,11 @@ class ButtonNavigationBarCubit extends Cubit<ButtonNavigationBarState> {
 
   Widget buttonBarBody() {
     switch (currentIndex) {
+      case 0:
+        return BlocProvider(
+          create: (context) => HomeCubit(),
+          child: HomeScreen(),
+        );
       case 1:
         return SizedBox();
       case 3:

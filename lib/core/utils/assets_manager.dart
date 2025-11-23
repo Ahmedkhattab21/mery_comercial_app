@@ -4,6 +4,7 @@ class ImageAsset {
 
   ///images
 
+  static const String sliderImage = 'assets/images/slider_image.png';
   static const String goodRateImage = 'assets/images/good_rate_image.svg';
   static const String badRateImage = 'assets/images/bad_rate_image.svg';
   static const String landingPageImage = 'assets/images/landing_page_image.png';
@@ -23,6 +24,8 @@ class ImageAsset {
   static const String profileIcon = 'assets/icons/profile.svg';
   static const String selectedProfileIcon = 'assets/icons/selected_profile.svg';
   static const String meryIcon = 'assets/icons/mery_icon.png';
+  static const String notificationIcon = 'assets/icons/notification_icon.svg';
+  static const String waveIcon = 'assets/icons/wave_icon.svg';
 
 
 

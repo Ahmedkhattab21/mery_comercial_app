@@ -189,7 +189,7 @@ class RegisterScreen extends StatelessWidget {
                           borderRadius: 8,
                           backGroundColor: AppColors.greenColor31,
                           borderColor: AppColors.greenColor31,
-                          textStyle: TextStyles.font16whiteColorBold,
+                          textStyle: TextStyles.font16WhiteColorBold,
                           onPressed: () {
                             validateRegister(context);
                           },
