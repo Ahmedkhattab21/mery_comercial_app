@@ -14,15 +14,13 @@ class EditProfileCubit extends Cubit<EditProfileState> {
   final EditProfileRepo _editProfileRepo;
   final ProfileRepo _profileRepo;
 
-  EditProfileCubit(this._editProfileRepo,this._profileRepo) : super(InitialState());
+  EditProfileCubit(this._editProfileRepo, this._profileRepo)
+    : super(InitialState());
 
   GlobalKey<FormState> loginKey = GlobalKey<FormState>();
   TextEditingController nameController = TextEditingController();
+  TextEditingController nationalIDController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
-  TextEditingController countryCodeController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController jobController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
 
   getUSerData() {
     emit(OnGetUSerDataLoadingState());
@@ -36,9 +34,7 @@ class EditProfileCubit extends Cubit<EditProfileState> {
             (r) {
               nameController.text = r.data.name;
               phoneController.text = r.data.phone;
-              countryCodeController.text = r.data.countryCode;
-              emailController.text = r.data.email;
-              jobController.text = r.data.job;
+              nationalIDController.text = r.data.nationalId;
               emit(OnGetUSerDataSuccessState());
             },
           );
@@ -55,47 +51,42 @@ class EditProfileCubit extends Cubit<EditProfileState> {
           UpdateUserDataRequestModel(
             name: nameController.text,
             phone: phoneController.text,
-            countryCode: countryCodeController.text,
-            job: jobController.text,
-            email: emailController.text,
-            password: passwordController.text.isNotEmpty
-                ? passwordController.text
-                : null,
           ),
         )
         .then((value) {
           value.fold(
             (l) {
-              emit(OnUpdateProfileErrorState());
+              emit(OnUpdateProfileErrorState(message: l.message.toString()));
             },
             (r) async {
-              emit(OnUpdateProfileSuccessState());
+              emit(OnUpdateProfileSuccessState(message: r.message.toString()));
             },
           );
         })
         .catchError((error) {
-          emit(OnUpdateProfileCatchErrorState());
+          emit(
+            OnUpdateProfileCatchErrorState(message: error.message.toString()),
+          );
         });
   }
-
 
   logOut() {
     emit(OnLogOutLoadingState());
     _profileRepo
         .logOut()
         .then((value) {
-      value.fold(
+          value.fold(
             (l) {
-          emit(OnLogOutErrorState());
-        },
+              emit(OnLogOutErrorState());
+            },
             (r) {
-          emit(OnLogOutSuccessState());
-        },
-      );
-    })
+              emit(OnLogOutSuccessState());
+            },
+          );
+        })
         .catchError((error) {
-      emit(OnLogOutCatchErrorState());
-    });
+          emit(OnLogOutCatchErrorState());
+        });
   }
 
   Future<void> cashUserData(String token, String name) async {

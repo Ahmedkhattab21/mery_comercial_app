@@ -44,7 +44,7 @@ class LoginCubit extends Cubit<LoginState> {
               emit(OnLoginErrorState());
             },
             (r) async {
-              // await cashUserData(r.useModel.token);
+              await cashUserData(r.useModel.token,r.useModel.userData.name);
               emit(OnLoginSuccessState());
             },
           );
@@ -54,8 +54,9 @@ class LoginCubit extends Cubit<LoginState> {
         });
   }
 
-  Future<void> cashUserData(String token) async {
+  Future<void> cashUserData(String token,String name) async {
     await CacheHelper.setSecuredString(ConstantKeys.saveTokenToShared, token);
+    await CacheHelper.setSecuredString(ConstantKeys.saveNAmeToShared, name);
   }
 
   static LoginCubit get(context) => BlocProvider.of(context);

@@ -13,9 +13,19 @@ class LoginResponseModel {
 
 class UseModel {
   String token;
+  UseData userData;
 
-  UseModel({required this.token});
+  UseModel({required this.token, required this.userData});
 
   factory UseModel.fromJson(Map<String, dynamic> json) =>
-      UseModel(token: json['token']);
+      UseModel(token: json['token'], userData: UseData.fromJson(json['user']));
+}
+
+class UseData {
+  String name;
+
+  UseData({required this.name});
+
+  factory UseData.fromJson(Map<String, dynamic> json) =>
+      UseData(name: json['name']);
 }

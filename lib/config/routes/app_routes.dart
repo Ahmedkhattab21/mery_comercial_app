@@ -86,7 +86,7 @@ class RouteGenerator {
       case Routes.editProfileScreen:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (context) => EditProfileCubit(getIt(), getIt()),
+            create: (context) => EditProfileCubit(getIt(), getIt())..getUSerData(),
             child: EditProfileScreen(),
           ),
         );

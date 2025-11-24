@@ -116,6 +116,10 @@ class TextStyles {
     fontSize: 20,
     color: AppColors.blackColor,
     fontWeight: FontWeight.bold,
+  );  static TextStyle font20BlackColor13Bold = TextStyle(
+    fontSize: 20,
+    color: AppColors.blackColor13,
+    fontWeight: FontWeight.bold,
   );
 
   static TextStyle font20BlackColor13W400 = TextStyle(

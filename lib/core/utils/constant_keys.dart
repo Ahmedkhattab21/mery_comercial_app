@@ -1,6 +1,7 @@
 class ConstantKeys {
   /// shared
   static const saveTokenToShared = "TOKEN";
+  static const saveNAmeToShared = "NAME";
 
 
 
@@ -13,7 +14,6 @@ class ConstantKeys {
 
   ///user setting
   static const saveEmailToShared = "EMAIL";
-  static const savePhoneToShared = "PHONE";
 
   static const saveImageToShared = "IMAGE";
   static const saveUserRoleToShared = "ROLE";

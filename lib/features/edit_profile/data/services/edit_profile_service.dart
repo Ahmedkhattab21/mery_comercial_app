@@ -35,15 +35,11 @@ class EditProfileService {
   Future<SuccessResponseModel> updateProfile(
     UpdateUserDataRequestModel parameter,
   ) async {
-    final response = await apiConsumer.post(
+    final response = await apiConsumer.put(
       EditProfileApiEndPoints.updateProfileUrl,
       UpdateUserDataRequestModel(
-        email: parameter.email,
-        password: parameter.password,
         name: parameter.name,
         phone: parameter.phone,
-        countryCode: parameter.countryCode,
-        job: parameter.job,
       ).toJson(),
       {
         ConstantKeys.appAuthorization:

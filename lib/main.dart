@@ -104,11 +104,9 @@ Future<void> main() async {
           path: 'assets/languages',
           fallbackLocale: const Locale('ar', 'EG'),
           child: MyApp(
-            initialRoute: Routes.buttonNavigationBarScreen,
-            // initialRoute: Routes.loginScreen,
-            // isLoggedInUser
-            //     ? Routes.sideBarScreen
-            //     : Routes.loginScreen,
+            initialRoute: isLoggedInUser
+                ? Routes.buttonNavigationBarScreen
+                : Routes.loginScreen,
           ),
         ),
       );

@@ -1,12 +1,15 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mery_comercial_app/config/routes/routes.dart';
+import 'package:mery_comercial_app/core/services/cache_helper.dart';
 import 'package:mery_comercial_app/core/utils/app_colors_white_theme.dart';
 import 'package:mery_comercial_app/core/utils/assets_manager.dart';
+import 'package:mery_comercial_app/core/utils/constant_keys.dart';
 import 'package:mery_comercial_app/core/utils/extentions.dart';
 import 'package:mery_comercial_app/core/utils/spacing.dart';
 import 'package:mery_comercial_app/core/utils/styles.dart';
+import 'package:mery_comercial_app/core/widgets/button_widget.dart';
+import 'package:mery_comercial_app/features/profile/logic/profile_cubit.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -277,14 +280,10 @@ class ProfileScreen extends StatelessWidget {
 
               GestureDetector(
                 onTap: () {
-                  // context.pushNamed(
-                  //   Routes.pageContainContentScreen,
-                  //   arguments: {'title': 'من نحن'},
-                  // );
+                  showLogOutBottomSheet(context, ProfileCubit.get(context));
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-
                   children: [
                     Icon(Icons.logout, size: 16.r, color: AppColors.redColor26),
                     horizontalSpace(14),
@@ -305,93 +304,100 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
-  // void showLogOutBottomSheet(BuildContext context, ProfileCubit cubit) {
-  //   showModalBottomSheet(
-  //     context: context,
-  //     backgroundColor: Colors.white,
-  //     shape: RoundedRectangleBorder(
-  //       borderRadius: BorderRadius.vertical(top: Radius.circular(32.r)),
-  //     ),
-  //     builder: (BuildContext context) {
-  //       return Padding(
-  //         padding: const EdgeInsets.all(16.0),
-  //         child: Column(
-  //           mainAxisSize: MainAxisSize.min, // Make bottom sheet fit content
-  //           crossAxisAlignment: CrossAxisAlignment.center,
-  //           children: [
-  //             Container(
-  //               height: 4.h,
-  //               width: 100.w,
-  //               decoration: BoxDecoration(
-  //                 color: AppColors.greyColor,
-  //                 borderRadius: BorderRadius.circular(20.r),
-  //               ),
-  //             ),
-  //             verticalSpace(24),
-  //             SvgPicture.asset(ImageAsset.logOutIcon),
-  //             verticalSpace(24),
-  //             Text(
-  //               'Leaving so soon?',
-  //               style: TextStyles.font50BlackColorW500.copyWith(
-  //                 color: AppColors.blackColor,
-  //               ),
-  //             ),
-  //             verticalSpace(8),
-  //             Text(
-  //               "If you log out, you’ll need to sign in again next time.  We’ll save your nights for when you’re back ✨",
-  //               textAlign: TextAlign.center,
-  //               style: TextStyles.font13blackColorW400,
-  //             ),
-  //             verticalSpace(16),
-  //
-  //             ButtonWidget(
-  //               isLoading: false,
-  //               borderRadius: 50,
-  //               buttonHeight: 46.h,
-  //               buttonText: "Stay Logged In",
-  //               backGroundColor: AppColors.blackColor,
-  //               borderColor: AppColors.blackColor,
-  //               textStyle: TextStyles.font16whiteColorW600.copyWith(
-  //                 color: AppColors.whiteColor,
-  //               ),
-  //               onPressed: () {
-  //                 context.pop();
-  //               },
-  //             ),
-  //             verticalSpace(16),
-  //             Center(
-  //               child: GestureDetector(
-  //                 onTap: () async {
-  //                   cubit.logOut();
-  //                   await CacheHelper.removeSecureData(
-  //                     ConstantKeys.saveTokenToShared,
-  //                   );
-  //                   await CacheHelper.removeSecureData(
-  //                     ConstantKeys.saveUserTypeToShared,
-  //                   );
-  //                   context.pushNamedAndRemoveUntil(
-  //                     Routes.onBoardingScreen,
-  //                     predicate: (predicate) => false,
-  //                   );
-  //                 },
-  //                 child: Text(
-  //                   'Log Me Out',
-  //                   style: TextStyles.font18RedColorW600.copyWith(
-  //                     color: AppColors.blackColor,
-  //                     decoration: TextDecoration.underline,
-  //                     decorationColor: AppColors.blackColor,
-  //                   ),
-  //                 ),
-  //               ),
-  //             ),
-  //             verticalSpace(24),
-  //           ],
-  //         ),
-  //       );
-  //     },
-  //   );
-  // }
-  //
+  void showLogOutBottomSheet(BuildContext context, ProfileCubit cubit) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.white,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+      ),
+      builder: (BuildContext context) {
+        return Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min, // Make bottom sheet fit content
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Center(
+                child: Container(
+                  height: 4.h,
+                  width: 100.w,
+                  decoration: BoxDecoration(
+                    color: AppColors.greyColor,
+                    borderRadius: BorderRadius.circular(20.r),
+                  ),
+                ),
+              ),
+              verticalSpace(24),
+              Row(
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      context.pop();
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: AppColors.greenColor31,
+                          width: 2,
+                        ),
+                        shape: BoxShape.circle,
+                      ),
+                      child: Icon(Icons.close, color: AppColors.greenColor31),
+                    ),
+                  ),
+                ],
+              ),
+              verticalSpace(12),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 12.w),
+                child: Text(
+                  'تسجيل الخروج',
+                  style: TextStyles.font20BlackColor13Bold,
+                ),
+              ),
+              verticalSpace(8),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 12.w),
+                child: Text(
+                  'هل أنت متأكد من أنك تريد تسجيل الخروج؟',
+                  style: TextStyles.font14greyColor64w400,
+                ),
+              ),
+              verticalSpace(24),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 12.w),
+                child: ButtonWidget(
+                  isLoading: false,
+                  borderRadius: 12,
+                  buttonHeight: 46.h,
+                  buttonText: 'تسجيل الخروج',
+                  backGroundColor: AppColors.redColor,
+                  borderColor: AppColors.redColor,
+                  textStyle: TextStyles.font16WhiteColorBold,
+                  onPressed: () async {
+                    cubit.logOut();
+                    await CacheHelper.removeSecureData(
+                      ConstantKeys.saveTokenToShared,
+                    );
+                    await CacheHelper.removeSecureData(
+                      ConstantKeys.saveNAmeToShared,
+                    );
+                    context.pushNamedAndRemoveUntil(
+                      Routes.loginScreen,
+                      predicate: (predicate) => false,
+                    );
+                  },
+                ),
+              ),
+              verticalSpace(24),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   // void showSupportBottomSheet(BuildContext context) {
   //   showModalBottomSheet(
   //     context: context,
