@@ -79,14 +79,16 @@ class RouteGenerator {
       case Routes.pageContainContentScreen:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (context) => PageContainContentCubit(getIt()),
+            create: (context) =>
+                PageContainContentCubit(getIt())..pages(args['id']),
             child: PageContainContentScreen(title: args['title']),
           ),
         );
       case Routes.editProfileScreen:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (context) => EditProfileCubit(getIt(), getIt())..getUSerData(),
+            create: (context) =>
+                EditProfileCubit(getIt(), getIt())..getUSerData(),
             child: EditProfileScreen(),
           ),
         );

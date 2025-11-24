@@ -89,7 +89,7 @@ class ProfileScreen extends StatelessWidget {
                 onTap: () {
                   context.pushNamed(
                     Routes.pageContainContentScreen,
-                    arguments: {'title': 'سياسة الاستخدام'},
+                    arguments: {'title': 'سياسة الاستخدام','id':11},
                   );
                 },
                 child: Row(
@@ -137,7 +137,7 @@ class ProfileScreen extends StatelessWidget {
                 onTap: () {
                   context.pushNamed(
                     Routes.pageContainContentScreen,
-                    arguments: {'title': 'شروط الخصوصية'},
+                    arguments: {'title': 'شروط الخصوصية','id':12},
                   );
                 },
                 child: Row(
@@ -185,7 +185,7 @@ class ProfileScreen extends StatelessWidget {
                 onTap: () {
                   context.pushNamed(
                     Routes.pageContainContentScreen,
-                    arguments: {'title': 'من نحن'},
+                    arguments: {'title': 'من نحن','id':10},
                   );
                 },
                 child: Row(

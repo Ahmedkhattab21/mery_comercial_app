@@ -8,7 +8,7 @@ import 'package:mery_comercial_app/core/exceptions/exceptions.dart';
 import 'package:mery_comercial_app/core/exceptions/failure.dart';
 import 'package:mery_comercial_app/core/services/cache_helper.dart';
 import 'package:mery_comercial_app/core/utils/constant_keys.dart';
-import 'package:mery_comercial_app/features/profile/data/services/profile_api_end_points.dart';
+ import 'package:mery_comercial_app/features/profile/data/services/profile_api_end_points.dart';
 
 class ProfileService {
   ApiConsumer apiConsumer;
