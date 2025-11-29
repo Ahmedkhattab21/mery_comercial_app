@@ -82,9 +82,9 @@ class HomeScreen extends StatelessWidget {
               verticalSpace(12),
               NationalityWidget(),
               verticalSpace(16),
-              Text('العمالة المميزة', style: TextStyles.font18BlackColor13bold),
-              verticalSpace(12),
-              FavoriteCvsWidget(),
+              // Text('العمالة المميزة', style: TextStyles.font18BlackColor13bold),
+              // verticalSpace(12),
+              // FavoriteCvsWidget(),
               verticalSpace(16),
 
 

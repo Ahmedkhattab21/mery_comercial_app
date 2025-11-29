@@ -22,7 +22,6 @@ class NationalityWidget extends StatelessWidget {
             current is OnGetNationalityCatchErrorState;
       },
       builder: (context, state) {
-
         if (state is OnGetNationalityLoadingState &&
             HomeCubit.get(context).nationalities.isEmpty) {
           return SingleChildScrollView(
