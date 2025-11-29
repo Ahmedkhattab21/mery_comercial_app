@@ -17,16 +17,15 @@ class PageContainContentService {
 
 
   Future<PagesResponseModel> pages(int id) async {
-    final response = await apiConsumer.post(
+    final response = await apiConsumer.get(
       PageContainContentApiEndPoints.pagesUrl(id),
-      null,
+
       {
         ConstantKeys.appAuthorization:
         "${ConstantKeys.appBearer} ${await CacheHelper.getSecuredString(
             ConstantKeys.saveTokenToShared)}",
       },
     );
-
     if (response.statusCode == StatusCode.ok) {
       return PagesResponseModel.fromJson(jsonDecode(response.body));
     } else {

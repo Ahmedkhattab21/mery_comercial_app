@@ -7,6 +7,8 @@ import 'package:mery_comercial_app/core/utils/assets_manager.dart';
 import 'package:mery_comercial_app/core/utils/extentions.dart';
 import 'package:mery_comercial_app/core/utils/spacing.dart';
 import 'package:mery_comercial_app/core/utils/styles.dart';
+import 'package:mery_comercial_app/features/home/ui/widgets/cvs_widget.dart';
+import 'package:mery_comercial_app/features/home/ui/widgets/favorite_cvs_widget.dart';
 import 'package:mery_comercial_app/features/home/ui/widgets/nationality_widget.dart';
 import 'package:mery_comercial_app/features/home/ui/widgets/slider_widget.dart';
 
@@ -48,7 +50,6 @@ class HomeScreen extends StatelessWidget {
         ),
 
 
-        // Text(" محمد هنيدى", style: TextStyles.font14whiteColorBold),
         backgroundColor: AppColors.greenColor31,
         actions: [
           Container(
@@ -107,7 +108,13 @@ class HomeScreen extends StatelessWidget {
               verticalSpace(16),
               Text('العمالة المميزة', style: TextStyles.font18BlackColor13bold),
               verticalSpace(12),
+              FavoriteCvsWidget(),
+              verticalSpace(16),
 
+
+              Text('كل العمالة', style: TextStyles.font18BlackColor13bold),
+              verticalSpace(12),
+              CvsWidget(),
               verticalSpace(40),
             ],
           ),

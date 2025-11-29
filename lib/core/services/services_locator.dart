@@ -10,6 +10,8 @@ import 'package:mery_comercial_app/features/forget_password/data/repo/forget_pas
 import 'package:mery_comercial_app/features/forget_password/data/services/forget_password_service.dart';
 import 'package:mery_comercial_app/features/forget_password_2/data/repo/forget_password_2_repo.dart';
 import 'package:mery_comercial_app/features/forget_password_2/data/services/forget_password_2_service.dart';
+import 'package:mery_comercial_app/features/home/data/repo/home_repo.dart';
+import 'package:mery_comercial_app/features/home/data/services/home_service.dart';
 import 'package:mery_comercial_app/features/login/data/repo/login_repo.dart';
 import 'package:mery_comercial_app/features/login/data/services/login_service.dart';
 import 'package:mery_comercial_app/features/page_contain_content/data/repo/page_contain_content_repo.dart';
@@ -71,16 +73,26 @@ class ServicesLocator {
     getIt.registerFactory<ProfileService>(
       () => ProfileService(apiConsumer: getIt()),
     );
-   /// PageContainContent
-    getIt.registerLazySingleton<PageContainContentRepo>(() => PageContainContentRepo(getIt()));
+
+    /// PageContainContent
+    getIt.registerLazySingleton<PageContainContentRepo>(
+      () => PageContainContentRepo(getIt()),
+    );
     getIt.registerFactory<PageContainContentService>(
       () => PageContainContentService(apiConsumer: getIt()),
     );
- /// EditProfile
-    getIt.registerLazySingleton<EditProfileRepo>(() => EditProfileRepo(getIt()));
+
+    /// EditProfile
+    getIt.registerLazySingleton<EditProfileRepo>(
+      () => EditProfileRepo(getIt()),
+    );
     getIt.registerFactory<EditProfileService>(
       () => EditProfileService(apiConsumer: getIt()),
     );
+
+    /// Home
+    getIt.registerLazySingleton<HomeRepo>(() => HomeRepo(getIt()));
+    getIt.registerFactory<HomeService>(() => HomeService(apiConsumer: getIt()));
 
     ///constant
     // getIt.registerLazySingleton<EndPoints>(() => EndPoints());

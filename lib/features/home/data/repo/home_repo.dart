@@ -1,18 +1,26 @@
-
 import 'package:dartz/dartz.dart';
-import 'package:mery_comercial_app/core/errors_and_success_response/success/success_response.dart';
 import 'package:mery_comercial_app/core/exceptions/exceptions.dart';
 import 'package:mery_comercial_app/core/exceptions/failure.dart';
-import 'package:mery_comercial_app/features/profile/data/services/profile_service.dart';
+import 'package:mery_comercial_app/features/home/data/models/get_cvs_response_model.dart';
+import 'package:mery_comercial_app/features/home/data/models/get_nationality_response_model.dart';
+import 'package:mery_comercial_app/features/home/data/services/home_service.dart';
 
-class ProfileRepo {
-  final ProfileService _profileService;
+class HomeRepo {
+  final HomeService _homeService;
 
-  ProfileRepo(this._profileService);
+  HomeRepo(this._homeService);
 
-  Future<Either<Failure, SuccessResponseModel>> logOut() async {
+  Future<Either<Failure, GetNationalityResponseModel>> getNationality() async {
     try {
-      return Right(await _profileService.logOut());
+      return Right(await _homeService.getNationality());
+    } on ServerException catch (failure) {
+      return Left(ServerFailure(message: failure.serverFailure.message));
+    }
+  }
+
+  Future<Either<Failure, GetCvsResponseModel>> getCV() async {
+    try {
+      return Right(await _homeService.getCV());
     } on ServerException catch (failure) {
       return Left(ServerFailure(message: failure.serverFailure.message));
     }

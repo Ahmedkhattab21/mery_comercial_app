@@ -50,7 +50,7 @@ class ButtonNavigationBarCubit extends Cubit<ButtonNavigationBarState> {
     switch (currentIndex) {
       case 0:
         return BlocProvider(
-          create: (context) => HomeCubit(),
+          create: (context) => HomeCubit(getIt())..getNationality()..getCV(),
           child: HomeScreen(),
         );
       case 1:

@@ -25,10 +25,7 @@ class PageContainContentScreen extends StatelessWidget {
           },
           icon: Icon(Icons.arrow_back, color: AppColors.whiteColor),
         ),
-        title: Text(
-          title,
-          style: TextStyles.font18WhiteColorW600,
-        ),
+        title: Text(title, style: TextStyles.font18WhiteColorW600),
         backgroundColor: AppColors.greenColor31,
       ),
       body: Container(
@@ -46,29 +43,42 @@ class PageContainContentScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-
                 verticalSpace(20),
 
                 Expanded(
                   child: Container(
                     width: double.infinity,
                     padding: EdgeInsets.symmetric(
-                        horizontal: 16.w, vertical: 16.h),
+                      horizontal: 16.w,
+                      vertical: 16.h,
+                    ),
                     decoration: BoxDecoration(
-                        color: AppColors.whiteColor,
-                        borderRadius: BorderRadius.circular(32.r),
-                        border: Border.all(
-                            color: AppColors.greyColor44.withValues(alpha: .2))
+                      color: AppColors.whiteColor,
+                      borderRadius: BorderRadius.circular(32.r),
+                      border: Border.all(
+                        color: AppColors.greyColor44.withValues(alpha: .2),
+                      ),
                     ),
                     child: SingleChildScrollView(
-                      child: BlocBuilder<PageContainContentCubit, PageContainContentState>(
-                        // buildWhen: (previous,current) {
-                        //   return current is
-                        // },
-                        builder: (context, state) {
-                          return Text('AppConstant.terms');
-                        },
-                      ),
+                      child:
+                          BlocBuilder<
+                            PageContainContentCubit,
+                            PageContainContentState
+                          >(
+                            buildWhen: (previous, current) {
+                              return current is OnGetPagesLoadingState ||
+                                  current is OnGetPagesSuccessState ||
+                                  current is OnGetPagesErrorState ||
+                                  current is OnGetPagesCatchErrorState;
+                            },
+                            builder: (context, state) {
+                              return Text(
+                                PageContainContentCubit.get(
+                                  context,
+                                ).metaDescription,
+                              );
+                            },
+                          ),
                     ),
                   ),
                 ),

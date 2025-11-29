@@ -1,4 +1,3 @@
-import 'package:image_picker/image_picker.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mery_comercial_app/features/page_contain_content/data/repo/page_contain_content_repo.dart';
@@ -8,6 +7,9 @@ class PageContainContentCubit extends Cubit<PageContainContentState> {
   final PageContainContentRepo _pageContainContentRepo;
 
   PageContainContentCubit(this._pageContainContentRepo) : super(InitialState());
+
+  String metaDescription = '';
+
   pages(int id) {
     emit(OnGetPagesLoadingState());
     _pageContainContentRepo
@@ -18,11 +20,13 @@ class PageContainContentCubit extends Cubit<PageContainContentState> {
               emit(OnGetPagesErrorState());
             },
             (r) {
+              metaDescription = r.tokenModel.metaDescription;
               emit(OnGetPagesSuccessState());
             },
           );
         })
         .catchError((error) {
+
           emit(OnGetPagesCatchErrorState());
         });
   }
