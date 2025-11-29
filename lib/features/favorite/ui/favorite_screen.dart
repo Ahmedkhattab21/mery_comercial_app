@@ -1,19 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mery_comercial_app/config/routes/routes.dart';
+
 import 'package:mery_comercial_app/core/utils/app_colors_white_theme.dart';
-import 'package:mery_comercial_app/core/utils/assets_manager.dart';
-import 'package:mery_comercial_app/core/utils/extentions.dart';
+
 import 'package:mery_comercial_app/core/utils/spacing.dart';
 import 'package:mery_comercial_app/core/utils/styles.dart';
-import 'package:mery_comercial_app/features/home/ui/widgets/cvs_widget.dart';
-import 'package:mery_comercial_app/features/home/ui/widgets/favorite_cvs_widget.dart';
-import 'package:mery_comercial_app/features/home/ui/widgets/nationality_widget.dart';
-import 'package:mery_comercial_app/features/home/ui/widgets/slider_widget.dart';
+import 'package:mery_comercial_app/features/favorite/ui/widgets/favorites_widget.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class FavoriteScreen extends StatelessWidget {
+  const FavoriteScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,78 +16,18 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: AppColors.whiteColor,
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
-        leading: Container(
-          margin: EdgeInsets.all(6),
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            border: Border.all(color: AppColors.orangeColor48A),
-          ),
-          child: Image.asset(ImageAsset.meryIcon, fit: BoxFit.cover),
-        ),
-        title: Row(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Text.rich(TextSpan(
-              children: [
-                TextSpan(
-                    text: 'حياك !\n',
-                    style: TextStyles.font14WhiteColorW400
-                ),
-                TextSpan(
-                  text: ' محمد هنيدى',
-                    style: TextStyles.font14whiteColorBold
-                ),
-              ]
-            )),
-            horizontalSpace(4),
-            SvgPicture.asset(ImageAsset.waveIcon,color: AppColors.orangeColor48A),
-          ],
-        ),
+        leading: null,
 
-
+        title: Text('المفضلة', style: TextStyles.font18WhiteColorW600),
         backgroundColor: AppColors.greenColor31,
-        actions: [
-          Container(
-            margin: EdgeInsets.all(6),
-            padding: EdgeInsets.all(8.r),
-            decoration: BoxDecoration(
-              color: AppColors.whiteColor,
-              shape: BoxShape.circle,
-            ),
-            child: SvgPicture.asset(ImageAsset.notificationIcon),
-          ),
-          horizontalSpace(8),
-        ],
-        centerTitle: false,
+        centerTitle: true,
       ),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: EdgeInsets.symmetric(horizontal: 16.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-
-              verticalSpace(16),
-              SliderWidget(),
-              verticalSpace(16),
-              Text(
-                'الجنسيات المتاحة',
-                style: TextStyles.font18BlackColor13bold,
-              ),
-              verticalSpace(12),
-              NationalityWidget(),
-              verticalSpace(16),
-              Text('العمالة المميزة', style: TextStyles.font18BlackColor13bold),
-              verticalSpace(12),
-              FavoriteCvsWidget(),
-              verticalSpace(16),
-
-
-              Text('كل العمالة', style: TextStyles.font18BlackColor13bold),
-              verticalSpace(12),
-              CvsWidget(),
-              verticalSpace(40),
-            ],
+            children: [verticalSpace(16), FavoritesWidget(), verticalSpace(40)],
           ),
         ),
       ),

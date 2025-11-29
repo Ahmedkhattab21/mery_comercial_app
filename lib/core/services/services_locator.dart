@@ -6,6 +6,8 @@ import 'package:mery_comercial_app/core/utils/app_colors_white_theme.dart';
 import 'package:mery_comercial_app/core/utils/app_constant.dart';
 import 'package:mery_comercial_app/features/edit_profile/data/repo/edit_profile_repo.dart';
 import 'package:mery_comercial_app/features/edit_profile/data/services/edit_profile_service.dart';
+import 'package:mery_comercial_app/features/favorite/data/repo/favorite_repo.dart';
+import 'package:mery_comercial_app/features/favorite/data/services/favorite_service.dart';
 import 'package:mery_comercial_app/features/forget_password/data/repo/forget_password_repo.dart';
 import 'package:mery_comercial_app/features/forget_password/data/services/forget_password_service.dart';
 import 'package:mery_comercial_app/features/forget_password_2/data/repo/forget_password_2_repo.dart';
@@ -93,6 +95,12 @@ class ServicesLocator {
     /// Home
     getIt.registerLazySingleton<HomeRepo>(() => HomeRepo(getIt()));
     getIt.registerFactory<HomeService>(() => HomeService(apiConsumer: getIt()));
+
+    /// Favorite
+    getIt.registerLazySingleton<FavoriteRepo>(() => FavoriteRepo(getIt()));
+    getIt.registerFactory<FavoriteService>(
+      () => FavoriteService(apiConsumer: getIt()),
+    );
 
     ///constant
     // getIt.registerLazySingleton<EndPoints>(() => EndPoints());

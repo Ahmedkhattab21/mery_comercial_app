@@ -8,25 +8,25 @@ import 'package:mery_comercial_app/core/utils/assets_manager.dart';
 import 'package:mery_comercial_app/core/utils/spacing.dart';
 import 'package:mery_comercial_app/core/utils/styles.dart';
 import 'package:mery_comercial_app/core/widgets/button_widget.dart';
-import 'package:mery_comercial_app/features/home/logic/home_cubit.dart';
-import 'package:mery_comercial_app/features/home/logic/home_state.dart';
+import 'package:mery_comercial_app/features/favorite/logic/favorite_cubit.dart';
+import 'package:mery_comercial_app/features/favorite/logic/favorite_state.dart';
 import 'package:shimmer/shimmer.dart';
 
-class CvsWidget extends StatelessWidget {
-  const CvsWidget({super.key});
+class FavoritesWidget extends StatelessWidget {
+  const FavoritesWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<HomeCubit, HomeState>(
+    return BlocBuilder<FavoriteCubit, FavoriteState>(
       buildWhen: (previous, current) {
-        return current is OnGetCVSLoadingState ||
-            current is OnGetCVSErrorState ||
-            current is OnGetCVSSuccessState ||
-            current is OnGetCVSCatchErrorState;
+        return current is OnGetFavoritesLoadingState ||
+            current is OnGetFavoritesErrorState ||
+            current is OnGetFavoritesSuccessState ||
+            current is OnGetFavoritesCatchErrorState;
       },
       builder: (context, state) {
-        if (state is OnGetCVSLoadingState &&
-            HomeCubit.get(context).cvs.isEmpty) {
+        if (state is OnGetFavoritesLoadingState &&
+            FavoriteCubit.get(context).favorites.isEmpty) {
           return SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Column(
@@ -50,13 +50,9 @@ class CvsWidget extends StatelessWidget {
                       ),
                       child: Column(
                         children: [
-                          Container(
-                            color: Colors.grey.shade300,
-                          ),
+                          Container(color: Colors.grey.shade300),
                           verticalSpace(8),
-                          Container(
-                            color: Colors.grey.shade300,
-                          ),
+                          Container(color: Colors.grey.shade300),
                         ],
                       ),
                     ),
@@ -69,7 +65,7 @@ class CvsWidget extends StatelessWidget {
           return SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Column(
-              children: HomeCubit.get(context).cvs
+              children: FavoriteCubit.get(context).favorites
                   .map(
                     (item) => GestureDetector(
                       onTap: () {

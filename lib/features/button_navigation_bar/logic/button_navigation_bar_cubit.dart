@@ -5,6 +5,8 @@ import 'package:mery_comercial_app/features/button_navigation_bar/logic/button_n
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mery_comercial_app/features/button_navigation_bar/models/buttom_model.dart';
+import 'package:mery_comercial_app/features/favorite/logic/favorite_cubit.dart';
+import 'package:mery_comercial_app/features/favorite/ui/favorite_screen.dart';
 import 'package:mery_comercial_app/features/home/logic/home_cubit.dart';
 import 'package:mery_comercial_app/features/home/ui/home_screen.dart';
 import 'package:mery_comercial_app/features/profile/logic/profile_cubit.dart';
@@ -50,11 +52,17 @@ class ButtonNavigationBarCubit extends Cubit<ButtonNavigationBarState> {
     switch (currentIndex) {
       case 0:
         return BlocProvider(
-          create: (context) => HomeCubit(getIt())..getNationality()..getCV(),
+          create: (context) => HomeCubit(getIt())
+            ..getNationality()
+            ..getCV(),
           child: HomeScreen(),
         );
       case 1:
-        return SizedBox();
+        return BlocProvider(
+          create: (context) => FavoriteCubit(getIt())..getFavorites(),
+          child: FavoriteScreen(),
+        );
+
       case 3:
         return BlocProvider(
           create: (_) => ProfileCubit(getIt()),
