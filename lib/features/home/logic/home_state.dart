@@ -2,12 +2,15 @@ abstract class HomeState {}
 
 class InitialState extends HomeState {}
 
+class OnChangeSelectedBannerState extends HomeState {}
+class OnGetSliderLoadingState extends HomeState {}
+class OnGetSliderErrorState extends HomeState {}
+class OnGetSliderSuccessState extends HomeState {}
+class OnGetSliderCatchErrorState extends HomeState {}
+
 class OnGetNationalityLoadingState extends HomeState {}
-
 class OnGetNationalityErrorState extends HomeState {}
-
 class OnGetNationalitySuccessState extends HomeState {}
-
 class OnGetNationalityCatchErrorState extends HomeState {}
 
 class OnGetCVSLoadingState extends HomeState {}

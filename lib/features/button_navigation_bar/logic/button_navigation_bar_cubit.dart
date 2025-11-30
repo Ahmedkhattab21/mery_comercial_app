@@ -57,6 +57,7 @@ class ButtonNavigationBarCubit extends Cubit<ButtonNavigationBarState> {
           create: (context) => HomeCubit(getIt(), getIt(), getIt())
             ..getFavorites()
             ..getNationality()
+            ..getSliders()
             ..getCV(),
           child: HomeScreen(),
         );

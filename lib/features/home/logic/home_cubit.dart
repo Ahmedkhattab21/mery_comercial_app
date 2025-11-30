@@ -1,8 +1,9 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart' hide Slider;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mery_comercial_app/core/utils/app_constant.dart';
 import 'package:mery_comercial_app/features/booking/data/models/booking_request_model.dart';
 import 'package:mery_comercial_app/features/booking/data/repo/booking_repo.dart';
+import 'package:mery_comercial_app/features/home/data/models/get_sliders_response_model.dart';
 import 'package:mery_comercial_app/features/favorite/data/models/add_favorite_request_model.dart';
 import 'package:mery_comercial_app/features/favorite/data/models/get_favorite_response_model.dart';
 import 'package:mery_comercial_app/features/favorite/data/repo/favorite_repo.dart';
@@ -20,6 +21,34 @@ class HomeCubit extends Cubit<HomeState> {
 
   HomeCubit(this._homeRepo, this._favoriteRepo, this._bookingRepo)
     : super(InitialState());
+
+  List<Slider> sliders = [];
+  int selectedBanner = 0;
+
+  changeSelectedBanner(int value) {
+    selectedBanner = value;
+    emit(OnChangeSelectedBannerState());
+  }
+  getSliders() {
+    emit(OnGetSliderLoadingState());
+    _homeRepo
+        .getSliders()
+        .then((value) {
+      value.fold(
+            (l) {
+          emit(OnGetSliderErrorState());
+        },
+            (r) async {
+              sliders = r.data;
+          emit(OnGetSliderSuccessState());
+        },
+      );
+    })
+        .catchError((error) {
+      emit(OnGetSliderCatchErrorState());
+    });
+  }
+
 
   List<nationality.Nationality> nationalities = [];
 
