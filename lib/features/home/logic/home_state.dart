@@ -32,3 +32,10 @@ class OnRemoveFromFavoritesLoadingState extends HomeState {}
 class OnRemoveFromFavoritesErrorState extends HomeState {}
 class OnRemoveFromFavoritesSuccessState extends HomeState {}
 class OnRemoveFromFavoritesCatchErrorState extends HomeState {}
+
+
+
+class OnAddToBookingLoadingState extends HomeState {}
+class OnAddToBookingErrorState extends HomeState {}
+class OnAddToBookingSuccessState extends HomeState {}
+class OnAddToBookingCatchErrorState extends HomeState {}

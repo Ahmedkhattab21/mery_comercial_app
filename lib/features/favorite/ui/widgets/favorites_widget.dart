@@ -206,7 +206,11 @@ class FavoritesWidget extends StatelessWidget {
                                       borderColor: AppColors.greenColor31,
                                       textStyle:
                                           TextStyles.font16WhiteColorBold,
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        FavoriteCubit.get(
+                                          context,
+                                        ).addBooking(context, item.id);
+                                      },
                                     ),
                                   ),
                               ],

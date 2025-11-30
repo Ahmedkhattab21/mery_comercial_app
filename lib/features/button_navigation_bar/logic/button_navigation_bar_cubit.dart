@@ -1,5 +1,7 @@
 import 'package:mery_comercial_app/core/services/services_locator.dart';
 import 'package:mery_comercial_app/core/utils/assets_manager.dart';
+import 'package:mery_comercial_app/features/booking/logic/booking_cubit.dart';
+import 'package:mery_comercial_app/features/booking/ui/booking_screen.dart';
 import 'package:mery_comercial_app/features/button_navigation_bar/logic/button_navigation_bar_state.dart';
 
 import 'package:flutter/material.dart';
@@ -52,7 +54,7 @@ class ButtonNavigationBarCubit extends Cubit<ButtonNavigationBarState> {
     switch (currentIndex) {
       case 0:
         return BlocProvider(
-          create: (context) => HomeCubit(getIt(),getIt())
+          create: (context) => HomeCubit(getIt(), getIt(), getIt())
             ..getFavorites()
             ..getNationality()
             ..getCV(),
@@ -60,8 +62,13 @@ class ButtonNavigationBarCubit extends Cubit<ButtonNavigationBarState> {
         );
       case 1:
         return BlocProvider(
-          create: (context) => FavoriteCubit(getIt())..getFavorites(),
+          create: (context) => FavoriteCubit(getIt(), getIt())..getFavorites(),
           child: FavoriteScreen(),
+        );
+      case 2:
+        return BlocProvider(
+          create: (context) => BookingCubit(getIt())..getBooking(),
+          child: BookingScreen(),
         );
 
       case 3:

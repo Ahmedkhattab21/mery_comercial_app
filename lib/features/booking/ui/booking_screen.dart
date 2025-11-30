@@ -5,10 +5,10 @@ import 'package:mery_comercial_app/core/utils/app_colors_white_theme.dart';
 
 import 'package:mery_comercial_app/core/utils/spacing.dart';
 import 'package:mery_comercial_app/core/utils/styles.dart';
-import 'package:mery_comercial_app/features/favorite/ui/widgets/favorites_widget.dart';
+import 'package:mery_comercial_app/features/booking/ui/widgets/book_widget.dart';
 
-class FavoriteScreen extends StatelessWidget {
-  const FavoriteScreen({super.key});
+class BookingScreen extends StatelessWidget {
+  const BookingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class FavoriteScreen extends StatelessWidget {
       appBar: AppBar(
         leading: null,
 
-        title: Text('المفضلة', style: TextStyles.font18WhiteColorW600),
+        title: Text('طلباتي', style: TextStyles.font18WhiteColorW600),
         backgroundColor: AppColors.greenColor31,
         centerTitle: true,
       ),
@@ -28,7 +28,7 @@ class FavoriteScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [verticalSpace(16), FavoritesWidget(), verticalSpace(40)],
+            children: [verticalSpace(16), BookWidget(), verticalSpace(40)],
           ),
         ),
       ),

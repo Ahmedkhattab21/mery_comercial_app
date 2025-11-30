@@ -1,35 +1,69 @@
-class GetFavoriteResponseModel {
+class GetBookingResponseModel {
   String status;
   String message;
-  List<Favorite> data;
+  BookData bookData;
 
-  GetFavoriteResponseModel({
+  GetBookingResponseModel({
     required this.status,
     required this.message,
-    required this.data,
+    required this.bookData,
   });
 
-  factory GetFavoriteResponseModel.fromJson(Map<String, dynamic> json) {
-    return GetFavoriteResponseModel(
+  factory GetBookingResponseModel.fromJson(Map<String, dynamic> json) {
+    return GetBookingResponseModel(
       status: json['status'] ?? '',
       message: json['message'] ?? '',
-      data: (json['data'] as List<dynamic>)
-          .map((e) => Favorite.fromJson(e))
+      bookData: BookData.fromJson(json['data']),
+    );
+  }
+}
+
+class BookData {
+  List<BookingModel> bookings;
+
+  BookData({required this.bookings});
+
+  factory BookData.fromJson(Map<String, dynamic> json) {
+    return BookData(
+      bookings: (json['data'] as List<dynamic>)
+          .map((e) => BookingModel.fromJson(e))
           .toList(),
     );
   }
 }
 
-class Favorite {
+class BookingModel {
   int id;
+  String status;
+  String createdAt;
+  CvModel cv;
 
+  BookingModel({
+    required this.id,
+    required this.status,
+    required this.createdAt,
+    required this.cv,
+  });
+
+  factory BookingModel.fromJson(Map<String, dynamic> json) {
+    return BookingModel(
+      id: json['id'] ?? 0,
+      status: json['status'] ?? '',
+      createdAt: json['created_at'] ?? '',
+      cv: CvModel.fromJson(json['cv']),
+    );
+  }
+}
+
+class CvModel {
+  int id;
   Nationality nationality;
   CvFile cvFile;
   bool hasExperience;
   bool isMuslim;
   int approvedBy;
 
-  Favorite({
+  CvModel({
     required this.id,
     required this.nationality,
     required this.cvFile,
@@ -38,8 +72,8 @@ class Favorite {
     required this.approvedBy,
   });
 
-  factory Favorite.fromJson(Map<String, dynamic> json) {
-    return Favorite(
+  factory CvModel.fromJson(Map<String, dynamic> json) {
+    return CvModel(
       id: json['id'] ?? 0,
       nationality: Nationality.fromJson(json['nationality']),
       cvFile: CvFile.fromJson(json['file']),
@@ -51,22 +85,47 @@ class Favorite {
 }
 
 class CvFile {
+  String path;
+  String mime;
+  int size;
   String name;
   String url;
 
-  CvFile({required this.name, required this.url});
+  CvFile({
+    required this.path,
+    required this.mime,
+    required this.size,
+    required this.name,
+    required this.url,
+  });
 
   factory CvFile.fromJson(Map<String, dynamic> json) {
-    return CvFile(name: json['original'] ?? '', url: json['url'] ?? '');
+    return CvFile(
+      path: json['path'] ?? '',
+      mime: json['mime'] ?? '',
+      size: json['size'] ?? 0,
+      name: json['original'] ?? '',
+      url: json['url'] ?? '',
+    );
   }
 }
 
 class Nationality {
   String name;
+  String code;
+  String image;
 
-  Nationality({required this.name});
+  Nationality({
+    required this.name,
+    required this.code,
+    required this.image,
+  });
 
   factory Nationality.fromJson(Map<String, dynamic> json) {
-    return Nationality(name: json['name'] ?? '');
+    return Nationality(
+      name: json['translations']?['ar'] ?? json['name'] ?? '',
+      code: json['code'] ?? '',
+      image: json['image'] ?? '',
+    );
   }
 }

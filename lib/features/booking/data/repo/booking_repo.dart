@@ -3,15 +3,15 @@ import 'package:mery_comercial_app/core/errors_and_success_response/success/succ
 import 'package:mery_comercial_app/core/exceptions/exceptions.dart';
 import 'package:mery_comercial_app/core/exceptions/failure.dart';
 import 'package:mery_comercial_app/features/booking/data/models/booking_request_model.dart';
+import 'package:mery_comercial_app/features/booking/data/models/get_booking_response_model.dart';
 import 'package:mery_comercial_app/features/booking/data/services/booking_service.dart';
-import 'package:mery_comercial_app/features/favorite/data/models/get_favorite_response_model.dart';
 
 class BookingRepo {
   final BookingService _bookingService;
 
   BookingRepo(this._bookingService);
 
-  Future<Either<Failure, GetFavoriteResponseModel>> getBooking() async {
+  Future<Either<Failure, GetBookingResponseModel>> getBooking() async {
     try {
       return Right(await _bookingService.getBooking());
     } on ServerException catch (failure) {
@@ -19,7 +19,7 @@ class BookingRepo {
     }
   }
 
-  Future<Either<Failure, SuccessResponseModel>> addToFavorite(
+  Future<Either<Failure, SuccessResponseModel>> addBooking(
     BookingRequestModel parameter,
   ) async {
     try {

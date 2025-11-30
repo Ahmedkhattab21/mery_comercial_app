@@ -195,7 +195,11 @@ class CvsWidget extends StatelessWidget {
                                       .withValues(alpha: .9),
                                   borderColor: AppColors.greenColor31,
                                   textStyle: TextStyles.font16WhiteColorBold,
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    HomeCubit.get(
+                                      context,
+                                    ).addBooking(context, item.id);
+                                  },
                                 ),
                               ),
                           ],

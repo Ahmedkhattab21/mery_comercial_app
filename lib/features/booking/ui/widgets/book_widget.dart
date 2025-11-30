@@ -8,25 +8,25 @@ import 'package:mery_comercial_app/core/utils/assets_manager.dart';
 import 'package:mery_comercial_app/core/utils/spacing.dart';
 import 'package:mery_comercial_app/core/utils/styles.dart';
 import 'package:mery_comercial_app/core/widgets/button_widget.dart';
-import 'package:mery_comercial_app/features/favorite/logic/favorite_cubit.dart';
-import 'package:mery_comercial_app/features/favorite/logic/favorite_state.dart';
+import 'package:mery_comercial_app/features/booking/logic/booking_cubit.dart';
+import 'package:mery_comercial_app/features/booking/logic/booking_state.dart';
 import 'package:shimmer/shimmer.dart';
 
-class FavoritesWidget extends StatelessWidget {
-  const FavoritesWidget({super.key});
+class BookWidget extends StatelessWidget {
+  const BookWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<FavoriteCubit, FavoriteState>(
+    return BlocBuilder<BookingCubit, BookingState>(
       buildWhen: (previous, current) {
-        return current is OnGetFavoritesLoadingState ||
-            current is OnGetFavoritesErrorState ||
-            current is OnGetFavoritesSuccessState ||
-            current is OnGetFavoritesCatchErrorState;
+        return current is OnGetBookingLoadingState ||
+            current is OnGetBookingErrorState ||
+            current is OnGetBookingSuccessState ||
+            current is OnGetBookingCatchErrorState;
       },
       builder: (context, state) {
-        if (state is OnGetFavoritesLoadingState &&
-            FavoriteCubit.get(context).favorites.isEmpty) {
+        if (state is OnGetBookingLoadingState &&
+            BookingCubit.get(context).booking.isEmpty) {
           return Expanded(
             child: SingleChildScrollView(
               scrollDirection: Axis.vertical,
@@ -64,18 +64,18 @@ class FavoritesWidget extends StatelessWidget {
             ),
           );
         } else {
-          if (FavoriteCubit.get(context).favorites.isEmpty) {
+          if (BookingCubit.get(context).booking.isEmpty) {
             return Center(child: Icon(Icons.image_not_supported_outlined));
           } else {
             return Expanded(
               child: SingleChildScrollView(
                 scrollDirection: Axis.vertical,
                 child: Column(
-                  children: FavoriteCubit.get(context).favorites
+                  children: BookingCubit.get(context).booking
                       .map(
                         (item) => GestureDetector(
                           onTap: () {
-                            AppConstant.openUrl(item.cvFile.url);
+                            AppConstant.openUrl(item.cv.cvFile.url);
                           },
                           child: Container(
                             margin: const EdgeInsets.symmetric(vertical: 8),
@@ -108,21 +108,11 @@ class FavoritesWidget extends StatelessWidget {
                                         ImageAsset.pdfImage,
                                       ),
                                     ),
-                                    Spacer(),
-                                    IconButton(
-                                      onPressed: () {
-                                        FavoriteCubit.get(
-                                          context,
-                                        ).removeFavorites(context, item.id);
-                                      },
-                                      icon: Icon(Icons.favorite),
-                                      color: AppColors.redColor,
-                                    ),
                                   ],
                                 ),
                                 verticalSpace(12),
                                 Text(
-                                  item.cvFile.name,
+                                  item.cv.cvFile.name,
                                   maxLines: 2,
                                   selectionColor: AppColors.greenColor31
                                       .withValues(alpha: .2),
@@ -139,7 +129,7 @@ class FavoritesWidget extends StatelessWidget {
                                     horizontalSpace(4),
                                     Expanded(
                                       child: Text(
-                                        item.nationality.name,
+                                        item.cv.nationality.name,
                                         maxLines: 1,
                                         selectionColor: AppColors.greenColor31
                                             .withValues(alpha: .2),
@@ -159,7 +149,7 @@ class FavoritesWidget extends StatelessWidget {
                                     horizontalSpace(4),
                                     Expanded(
                                       child: Text(
-                                        item.hasExperience
+                                        item.cv.hasExperience
                                             ? 'لديها خبره'
                                             : 'ليس لديها خبره ',
                                         maxLines: 1,
@@ -181,7 +171,9 @@ class FavoritesWidget extends StatelessWidget {
                                     horizontalSpace(4),
                                     Expanded(
                                       child: Text(
-                                        item.isMuslim ? 'مسلمة' : 'غير مسلمة',
+                                        item.cv.isMuslim
+                                            ? 'مسلمة'
+                                            : 'غير مسلمة',
                                         maxLines: 1,
                                         selectionColor: AppColors.greenColor31
                                             .withValues(alpha: .2),
@@ -191,24 +183,7 @@ class FavoritesWidget extends StatelessWidget {
                                   ],
                                 ),
                                 verticalSpace(18),
-                                if (item.approvedBy < 3)
-                                  Padding(
-                                    padding: EdgeInsets.symmetric(
-                                      horizontal: 24.w,
-                                    ),
-                                    child: ButtonWidget(
-                                      isLoading: false,
-                                      buttonHeight: 40,
-                                      buttonText: 'حجز العامله ',
-                                      borderRadius: 6,
-                                      backGroundColor: AppColors.greenColor31
-                                          .withValues(alpha: .9),
-                                      borderColor: AppColors.greenColor31,
-                                      textStyle:
-                                          TextStyles.font16WhiteColorBold,
-                                      onPressed: () {},
-                                    ),
-                                  ),
+
                               ],
                             ),
                           ),

@@ -219,7 +219,11 @@ class FavoriteCvsWidget extends StatelessWidget {
                                       borderColor: AppColors.greenColor31,
                                       textStyle:
                                           TextStyles.font16WhiteColorBold,
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        HomeCubit.get(
+                                          context,
+                                        ).addBooking(context, item.id);
+                                      },
                                     ),
                                   ),
                               ],

@@ -13,7 +13,6 @@ class FavoriteRepo {
 
   Future<Either<Failure, GetFavoriteResponseModel>> getFavorites() async {
     try {
-      print(_favoriteService.getFavorites());
       return Right(await _favoriteService.getFavorites());
     } on ServerException catch (failure) {
       return Left(ServerFailure(message: failure.serverFailure.message));

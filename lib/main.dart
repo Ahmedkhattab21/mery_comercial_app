@@ -57,64 +57,82 @@ Future<void> main() async {
   //   print(error);
   // }
 
-  runZonedGuarded(
-    () {
-      FlutterError.onError = (FlutterErrorDetails details) {
-        // هنا نقدر نطبع الخطأ أو نرسله لـ Firebase Crashlytics أو نعرض شاشة
-        FlutterError.presentError(details);
-        print('🔴 Flutter framework error: ${details.exception}');
-      };
-
-      // استبدال شاشة الخطأ الحمراء بشيء أكثر أناقة
-      ErrorWidget.builder = (FlutterErrorDetails details) {
-        return Scaffold(
-          backgroundColor: Colors.white,
-          body: Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(Icons.error_outline, color: Colors.red, size: 60),
-                SizedBox(height: 12),
-                Text(
-                  "حدث خطأ غير متوقع ⚠️",
-
-                  style: TextStyles.font16blackColor13W500,
-                ),
-                SizedBox(height: 8),
-                Text(
-                  "الرجاء المحاولة لاحقًا",
-                  style: TextStyles.font14blackColor13W400.copyWith(
-                    color: AppColors.blackColor13.withValues(alpha: .5),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        );
-      };
-      runApp(
-        EasyLocalization(
-          supportedLocales: const [
-            Locale('ar', 'EG'),
-            Locale('en', 'US'), // English second1
-            // Arabic first
-          ],
-          saveLocale: true,
-          startLocale: const Locale('ar', 'EG'),
-          path: 'assets/languages',
-          fallbackLocale: const Locale('ar', 'EG'),
-          child: MyApp(
-            initialRoute: isLoggedInUser
-                ? Routes.buttonNavigationBarScreen
-                : Routes.loginScreen,
-          ),
-        ),
-      );
-    },
-    (error, stack) {
-      // لو حصل أي Exception خارج إطار Flutter UI
-      print('🟠 Unhandled error: $error');
-    },
+  // runZonedGuarded(
+  //   () {
+  //     // FlutterError.onError = (FlutterErrorDetails details) {
+  //     //   // هنا نقدر نطبع الخطأ أو نرسله لـ Firebase Crashlytics أو نعرض شاشة
+  //     //   FlutterError.presentError(details);
+  //     //   print('🔴 Flutter framework error: ${details.exception}');
+  //     // };
+  //
+  //     // استبدال شاشة الخطأ الحمراء بشيء أكثر أناقة
+  //     // ErrorWidget.builder = (FlutterErrorDetails details) {
+  //     //   return Scaffold(
+  //     //     backgroundColor: Colors.white,
+  //     //     body: Center(
+  //     //       child: Column(
+  //     //         mainAxisSize: MainAxisSize.min,
+  //     //         children: [
+  //     //           Icon(Icons.error_outline, color: Colors.red, size: 60),
+  //     //           SizedBox(height: 12),
+  //     //           Text(
+  //     //             "حدث خطأ غير متوقع ⚠️",
+  //     //
+  //     //             style: TextStyles.font16blackColor13W500,
+  //     //           ),
+  //     //           SizedBox(height: 8),
+  //     //           Text(
+  //     //             "الرجاء المحاولة لاحقًا",
+  //     //             style: TextStyles.font14blackColor13W400.copyWith(
+  //     //               color: AppColors.blackColor13.withValues(alpha: .5),
+  //     //             ),
+  //     //           ),
+  //     //         ],
+  //     //       ),
+  //     //     ),
+  //     //   );
+  //     // };
+  //     runApp(
+  //       EasyLocalization(
+  //         supportedLocales: const [
+  //           Locale('ar', 'EG'),
+  //           Locale('en', 'US'), // English second1
+  //           // Arabic first
+  //         ],
+  //         saveLocale: true,
+  //         startLocale: const Locale('ar', 'EG'),
+  //         path: 'assets/languages',
+  //         fallbackLocale: const Locale('ar', 'EG'),
+  //         child: MyApp(
+  //           initialRoute: isLoggedInUser
+  //               ? Routes.buttonNavigationBarScreen
+  //               : Routes.loginScreen,
+  //         ),
+  //       ),
+  //     );
+  //   },
+  //   (error, stack) {
+  //     // لو حصل أي Exception خارج إطار Flutter UI
+  //     print('🟠 Unhandled error: $error');
+  //   },
+  // );
+  runApp(
+    EasyLocalization(
+      supportedLocales: const [
+        Locale('ar', 'EG'),
+        Locale('en', 'US'), // English second1
+        // Arabic first
+      ],
+      saveLocale: true,
+      startLocale: const Locale('ar', 'EG'),
+      path: 'assets/languages',
+      fallbackLocale: const Locale('ar', 'EG'),
+      child: MyApp(
+        initialRoute: isLoggedInUser
+            ? Routes.buttonNavigationBarScreen
+            : Routes.loginScreen,
+      ),
+    ),
   );
 }
 

@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mery_comercial_app/core/utils/app_constant.dart';
+import 'package:mery_comercial_app/features/booking/data/models/booking_request_model.dart';
+import 'package:mery_comercial_app/features/booking/data/repo/booking_repo.dart';
 import 'package:mery_comercial_app/features/favorite/data/models/add_favorite_request_model.dart';
 import 'package:mery_comercial_app/features/favorite/data/models/get_favorite_response_model.dart';
 import 'package:mery_comercial_app/features/favorite/data/repo/favorite_repo.dart';
@@ -14,8 +16,10 @@ import 'package:mery_comercial_app/features/home/logic/home_state.dart';
 class HomeCubit extends Cubit<HomeState> {
   final HomeRepo _homeRepo;
   final FavoriteRepo _favoriteRepo;
+  final BookingRepo _bookingRepo;
 
-  HomeCubit(this._homeRepo, this._favoriteRepo) : super(InitialState());
+  HomeCubit(this._homeRepo, this._favoriteRepo, this._bookingRepo)
+    : super(InitialState());
 
   List<nationality.Nationality> nationalities = [];
 
@@ -131,6 +135,28 @@ class HomeCubit extends Cubit<HomeState> {
         })
         .catchError((error) {
           emit(OnRemoveFromFavoritesCatchErrorState());
+        });
+  }
+
+  addBooking(BuildContext context, int id) {
+    emit(OnAddToBookingLoadingState());
+    _bookingRepo
+        .addBooking(BookingRequestModel(cvId: id))
+        .then((value) {
+          value.fold(
+            (l) {
+              AppConstant.toast('تم طلب السيرة الذاتيه مسبقا', true, context);
+              emit(OnAddToBookingErrorState());
+            },
+            (r) {
+              AppConstant.toast('تم طلب السيرة الذاتيه', true, context);
+              emit(OnAddToBookingSuccessState());
+            },
+          );
+        })
+        .catchError((error) {
+          AppConstant.toast('تم طلب السيرة الذاتيه مسبقا', true, context);
+          emit(OnAddToBookingCatchErrorState());
         });
   }
 
