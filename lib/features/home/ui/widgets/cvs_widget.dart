@@ -25,8 +25,7 @@ class CvsWidget extends StatelessWidget {
             current is OnGetCVSCatchErrorState;
       },
       builder: (context, state) {
-        if (state is OnGetCVSLoadingState &&
-            HomeCubit.get(context).cvs.isEmpty) {
+        if (HomeCubit.get(context).cvs.isEmpty) {
           return SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Column(
@@ -50,13 +49,9 @@ class CvsWidget extends StatelessWidget {
                       ),
                       child: Column(
                         children: [
-                          Container(
-                            color: Colors.grey.shade300,
-                          ),
+                          Container(color: Colors.grey.shade300),
                           verticalSpace(8),
-                          Container(
-                            color: Colors.grey.shade300,
-                          ),
+                          Container(color: Colors.grey.shade300),
                         ],
                       ),
                     ),
@@ -106,7 +101,11 @@ class CvsWidget extends StatelessWidget {
                                 ),
                                 Spacer(),
                                 IconButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    HomeCubit.get(
+                                      context,
+                                    ).addToFavorite(context, item.id);
+                                  },
                                   icon: Icon(Icons.favorite_border),
                                   color: AppColors.greyColorAC,
                                 ),
@@ -184,20 +183,21 @@ class CvsWidget extends StatelessWidget {
                               ],
                             ),
                             verticalSpace(18),
-                            Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 24.w),
-                              child: ButtonWidget(
-                                isLoading: false,
-                                buttonHeight: 40,
-                                buttonText: 'حجز العامله ',
-                                borderRadius: 6,
-                                backGroundColor: AppColors.greenColor31
-                                    .withValues(alpha: .9),
-                                borderColor: AppColors.greenColor31,
-                                textStyle: TextStyles.font16WhiteColorBold,
-                                onPressed: () {},
+                            if (item.approvedBy < 3)
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 24.w),
+                                child: ButtonWidget(
+                                  isLoading: false,
+                                  buttonHeight: 40,
+                                  buttonText: 'حجز العامله ',
+                                  borderRadius: 6,
+                                  backGroundColor: AppColors.greenColor31
+                                      .withValues(alpha: .9),
+                                  borderColor: AppColors.greenColor31,
+                                  textStyle: TextStyles.font16WhiteColorBold,
+                                  onPressed: () {},
+                                ),
                               ),
-                            ),
                           ],
                         ),
                       ),

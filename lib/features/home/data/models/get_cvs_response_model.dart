@@ -24,6 +24,7 @@ class CV {
   CvFile cvFile;
   bool hasExperience;
   bool isMuslim;
+  int approvedBy;
 
   CV({
     required this.id,
@@ -31,6 +32,7 @@ class CV {
     required this.cvFile,
     required this.hasExperience,
     required this.isMuslim,
+    required this.approvedBy,
   });
 
   factory CV.fromJson(Map<String, dynamic> json) {
@@ -40,6 +42,7 @@ class CV {
       cvFile: CvFile.fromJson(json['file']),
       hasExperience: json['has_experience'] ?? false,
       isMuslim: json['is_muslim'] ?? false,
+      approvedBy: json['approved_by'] ?? 0,
     );
   }
 }
