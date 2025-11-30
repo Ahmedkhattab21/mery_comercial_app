@@ -1,4 +1,4 @@
-package com.example.mery_comercial_app
+package com.mery.app
 
 import io.flutter.embedding.android.FlutterActivity
 
