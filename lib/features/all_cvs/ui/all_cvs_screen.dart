@@ -27,7 +27,6 @@ class AllCvsScreen extends StatelessWidget {
           },
           icon: Icon(Icons.arrow_back, color: AppColors.whiteColor),
         ),
-
         title: Text('السير الذاتية', style: TextStyles.font18WhiteColorW600),
         backgroundColor: AppColors.greenColor31,
         centerTitle: true,
