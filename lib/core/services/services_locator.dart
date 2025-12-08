@@ -4,6 +4,8 @@ import 'package:http/http.dart' as http;
 import 'package:get_it/get_it.dart';
 import 'package:mery_comercial_app/core/utils/app_colors_white_theme.dart';
 import 'package:mery_comercial_app/core/utils/app_constant.dart';
+import 'package:mery_comercial_app/features/all_cvs/data/repo/all_cvs_repo.dart';
+import 'package:mery_comercial_app/features/all_cvs/data/services/all_cvs_service.dart';
 import 'package:mery_comercial_app/features/booking/data/repo/booking_repo.dart';
 import 'package:mery_comercial_app/features/booking/data/services/booking_service.dart';
 import 'package:mery_comercial_app/features/edit_profile/data/repo/edit_profile_repo.dart';
@@ -102,10 +104,18 @@ class ServicesLocator {
     getIt.registerLazySingleton<FavoriteRepo>(() => FavoriteRepo(getIt()));
     getIt.registerFactory<FavoriteService>(
       () => FavoriteService(apiConsumer: getIt()),
-    );  /// Booking
+    );
+
+    /// Booking
     getIt.registerLazySingleton<BookingRepo>(() => BookingRepo(getIt()));
     getIt.registerFactory<BookingService>(
       () => BookingService(apiConsumer: getIt()),
+    );
+
+    /// AllCvs
+    getIt.registerLazySingleton<AllCvsRepo>(() => AllCvsRepo(getIt()));
+    getIt.registerFactory<AllCvsService>(
+      () => AllCvsService(apiConsumer: getIt()),
     );
 
     ///constant

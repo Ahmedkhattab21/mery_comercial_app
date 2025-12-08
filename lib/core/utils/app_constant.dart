@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mery_comercial_app/features/all_cvs/data/models/test_data.dart';
  import 'package:toastification/toastification.dart';
 
 import 'package:url_launcher/url_launcher.dart';
@@ -9,6 +10,14 @@ import 'app_colors_white_theme.dart';
 bool isLoggedInUser = false;
 
 class AppConstant {
+  static List<TestClass> muslimsList = [
+    TestClass(1, 'مسلمة '),
+    TestClass(2, 'غير مسلمة'),
+  ];
+  static List<TestClass> experienceList = [
+    TestClass(1, 'لديها خبره '),
+    TestClass(2, 'ليس لديها خبره'),
+  ];
   // static List<TestClass> activeList = [
   //   TestClass(1, 'مفعل'),
   //   TestClass(2, 'غير مفعل'),

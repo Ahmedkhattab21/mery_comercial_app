@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mery_comercial_app/config/routes/routes.dart';
 import 'package:mery_comercial_app/core/services/services_locator.dart';
+import 'package:mery_comercial_app/features/all_cvs/logic/all_cvs_cubit.dart';
+import 'package:mery_comercial_app/features/all_cvs/ui/all_cvs_screen.dart';
 import 'package:mery_comercial_app/features/button_navigation_bar/button_navigation_bar_sceen.dart';
 import 'package:mery_comercial_app/features/button_navigation_bar/logic/button_navigation_bar_cubit.dart';
 import 'package:mery_comercial_app/features/edit_profile/logic/edit_profile_cubit.dart';
@@ -90,6 +92,15 @@ class RouteGenerator {
             create: (context) =>
                 EditProfileCubit(getIt(), getIt())..getUSerData(),
             child: EditProfileScreen(),
+          ),
+        );
+      case Routes.allCvsScreen:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) =>
+                AllCvsCubit(getIt(), getIt(), getIt())
+                  ..getNationalityCvs(args['code']),
+            child: AllCvsScreen(code: args['code'],),
           ),
         );
 

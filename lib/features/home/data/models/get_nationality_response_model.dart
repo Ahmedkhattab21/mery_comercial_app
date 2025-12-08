@@ -22,13 +22,15 @@ class Nationality {
   int id;
   String code;
   String name;
+  String image;
 
-  Nationality({required this.id, required this.code, required this.name});
+  Nationality({required this.id, required this.code, required this.image, required this.name});
 
   factory Nationality.fromJson(Map<String, dynamic> json) {
     return Nationality(
       id: json['id'] ?? 0,
       code: json['code'] ?? '',
+      image: json['image'] ?? '',
       name: json['name'] ?? '',
     );
   }

@@ -8,5 +8,6 @@ class Routes {
   static const buttonNavigationBarScreen = "/ButtonNavigationBarScreen";
   static const pageContainContentScreen = "/PageContainContentScreen";
   static const editProfileScreen = "/EditProfileScreen";
+  static const allCvsScreen = "/AllCvsScreen";
 
 }

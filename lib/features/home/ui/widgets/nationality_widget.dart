@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mery_comercial_app/config/routes/routes.dart';
 import 'package:mery_comercial_app/core/utils/app_colors_white_theme.dart';
-import 'package:mery_comercial_app/core/utils/assets_manager.dart';
+import 'package:mery_comercial_app/core/utils/extentions.dart';
 import 'package:mery_comercial_app/core/utils/spacing.dart';
 import 'package:mery_comercial_app/core/utils/styles.dart';
+import 'package:mery_comercial_app/core/widgets/cached_network_image.dart';
 import 'package:mery_comercial_app/features/home/logic/home_cubit.dart';
 import 'package:mery_comercial_app/features/home/logic/home_state.dart';
 import 'package:shimmer/shimmer.dart';
@@ -22,8 +24,7 @@ class NationalityWidget extends StatelessWidget {
             current is OnGetNationalityCatchErrorState;
       },
       builder: (context, state) {
-        if (
-            HomeCubit.get(context).nationalities.isEmpty) {
+        if (HomeCubit.get(context).nationalities.isEmpty) {
           return SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
@@ -65,32 +66,46 @@ class NationalityWidget extends StatelessWidget {
               ),
             ),
           );
-        }
-        else {
+        } else {
           return SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
               children: HomeCubit.get(context).nationalities
                   .map(
-                    (item) => Container(
-                      margin: EdgeInsets.only(right: 8.w),
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 16.w,
-                        vertical: 12.h,
-                      ),
-                      decoration: BoxDecoration(
-                        color: AppColors.orangeColor48A,
-                        borderRadius: BorderRadius.circular(12.r),
-                      ),
-                      child: Column(
-                        children: [
-                          Text(
-                            item.name,
-                            style: TextStyles.font14BlackColor13W400,
-                          ),
-                          verticalSpace(8),
-                          Image.asset(ImageAsset.sliderImage, fit: BoxFit.fill),
-                        ],
+                    (item) => GestureDetector(
+                      onTap: () {
+                        context.pushNamed(
+                          Routes.allCvsScreen,
+                          arguments: {'code': item.code},
+                        );
+                      },
+                      child: Container(
+                        margin: EdgeInsets.only(right: 8.w),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 16.w,
+                          vertical: 12.h,
+                        ),
+                        decoration: BoxDecoration(
+                          color: AppColors.orangeColor48A,
+                          borderRadius: BorderRadius.circular(12.r),
+                        ),
+                        child: Column(
+                          children: [
+                            Text(
+                              item.name,
+                              style: TextStyles.font14BlackColor13W400,
+                            ),
+                            verticalSpace(8),
+                            SizedBox(
+                              height: 60.h,
+                              width: 100.w,
+                              child: CachedNetworkImageWidget(
+                                imgUrl: item.image,
+                                radius: BorderRadius.zero,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   )

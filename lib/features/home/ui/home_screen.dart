@@ -29,27 +29,7 @@ class HomeScreen extends StatelessWidget {
           ),
           child: Image.asset(ImageAsset.meryIcon, fit: BoxFit.cover),
         ),
-        title: Row(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Text.rich(TextSpan(
-              children: [
-                TextSpan(
-                    text: 'حياك !\n',
-                    style: TextStyles.font14WhiteColorW400
-                ),
-                TextSpan(
-                  text: ' محمد هنيدى',
-                    style: TextStyles.font14whiteColorBold
-                ),
-              ]
-            )),
-            horizontalSpace(4),
-            SvgPicture.asset(ImageAsset.waveIcon,color: AppColors.orangeColor48A),
-          ],
-        ),
-
-
+        title: Text('حياك !', style: TextStyles.font14whiteColorBold),
         backgroundColor: AppColors.greenColor31,
         actions: [
           Container(
@@ -71,7 +51,6 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
               verticalSpace(16),
               SliderWidget(),
               verticalSpace(16),
@@ -84,7 +63,6 @@ class HomeScreen extends StatelessWidget {
               verticalSpace(16),
               FavoriteCvsWidget(),
               verticalSpace(16),
-
 
               Text('كل العمالة', style: TextStyles.font18BlackColor13bold),
               verticalSpace(12),
