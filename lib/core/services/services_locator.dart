@@ -8,6 +8,8 @@ import 'package:mery_comercial_app/features/all_cvs/data/repo/all_cvs_repo.dart'
 import 'package:mery_comercial_app/features/all_cvs/data/services/all_cvs_service.dart';
 import 'package:mery_comercial_app/features/booking/data/repo/booking_repo.dart';
 import 'package:mery_comercial_app/features/booking/data/services/booking_service.dart';
+import 'package:mery_comercial_app/features/cv_details/data/repo/cv_details_repo.dart';
+import 'package:mery_comercial_app/features/cv_details/data/services/cv_details_service.dart';
 import 'package:mery_comercial_app/features/edit_profile/data/repo/edit_profile_repo.dart';
 import 'package:mery_comercial_app/features/edit_profile/data/services/edit_profile_service.dart';
 import 'package:mery_comercial_app/features/favorite/data/repo/favorite_repo.dart';
@@ -28,7 +30,6 @@ import 'package:mery_comercial_app/features/register/data/repo/register_repo.dar
 import 'package:mery_comercial_app/features/register/data/services/register_service.dart';
 import 'package:mery_comercial_app/features/reset_password/data/repo/reset_password_repo.dart';
 import 'package:mery_comercial_app/features/reset_password/data/services/reset_password_service.dart';
-import 'package:mery_comercial_app/features/reset_password/logic/reset_password_cubit.dart';
 
 import '../api/api_consumer.dart';
 import '../api/app_interceptor.dart';
@@ -116,6 +117,12 @@ class ServicesLocator {
     getIt.registerLazySingleton<AllCvsRepo>(() => AllCvsRepo(getIt()));
     getIt.registerFactory<AllCvsService>(
       () => AllCvsService(apiConsumer: getIt()),
+    );
+
+    /// CvDetails
+    getIt.registerLazySingleton<CvDetailsRepo>(() => CvDetailsRepo(getIt()));
+    getIt.registerFactory<CvDetailsService>(
+      () => CvDetailsService(apiConsumer: getIt()),
     );
 
     ///constant

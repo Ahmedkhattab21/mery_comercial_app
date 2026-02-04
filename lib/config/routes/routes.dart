@@ -9,5 +9,6 @@ class Routes {
   static const pageContainContentScreen = "/PageContainContentScreen";
   static const editProfileScreen = "/EditProfileScreen";
   static const allCvsScreen = "/AllCvsScreen";
+  static const cvDetailsScreen = "/CvDetailsScreen";
 
 }

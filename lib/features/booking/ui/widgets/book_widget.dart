@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:mery_comercial_app/config/routes/routes.dart';
 import 'package:mery_comercial_app/core/utils/app_colors_white_theme.dart';
 import 'package:mery_comercial_app/core/utils/app_constant.dart';
 import 'package:mery_comercial_app/core/utils/assets_manager.dart';
+import 'package:mery_comercial_app/core/utils/extentions.dart';
 import 'package:mery_comercial_app/core/utils/spacing.dart';
 import 'package:mery_comercial_app/core/utils/styles.dart';
 import 'package:mery_comercial_app/core/widgets/button_widget.dart';
@@ -75,7 +77,10 @@ class BookWidget extends StatelessWidget {
                       .map(
                         (item) => GestureDetector(
                           onTap: () {
-                            AppConstant.openUrl(item.cv.cvFile.url);
+                            context.pushNamed(
+                              Routes.cvDetailsScreen,
+                              arguments: {'id': item.cv.id},
+                            );
                           },
                           child: Container(
                             margin: const EdgeInsets.symmetric(vertical: 8),
@@ -94,19 +99,37 @@ class BookWidget extends StatelessWidget {
                                 Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Container(
-                                      height: 74,
-                                      width: 74,
-                                      padding: EdgeInsets.all(8),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(8),
-                                        border: Border.all(
-                                          color: AppColors.greyColorEE,
+                                    GestureDetector(
+                                      onTap: (){
+                                        AppConstant.openUrl(item.cv.cvFile.url);
+                                      },
+                                      child: Container(
+                                        height: 74,
+                                        width: 74,
+                                        padding: EdgeInsets.all(8),
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(8),
+                                          border: Border.all(
+                                            color: AppColors.greyColorEE,
+                                          ),
+                                        ),
+                                        child: SvgPicture.asset(
+                                          ImageAsset.pdfImage,
                                         ),
                                       ),
-                                      child: SvgPicture.asset(
-                                        ImageAsset.pdfImage,
-                                      ),
+                                    ),
+                                    Spacer(),
+                                    IconButton(
+                                      onPressed: () {
+                                        // AllCvsCubit.get(
+                                        //   context,
+                                        // ).addToFavorite(
+                                        //   context,
+                                        //   item.id,
+                                        // );
+                                      },
+                                      icon: Icon(Icons.share),
+                                      color: AppColors.greyColorAC,
                                     ),
                                   ],
                                 ),
@@ -183,7 +206,6 @@ class BookWidget extends StatelessWidget {
                                   ],
                                 ),
                                 verticalSpace(18),
-
                               ],
                             ),
                           ),

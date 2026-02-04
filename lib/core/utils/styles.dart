@@ -54,11 +54,27 @@ class TextStyles {
     color: AppColors.blackColor,
     fontWeight: FontWeight.bold,
   );
+  static TextStyle font18BlackColorBold = TextStyle(
+    fontSize: 18,
+    color: AppColors.blackColor,
+    fontWeight: FontWeight.bold,
+  );
 
   static TextStyle font24WhiteColorBold = TextStyle(
     fontSize: 24,
     color: AppColors.whiteColor,
     fontWeight: FontWeight.bold,
+  );
+
+  static TextStyle font18WhiteColorBold = TextStyle(
+    fontSize: 18,
+    color: AppColors.whiteColor,
+    fontWeight: FontWeight.bold,
+  );
+  static TextStyle font14WhiteColorW400 = TextStyle(
+    fontSize: 14,
+    color: AppColors.whiteColor,
+    fontWeight: FontWeight.w400,
   );
 
   static TextStyle font14BlackColorBold = TextStyle(
@@ -188,6 +204,11 @@ static TextStyle font16bredColor26Bold = TextStyle(
 
   static TextStyle font14BlackColorW400 = TextStyle(
     fontSize: 14,
+    color: AppColors.blackColor,
+    fontWeight: FontWeight.w400,
+  );
+  static TextStyle font16BlackColorW400 = TextStyle(
+    fontSize: 16,
     color: AppColors.blackColor,
     fontWeight: FontWeight.w400,
   );
@@ -337,11 +358,7 @@ static TextStyle font16bredColor26Bold = TextStyle(
     fontWeight: FontWeight.w500,
   );
 
-  static TextStyle font14WhiteColorW400 = TextStyle(
-    fontSize: 14,
-    color: AppColors.whiteColor,
-    fontWeight: FontWeight.w400,
-  );
+
 
   static TextStyle font12WhiteColorW400 = TextStyle(
     fontSize: 12,

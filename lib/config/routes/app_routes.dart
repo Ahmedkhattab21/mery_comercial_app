@@ -6,6 +6,8 @@ import 'package:mery_comercial_app/features/all_cvs/logic/all_cvs_cubit.dart';
 import 'package:mery_comercial_app/features/all_cvs/ui/all_cvs_screen.dart';
 import 'package:mery_comercial_app/features/button_navigation_bar/button_navigation_bar_sceen.dart';
 import 'package:mery_comercial_app/features/button_navigation_bar/logic/button_navigation_bar_cubit.dart';
+import 'package:mery_comercial_app/features/cv_details/logic/cv_details_cubit.dart';
+import 'package:mery_comercial_app/features/cv_details/ui/cv_details_screen.dart';
 import 'package:mery_comercial_app/features/edit_profile/logic/edit_profile_cubit.dart';
 import 'package:mery_comercial_app/features/edit_profile/ui/edit_profile_screen.dart';
 import 'package:mery_comercial_app/features/forget_password/logic/forget_password_cubit.dart';
@@ -100,7 +102,16 @@ class RouteGenerator {
             create: (context) =>
                 AllCvsCubit(getIt(), getIt(), getIt())
                   ..getNationalityCvs(args['code']),
-            child: AllCvsScreen(code: args['code'],),
+            child: AllCvsScreen(code: args['code']),
+          ),
+        );
+      case Routes.cvDetailsScreen:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) =>
+                CvDetailsCubit(getIt(), getIt(), getIt())
+                  ..getCvDetails(args['id']),
+            child: CvDetailsScreen(id: args['id']),
           ),
         );
 
