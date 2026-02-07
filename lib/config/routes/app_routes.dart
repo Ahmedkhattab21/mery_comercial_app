@@ -18,6 +18,8 @@ import 'package:mery_comercial_app/features/home/logic/home_cubit.dart';
 import 'package:mery_comercial_app/features/home/ui/home_screen.dart';
 import 'package:mery_comercial_app/features/login/logic/login_cubit.dart';
 import 'package:mery_comercial_app/features/login/ui/login_screen.dart';
+import 'package:mery_comercial_app/features/notifications/logic/notifications_cubit.dart';
+import 'package:mery_comercial_app/features/notifications/ui/notifications_screen.dart';
 import 'package:mery_comercial_app/features/page_contain_content/logic/page_contain_content_cubit.dart';
 import 'package:mery_comercial_app/features/page_contain_content/ui/page_contain_content_screen.dart';
 import 'package:mery_comercial_app/features/register/logic/register_cubit.dart';
@@ -112,6 +114,13 @@ class RouteGenerator {
                 CvDetailsCubit(getIt(), getIt(), getIt())
                   ..getCvDetails(args['id']),
             child: CvDetailsScreen(id: args['id']),
+          ),
+        );
+      case Routes.notificationsScreen:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => NotificationsCubit(getIt())..getCvDetails(),
+            child: NotificationsScreen(),
           ),
         );
 

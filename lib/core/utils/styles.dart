@@ -202,6 +202,12 @@ static TextStyle font16bredColor26Bold = TextStyle(
     fontWeight: FontWeight.w400,
   );
 
+  static TextStyle font12greyColor64w400 = TextStyle(
+    fontSize: 12,
+    color: AppColors.greyColor64,
+    fontWeight: FontWeight.w400,
+  );
+
   static TextStyle font14BlackColorW400 = TextStyle(
     fontSize: 14,
     color: AppColors.blackColor,
@@ -216,6 +222,10 @@ static TextStyle font16bredColor26Bold = TextStyle(
     fontSize: 14,
     color: AppColors.blackColor13,
     fontWeight: FontWeight.w400,
+  );  static TextStyle font14BlackColor13bold = TextStyle(
+    fontSize: 14,
+    color: AppColors.blackColor13,
+    fontWeight: FontWeight.bold,
   );
   static TextStyle font14BlackColorW500 = TextStyle(
     fontSize: 14,

@@ -22,6 +22,8 @@ import 'package:mery_comercial_app/features/home/data/repo/home_repo.dart';
 import 'package:mery_comercial_app/features/home/data/services/home_service.dart';
 import 'package:mery_comercial_app/features/login/data/repo/login_repo.dart';
 import 'package:mery_comercial_app/features/login/data/services/login_service.dart';
+import 'package:mery_comercial_app/features/notifications/data/repo/notifications_repo.dart';
+import 'package:mery_comercial_app/features/notifications/data/services/notifications_service.dart';
 import 'package:mery_comercial_app/features/page_contain_content/data/repo/page_contain_content_repo.dart';
 import 'package:mery_comercial_app/features/page_contain_content/data/services/page_contain_content_service.dart';
 import 'package:mery_comercial_app/features/profile/data/repo/profile_repo.dart';
@@ -123,6 +125,14 @@ class ServicesLocator {
     getIt.registerLazySingleton<CvDetailsRepo>(() => CvDetailsRepo(getIt()));
     getIt.registerFactory<CvDetailsService>(
       () => CvDetailsService(apiConsumer: getIt()),
+    );
+
+    /// Notifications
+    getIt.registerLazySingleton<NotificationsRepo>(
+      () => NotificationsRepo(getIt()),
+    );
+    getIt.registerFactory<NotificationsService>(
+      () => NotificationsService(apiConsumer: getIt()),
     );
 
     ///constant

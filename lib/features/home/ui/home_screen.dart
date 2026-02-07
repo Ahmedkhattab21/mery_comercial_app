@@ -32,14 +32,19 @@ class HomeScreen extends StatelessWidget {
         title: Text('حياك !', style: TextStyles.font14whiteColorBold),
         backgroundColor: AppColors.greenColor31,
         actions: [
-          Container(
-            margin: EdgeInsets.all(6),
-            padding: EdgeInsets.all(8.r),
-            decoration: BoxDecoration(
-              color: AppColors.whiteColor,
-              shape: BoxShape.circle,
+          GestureDetector(
+            onTap: () {
+              context.pushNamed(Routes.notificationsScreen);
+            },
+            child: Container(
+              margin: EdgeInsets.all(6),
+              padding: EdgeInsets.all(8.r),
+              decoration: BoxDecoration(
+                color: AppColors.whiteColor,
+                shape: BoxShape.circle,
+              ),
+              child: SvgPicture.asset(ImageAsset.notificationIcon),
             ),
-            child: SvgPicture.asset(ImageAsset.notificationIcon),
           ),
           horizontalSpace(8),
         ],
