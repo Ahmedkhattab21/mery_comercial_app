@@ -119,7 +119,7 @@ class RouteGenerator {
       case Routes.notificationsScreen:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (context) => NotificationsCubit(getIt())..getCvDetails(),
+            create: (context) => NotificationsCubit(getIt())..getNotification(),
             child: NotificationsScreen(),
           ),
         );

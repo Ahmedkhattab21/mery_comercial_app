@@ -1,24 +1,25 @@
-class CvDetailsResponseModel {
+class NotificationResponseModel {
   String status;
   String message;
-  CV data;
+  List<Notifications> data;
 
-  CvDetailsResponseModel({
+  NotificationResponseModel({
     required this.status,
     required this.message,
     required this.data,
   });
 
-  factory CvDetailsResponseModel.fromJson(Map<String, dynamic> json) {
-    return CvDetailsResponseModel(
+  factory NotificationResponseModel.fromJson(Map<String, dynamic> json) {
+    return NotificationResponseModel(
       status: json['status'] ?? '',
       message: json['message'] ?? '',
-      data: CV.fromJson(json['data']),
+      data: List<Notifications>.from(
+          json['data'].map((item) => Notifications.fromJson(item))).toList(),
     );
   }
 }
 
-class CV {
+class Notifications {
   int id;
   Nationality nationality;
   CvFile cvFile;
@@ -26,7 +27,7 @@ class CV {
   bool isMuslim;
   int approvedBy;
 
-  CV({
+  Notifications({
     required this.id,
     required this.nationality,
     required this.cvFile,
@@ -35,8 +36,8 @@ class CV {
     required this.approvedBy,
   });
 
-  factory CV.fromJson(Map<String, dynamic> json) {
-    return CV(
+  factory Notifications.fromJson(Map<String, dynamic> json) {
+    return Notifications(
       id: json['id'] ?? 0,
       nationality: Nationality.fromJson(json['nationality']),
       cvFile: CvFile.fromJson(json['file']),

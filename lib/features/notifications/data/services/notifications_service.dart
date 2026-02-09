@@ -8,6 +8,7 @@ import 'package:mery_comercial_app/core/services/cache_helper.dart';
 import 'package:mery_comercial_app/core/utils/constant_keys.dart';
 import 'package:mery_comercial_app/features/cv_details/data/models/cv_details_response_model.dart';
 import 'package:mery_comercial_app/features/cv_details/data/services/cv_details_api_end_points.dart';
+import 'package:mery_comercial_app/features/notifications/data/models/notification_response_model.dart';
 import 'package:mery_comercial_app/features/notifications/data/services/notifications_api_end_points.dart';
 
 class NotificationsService {
@@ -15,9 +16,9 @@ class NotificationsService {
 
   NotificationsService({required this.apiConsumer});
 
-  Future<CvDetailsResponseModel> cvDetails(int id) async {
+  Future<NotificationResponseModel> getNotification(int page) async {
     final response = await apiConsumer.get(
-      NotificationsApiEndPoints.cvDetailsUrl(id),
+      NotificationsApiEndPoints.getNotificationUrl(page),
       {
         ConstantKeys.appAuthorization:
             "${ConstantKeys.appBearer} ${await CacheHelper.getSecuredString(ConstantKeys.saveTokenToShared)}",
@@ -25,7 +26,7 @@ class NotificationsService {
     );
 
     if (response.statusCode == StatusCode.ok) {
-      return CvDetailsResponseModel.fromJson(jsonDecode(response.body));
+      return NotificationResponseModel.fromJson(jsonDecode(response.body));
     } else {
       throw ServerException(
         serverFailure: ServerFailure.fromJson(jsonDecode(response.body)),

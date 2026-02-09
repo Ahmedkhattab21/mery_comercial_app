@@ -1,4 +1,4 @@
-package com.mery.app
+package com.mery.apppp
 
 import io.flutter.embedding.android.FlutterActivity
 
