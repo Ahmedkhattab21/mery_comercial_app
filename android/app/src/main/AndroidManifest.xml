@@ -17,7 +17,7 @@
         </intent>
     </queries>
     <application
-        android:label="mery| ميري"
+        android:label="meery| ميري"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
