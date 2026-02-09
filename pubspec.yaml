@@ -58,7 +58,7 @@ dependencies:
   pinput: ^5.0.1
   data_table_2: ^2.6.0
   image_picker: ^1.1.2
-  file_picker: ^10.3.3
+#  file_picker: ^10.3.3
   syncfusion_flutter_pdfviewer: ^31.1.2
   carousel_slider: ^5.1.1
   firebase_core: ^4.1.1

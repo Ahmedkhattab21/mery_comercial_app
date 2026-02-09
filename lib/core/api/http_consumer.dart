@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:file_picker/file_picker.dart';
 import 'package:mery_comercial_app/core/api/api_consumer.dart';
 import 'package:mery_comercial_app/core/api/app_interceptor.dart';
 import 'package:mery_comercial_app/core/services/services_locator.dart';
