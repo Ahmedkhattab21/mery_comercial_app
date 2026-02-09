@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "228835960091",
+    "project_id": "mery-system",
+    "storage_bucket": "mery-system.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:228835960091:android:2f2d598df0d5cfe0125fbe",
+        "android_client_info": {
+          "package_name": "com.mery.apppp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCH23eNoM5YGGb1iwB9teGi7_mebL8DQ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

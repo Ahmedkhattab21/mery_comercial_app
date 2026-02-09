@@ -61,7 +61,9 @@ dependencies:
   file_picker: ^10.3.3
   syncfusion_flutter_pdfviewer: ^31.1.2
   carousel_slider: ^5.1.1
-
+  firebase_core: ^4.1.1
+  firebase_messaging: ^16.0.2
+  awesome_notifications: ^0.10.1
 
 
 
