@@ -22,6 +22,7 @@ class LoginService {
       LoginRequestModel(
         nationalId: parameter.nationalId,
         password: parameter.password,
+        fcm: parameter.fcm,
       ).toJson(),
       {
         ConstantKeys.appAuthorization:

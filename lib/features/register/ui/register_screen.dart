@@ -175,10 +175,7 @@ class RegisterScreen extends StatelessWidget {
                           AppConstant.toast(state.message, false, context);
                         } else if (state is OnRegisterSuccessState) {
                           AppConstant.toast(state.message, true, context);
-                          // context.pushNamedAndRemoveUntil(
-                          //   Routes.sideBarScreen,
-                          //   predicate: (predicate) => false,
-                          // );
+                          context.pop();
                         }
                       },
                       builder: (context, state) {

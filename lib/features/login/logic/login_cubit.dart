@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mery_comercial_app/core/services/cache_helper.dart';
+import 'package:mery_comercial_app/core/services/firebase_notification_service.dart';
 import 'package:mery_comercial_app/core/utils/constant_keys.dart';
 import 'package:mery_comercial_app/features/login/data/models/login_request_model.dart';
 import 'package:mery_comercial_app/features/login/data/repo/login_repo.dart';
@@ -24,6 +25,7 @@ class LoginCubit extends Cubit<LoginState> {
   }
 
   bool isSelectForgetMe = true;
+
   changeForgetMe() {
     isSelectForgetMe = !isSelectForgetMe;
     emit(OnChangeForgetMeState());
@@ -36,6 +38,7 @@ class LoginCubit extends Cubit<LoginState> {
           LoginRequestModel(
             nationalId: nationalIdController.text,
             password: passwordController.text,
+            fcm: await FirebaseNotificationService.getDeviceToken(),
           ),
         )
         .then((value) {
@@ -44,7 +47,7 @@ class LoginCubit extends Cubit<LoginState> {
               emit(OnLoginErrorState());
             },
             (r) async {
-              await cashUserData(r.useModel.token,r.useModel.userData.name);
+              await cashUserData(r.useModel.token, r.useModel.userData.name);
               emit(OnLoginSuccessState());
             },
           );
@@ -54,7 +57,7 @@ class LoginCubit extends Cubit<LoginState> {
         });
   }
 
-  Future<void> cashUserData(String token,String name) async {
+  Future<void> cashUserData(String token, String name) async {
     await CacheHelper.setSecuredString(ConstantKeys.saveTokenToShared, token);
     await CacheHelper.setSecuredString(ConstantKeys.saveNAmeToShared, name);
   }
