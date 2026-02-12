@@ -83,82 +83,91 @@ class NotificationsScreen extends StatelessWidget {
 
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      verticalSpace(16),
-                      Container(
-                        padding: EdgeInsets.symmetric(vertical: 8.h),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Container(
-                                  height: 14.r,
-                                  width: 14.r,
-                                  decoration: BoxDecoration(
-                                    color: AppColors.orangeColor09,
-                                    shape: BoxShape.circle,
-                                  ),
-                                ),
+                    children: NotificationsCubit.get(context).notifications
+                        .map(
+                          (item) => Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              verticalSpace(16),
+                              Container(
+                                padding: EdgeInsets.symmetric(vertical: 8.h),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Container(
+                                          height: 14.r,
+                                          width: 14.r,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.orangeColor09,
+                                            shape: BoxShape.circle,
+                                          ),
+                                        ),
 
-                                horizontalSpace(8),
-                                Text(
-                                  'تم قبول طلب توظيفك',
-                                  style: TextStyles.font14BlackColor13bold,
+                                        horizontalSpace(8),
+                                        Text(
+                                          item.notification.title,
+                                          style:
+                                              TextStyles.font14BlackColor13bold,
+                                        ),
+                                      ],
+                                    ),
+                                    verticalSpace(4),
+                                    Text(
+                                      item.notification.body,
+                                      style: TextStyles.font14greyColor64w400,
+                                    ),
+                                    verticalSpace(4),
+                                    Text(
+                                      item.date.split('T')[0].toString(),
+                                      style: TextStyles.font12greyColor64w400,
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
-                            verticalSpace(4),
-                            Text(
-                              'تم تحديث عقدك. يرجى مراجعة التفاصيل الجديدة في صفحة العقود.',
-                              style: TextStyles.font14greyColor64w400,
-                            ),
-                            verticalSpace(4),
-                            Text(
-                              '5 يناير, 2025',
-                              style: TextStyles.font12greyColor64w400,
-                            ),
-                          ],
-                        ),
-                      ),
-                      Divider(color: AppColors.greyColorE3),
-                      Container(
-                        padding: EdgeInsets.symmetric(vertical: 8.h),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Container(
-                                  height: 14.r,
-                                  width: 14.r,
-                                  decoration: BoxDecoration(
-                                    color: AppColors.orangeColor09,
-                                    shape: BoxShape.circle,
-                                  ),
-                                ),
+                              ),
+                              Divider(color: AppColors.greyColorE3),
+                              Container(
+                                padding: EdgeInsets.symmetric(vertical: 8.h),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Container(
+                                          height: 14.r,
+                                          width: 14.r,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.orangeColor09,
+                                            shape: BoxShape.circle,
+                                          ),
+                                        ),
 
-                                horizontalSpace(8),
-                                Text(
-                                  'تم قبول طلب توظيفك',
-                                  style: TextStyles.font14BlackColor13bold,
+                                        horizontalSpace(8),
+                                        Text(
+                                          'تم قبول طلب توظيفك',
+                                          style:
+                                              TextStyles.font14BlackColor13bold,
+                                        ),
+                                      ],
+                                    ),
+                                    verticalSpace(4),
+                                    Text(
+                                      'تم تحديث عقدك. يرجى مراجعة التفاصيل الجديدة في صفحة العقود.',
+                                      style: TextStyles.font14greyColor64w400,
+                                    ),
+                                    verticalSpace(4),
+                                    Text(
+                                      '5 يناير, 2025',
+                                      style: TextStyles.font12greyColor64w400,
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
-                            verticalSpace(4),
-                            Text(
-                              'تم تحديث عقدك. يرجى مراجعة التفاصيل الجديدة في صفحة العقود.',
-                              style: TextStyles.font14greyColor64w400,
-                            ),
-                            verticalSpace(4),
-                            Text(
-                              '5 يناير, 2025',
-                              style: TextStyles.font12greyColor64w400,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                              ),
+                            ],
+                          ),
+                        )
+                        .toList(),
                   ),
                 );
               }

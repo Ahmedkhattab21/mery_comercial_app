@@ -14,57 +14,38 @@ class NotificationResponseModel {
       status: json['status'] ?? '',
       message: json['message'] ?? '',
       data: List<Notifications>.from(
-          json['data'].map((item) => Notifications.fromJson(item))).toList(),
+        json['data'].map((item) => Notifications.fromJson(item)),
+      ).toList(),
     );
   }
 }
 
 class Notifications {
-  int id;
-  Nationality nationality;
-  CvFile cvFile;
-  bool hasExperience;
-  bool isMuslim;
-  int approvedBy;
+  String date;
+  Notification notification;
 
-  Notifications({
-    required this.id,
-    required this.nationality,
-    required this.cvFile,
-    required this.hasExperience,
-    required this.isMuslim,
-    required this.approvedBy,
-  });
+  Notifications({required this.date, required this.notification});
 
   factory Notifications.fromJson(Map<String, dynamic> json) {
     return Notifications(
-      id: json['id'] ?? 0,
-      nationality: Nationality.fromJson(json['nationality']),
-      cvFile: CvFile.fromJson(json['file']),
-      hasExperience: json['has_experience'] ?? false,
-      isMuslim: json['is_muslim'] ?? false,
-      approvedBy: json['approved_by'] ?? 0,
+      date: json['created_at'],
+      notification: Notification.fromJson(json['notification']),
     );
   }
 }
 
-class CvFile {
-  String name;
-  String url;
+class Notification {
+  int id;
+  String title;
+  String body;
 
-  CvFile({required this.name, required this.url});
+  Notification({required this.id, required this.title, required this.body});
 
-  factory CvFile.fromJson(Map<String, dynamic> json) {
-    return CvFile(name: json['original'] ?? '', url: json['url'] ?? '');
-  }
-}
-
-class Nationality {
-  String name;
-
-  Nationality({required this.name});
-
-  factory Nationality.fromJson(Map<String, dynamic> json) {
-    return Nationality(name: json['name'] ?? '');
+  factory Notification.fromJson(Map<String, dynamic> json) {
+    return Notification(
+      id: json['id'],
+      title: json['title'] ?? '',
+      body: json['body'] ?? '',
+    );
   }
 }
