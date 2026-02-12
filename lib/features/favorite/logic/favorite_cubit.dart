@@ -61,23 +61,29 @@ class FavoriteCubit extends Cubit<FavoriteState> {
         });
   }
 
+  int? bookingLoadingId;
+
   addBooking(BuildContext context, int id) {
+    bookingLoadingId = id;
     emit(OnAddToBookingLoadingState());
     _bookingRepo
         .addBooking(BookingRequestModel(cvId: id))
         .then((value) {
           value.fold(
             (l) {
+              bookingLoadingId = null;
               AppConstant.toast('تم طلب السيرة الذاتيه مسبقا', true, context);
               emit(OnAddToBookingErrorState());
             },
             (r) {
+              bookingLoadingId = null;
               AppConstant.toast('تم طلب السيرة الذاتيه', true, context);
               emit(OnAddToBookingSuccessState());
             },
           );
         })
         .catchError((error) {
+          bookingLoadingId = null;
           AppConstant.toast('تم طلب السيرة الذاتيه مسبقا', true, context);
           emit(OnAddToBookingCatchErrorState());
         });

@@ -29,26 +29,26 @@ class HomeCubit extends Cubit<HomeState> {
     selectedBanner = value;
     emit(OnChangeSelectedBannerState());
   }
+
   getSliders() {
     emit(OnGetSliderLoadingState());
     _homeRepo
         .getSliders()
         .then((value) {
-      value.fold(
+          value.fold(
             (l) {
-          emit(OnGetSliderErrorState());
-        },
+              emit(OnGetSliderErrorState());
+            },
             (r) async {
               sliders = r.data;
-          emit(OnGetSliderSuccessState());
-        },
-      );
-    })
+              emit(OnGetSliderSuccessState());
+            },
+          );
+        })
         .catchError((error) {
-      emit(OnGetSliderCatchErrorState());
-    });
+          emit(OnGetSliderCatchErrorState());
+        });
   }
-
 
   List<nationality.Nationality> nationalities = [];
 
@@ -167,23 +167,29 @@ class HomeCubit extends Cubit<HomeState> {
         });
   }
 
+  int? bookingLoadingId;
+
   addBooking(BuildContext context, int id) {
+    bookingLoadingId = id;
     emit(OnAddToBookingLoadingState());
     _bookingRepo
         .addBooking(BookingRequestModel(cvId: id))
         .then((value) {
           value.fold(
             (l) {
+              bookingLoadingId = null;
               AppConstant.toast('تم طلب السيرة الذاتيه مسبقا', true, context);
               emit(OnAddToBookingErrorState());
             },
             (r) {
+              bookingLoadingId = null;
               AppConstant.toast('تم طلب السيرة الذاتيه', true, context);
               emit(OnAddToBookingSuccessState());
             },
           );
         })
         .catchError((error) {
+          bookingLoadingId = null;
           AppConstant.toast('تم طلب السيرة الذاتيه مسبقا', true, context);
           emit(OnAddToBookingCatchErrorState());
         });

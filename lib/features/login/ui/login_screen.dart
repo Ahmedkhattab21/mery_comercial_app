@@ -67,7 +67,7 @@ class LoginScreen extends StatelessWidget {
                         TextSpan(
                           children: [
                             TextSpan(
-                              text: 'رقم الهوية ',
+                              text: 'رقم الجوال ',
                               style: TextStyles.font14greenColor31W500,
                             ),
                             TextSpan(
@@ -107,9 +107,7 @@ class LoginScreen extends StatelessWidget {
                       alignment: Alignment.centerLeft,
                       child: GestureDetector(
                         onTap: () {
-                          context.pushNamed(
-                          Routes.forgetPasswordScreen,
-                          );
+                          context.pushNamed(Routes.forgetPasswordScreen);
                         },
                         child: Text(
                           'نسيت كلمة المرور ؟',
@@ -171,20 +169,40 @@ class LoginScreen extends StatelessWidget {
                       },
                     ),
                     verticalSpace(24),
-                    GestureDetector(
-                      onTap: () {
-                        context.pushNamed(Routes.registerScreen);
-                      },
-                      child: Text(
-                        'ليس لديك حساب ؟',
-                        selectionColor: AppColors.greenColor31.withValues(
-                          alpha: .2,
+                    Row(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            context.pushNamed(Routes.registerScreen);
+                          },
+                          child: Text(
+                            'ليس لديك حساب ؟',
+                            selectionColor: AppColors.greenColor31.withValues(
+                              alpha: .2,
+                            ),
+                            style: TextStyles.font14greenColor31Bold.copyWith(
+                              decoration: TextDecoration.underline,
+                              decorationColor: AppColors.greenColor31,
+                            ),
+                          ),
                         ),
-                        style: TextStyles.font14greenColor31Bold.copyWith(
-                          decoration: TextDecoration.underline,
-                          decorationColor: AppColors.greenColor31,
+                        Spacer(),
+                        GestureDetector(
+                          onTap: () {
+                            context.pushNamed(Routes.buttonNavigationBarScreen);
+                          },
+                          child: Text(
+                            'الدخول كزائر',
+                            selectionColor: AppColors.greenColor31.withValues(
+                              alpha: .2,
+                            ),
+                            style: TextStyles.font14greenColor31Bold.copyWith(
+                              decoration: TextDecoration.underline,
+                              decorationColor: AppColors.greenColor31,
+                            ),
+                          ),
                         ),
-                      ),
+                      ],
                     ),
                     verticalSpace(24),
                   ],

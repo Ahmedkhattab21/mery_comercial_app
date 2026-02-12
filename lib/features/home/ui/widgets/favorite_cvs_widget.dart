@@ -229,26 +229,46 @@ class FavoriteCvsWidget extends StatelessWidget {
                                 ),
                                 verticalSpace(18),
                                 if (item.approvedBy < 3)
-                                  Padding(
-                                    padding: EdgeInsets.symmetric(
-                                      horizontal: 24.w,
-                                    ),
-                                    child: ButtonWidget(
-                                      isLoading: false,
-                                      buttonHeight: 40,
-                                      buttonText: 'حجز العامله ',
-                                      borderRadius: 6,
-                                      backGroundColor: AppColors.greenColor31
-                                          .withValues(alpha: .9),
-                                      borderColor: AppColors.greenColor31,
-                                      textStyle:
-                                          TextStyles.font16WhiteColorBold,
-                                      onPressed: () {
-                                        HomeCubit.get(
-                                          context,
-                                        ).addBooking(context, item.id);
-                                      },
-                                    ),
+                                  BlocBuilder<HomeCubit, HomeState>(
+                                    buildWhen: (previous, current) {
+                                      return current
+                                              is OnAddToBookingLoadingState ||
+                                          current
+                                              is OnAddToBookingSuccessState ||
+                                          current is OnAddToBookingErrorState ||
+                                          current
+                                              is OnAddToBookingCatchErrorState;
+                                    },
+                                    builder: (context, state) {
+                                      return Padding(
+                                        padding: EdgeInsets.symmetric(
+                                          horizontal: 24.w,
+                                        ),
+                                        child: ButtonWidget(
+                                          isLoading:
+                                              state
+                                                  is OnAddToBookingLoadingState &&
+                                              HomeCubit.get(
+                                                    context,
+                                                  ).bookingLoadingId ==
+                                                  item.id,
+                                          buttonHeight: 40,
+                                          buttonText: 'حجز العامله ',
+                                          borderRadius: 6,
+                                          backGroundColor: AppColors
+                                              .greenColor31
+                                              .withValues(alpha: .9),
+                                          borderColor: AppColors.greenColor31,
+                                          textStyle:
+                                              TextStyles.font16WhiteColorBold,
+                                          onPressed: () {
+                                            HomeCubit.get(
+                                              context,
+                                            ).addBooking(context, item.id);
+                                          },
+                                        ),
+                                      );
+                                    },
                                   ),
                               ],
                             ),

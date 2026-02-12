@@ -10,14 +10,14 @@ class NationalIdWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppTextFormField(
-      hintText: "رقم الهوية ",
+      hintText: "رقم الجوال ",
       hintStyle: TextStyles.font14blackColor13W400.copyWith(
         color: AppColors.blackColor13.withValues(alpha: .4),
       ),
       contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
 
       textStyle: TextStyles.font14blackColor13W400,
-      controller: LoginCubit.get(context).nationalIdController,
+      controller: LoginCubit.get(context).phoneController,
       backgroundColor: AppColors.whiteColor,
       enabledBorder: OutlineInputBorder(
         borderSide: BorderSide(color: AppColors.greenColor55, width: 1),

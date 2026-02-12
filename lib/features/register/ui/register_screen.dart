@@ -98,7 +98,7 @@ class RegisterScreen extends StatelessWidget {
                               style: TextStyles.font14greenColor31W500,
                             ),
                             TextSpan(
-                              text: '  *',
+                              text: '',
                               style: TextStyles.font14orangeColor09W500,
                             ),
                           ],

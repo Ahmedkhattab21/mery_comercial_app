@@ -14,7 +14,7 @@ class LoginCubit extends Cubit<LoginState> {
   LoginCubit(this._loginRepo) : super(InitialState());
 
   GlobalKey<FormState> loginKey = GlobalKey<FormState>();
-  TextEditingController nationalIdController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
   bool isPasswordVisible = false;
@@ -36,7 +36,7 @@ class LoginCubit extends Cubit<LoginState> {
     _loginRepo
         .login(
           LoginRequestModel(
-            nationalId: nationalIdController.text,
+            nationalId: phoneController.text,
             password: passwordController.text,
             fcm: await FirebaseNotificationService.getDeviceToken(),
           ),

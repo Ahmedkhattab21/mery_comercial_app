@@ -3,7 +3,15 @@ class LoginRequestModel {
   String password;
   String fcm;
 
-  LoginRequestModel({required this.nationalId, required this.password, required this.fcm});
+  LoginRequestModel({
+    required this.nationalId,
+    required this.password,
+    required this.fcm,
+  });
 
-  Map<String, dynamic> toJson() => {"national_id": nationalId, "password": password, "fcm": fcm};
+  Map<String, dynamic> toJson() => {
+    "phone": nationalId,
+    "password": password,
+    "fcm": fcm,
+  };
 }

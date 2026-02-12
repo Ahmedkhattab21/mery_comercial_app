@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:mery_comercial_app/config/routes/routes.dart';
 import 'package:mery_comercial_app/core/utils/app_colors_white_theme.dart';
 import 'package:mery_comercial_app/core/utils/app_constant.dart';
 import 'package:mery_comercial_app/core/utils/assets_manager.dart';
+import 'package:mery_comercial_app/core/utils/extentions.dart';
 import 'package:mery_comercial_app/core/utils/spacing.dart';
 import 'package:mery_comercial_app/core/utils/styles.dart';
 import 'package:mery_comercial_app/core/widgets/button_widget.dart';
 import 'package:mery_comercial_app/features/all_cvs/logic/all_cvs_cubit.dart';
 import 'package:mery_comercial_app/features/all_cvs/logic/all_cvs_state.dart';
-  import 'package:shimmer/shimmer.dart';
+import 'package:shimmer/shimmer.dart';
 
 class AllCvsWidget extends StatelessWidget {
   const AllCvsWidget({super.key});
@@ -75,7 +77,11 @@ class AllCvsWidget extends StatelessWidget {
                       .map(
                         (item) => GestureDetector(
                           onTap: () {
-                            AppConstant.openUrl(item.cvFile.url);
+                            context.pushNamed(
+                              Routes.cvDetailsScreen,
+                              arguments: {'id': item.id},
+                            );
+                            // AppConstant.openUrl(item.cvFile.url);
                           },
                           child: Container(
                             margin: const EdgeInsets.symmetric(vertical: 8),
@@ -94,25 +100,42 @@ class AllCvsWidget extends StatelessWidget {
                                 Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Container(
-                                      height: 74,
-                                      width: 74,
-                                      padding: EdgeInsets.all(8),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(8),
-                                        border: Border.all(
-                                          color: AppColors.greyColorEE,
+                                    GestureDetector(
+                                      onTap: () {
+                                        AppConstant.openUrl(item.cvFile.url);
+                                      },
+                                      child: Container(
+                                        height: 74,
+                                        width: 74,
+                                        padding: EdgeInsets.all(8),
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(
+                                            8,
+                                          ),
+                                          border: Border.all(
+                                            color: AppColors.greyColorEE,
+                                          ),
                                         ),
-                                      ),
-                                      child: SvgPicture.asset(
-                                        ImageAsset.pdfImage,
+                                        child: SvgPicture.asset(
+                                          ImageAsset.pdfImage,
+                                        ),
                                       ),
                                     ),
                                     Spacer(),
                                     IconButton(
                                       onPressed: () {
-
-
+                                        // AllCvsCubit.get(
+                                        //   context,
+                                        // ).addToFavorite(
+                                        //   context,
+                                        //   item.id,
+                                        // );
+                                      },
+                                      icon: Icon(Icons.share),
+                                      color: AppColors.greyColorAC,
+                                    ),
+                                    IconButton(
+                                      onPressed: () {
                                         AllCvsCubit.get(
                                           context,
                                         ).addToFavorite(context, item.id);
@@ -194,26 +217,46 @@ class AllCvsWidget extends StatelessWidget {
                                 ),
                                 verticalSpace(18),
                                 if (item.approvedBy < 3)
-                                  Padding(
-                                    padding: EdgeInsets.symmetric(
-                                      horizontal: 24.w,
-                                    ),
-                                    child: ButtonWidget(
-                                      isLoading: false,
-                                      buttonHeight: 40,
-                                      buttonText: 'حجز العامله ',
-                                      borderRadius: 6,
-                                      backGroundColor: AppColors.greenColor31
-                                          .withValues(alpha: .9),
-                                      borderColor: AppColors.greenColor31,
-                                      textStyle:
-                                          TextStyles.font16WhiteColorBold,
-                                      onPressed: () {
-                                        AllCvsCubit.get(
-                                          context,
-                                        ).addBooking(context, item.id);
-                                      },
-                                    ),
+                                  BlocBuilder<AllCvsCubit, AllCvsState>(
+                                    buildWhen: (previous, current) {
+                                      return current
+                                              is OnAddToBookingLoadingState ||
+                                          current
+                                              is OnAddToBookingSuccessState ||
+                                          current is OnAddToBookingErrorState ||
+                                          current
+                                              is OnAddToBookingCatchErrorState;
+                                    },
+                                    builder: (context, state) {
+                                      return Padding(
+                                        padding: EdgeInsets.symmetric(
+                                          horizontal: 24.w,
+                                        ),
+                                        child: ButtonWidget(
+                                          isLoading:
+                                              state
+                                                  is OnAddToBookingLoadingState &&
+                                              AllCvsCubit.get(
+                                                    context,
+                                                  ).bookingLoadingId ==
+                                                  item.id,
+                                          buttonHeight: 40,
+                                          buttonText: 'حجز العامله ',
+                                          borderRadius: 6,
+                                          backGroundColor: AppColors
+                                              .greenColor31
+                                              .withValues(alpha: .9),
+                                          borderColor: AppColors.greenColor31,
+                                          textStyle:
+                                              TextStyles.font16WhiteColorBold,
+                                          onPressed: () {
+                                            AllCvsCubit.get(
+                                              context,
+                                            ).addBooking(context, item.id);
+                                          },
+                                        ),
+                                      );
+                                    },
                                   ),
                               ],
                             ),

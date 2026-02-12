@@ -37,10 +37,10 @@ class RegisterNationalIdWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
       ),
       validator: (String? value) {
-        if (value == null || value.isEmpty) {
-          return "ادخل قيمة ";
-        }
-        return null;
+        // if (value == null || value.isEmpty) {
+        //   return "ادخل قيمة ";
+        // }
+        // return null;
       },
       keyboardType: TextInputType.phone,
     );

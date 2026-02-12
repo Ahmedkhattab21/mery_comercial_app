@@ -245,27 +245,36 @@ class CvDetailsScreen extends StatelessWidget {
                             context,
                           ).cvDetailsResponseModel!.approvedBy <
                           3)
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 24.w),
-                          child: ButtonWidget(
-                            isLoading: false,
-                            buttonHeight: 48.h,
-                            buttonText: 'حجز العامله ',
-                            borderRadius: 12,
-                            backGroundColor: AppColors.greenColor31.withValues(
-                              alpha: .9,
-                            ),
-                            borderColor: AppColors.greenColor31,
-                            textStyle: TextStyles.font18WhiteColorBold,
-                            onPressed: () {
-                              // AllCvsCubit.get(
-                              //   context,
-                              // ).addBooking(
-                              //   context,
-                              //   item.id,
-                              // );
-                            },
-                          ),
+                        BlocBuilder<CvDetailsCubit, CvDetailsState>(
+                          buildWhen: (previous, current) {
+                            return current is OnAddToBookingLoadingState ||
+                                current is OnAddToBookingSuccessState ||
+                                current is OnAddToBookingErrorState ||
+                                current is OnAddToBookingCatchErrorState;
+                          },
+                          builder: (context, state) {
+                            return Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 24.w),
+                              child: ButtonWidget(
+                                isLoading: state is OnAddToBookingLoadingState,
+                                buttonHeight: 48.h,
+                                buttonText: 'حجز العامله ',
+                                borderRadius: 12,
+                                backGroundColor: AppColors.greenColor31
+                                    .withValues(alpha: .9),
+                                borderColor: AppColors.greenColor31,
+                                textStyle: TextStyles.font18WhiteColorBold,
+                                onPressed: () {
+                                  CvDetailsCubit.get(context).addBooking(
+                                    context,
+                                    CvDetailsCubit.get(
+                                      context,
+                                    ).cvDetailsResponseModel!.id,
+                                  );
+                                },
+                              ),
+                            );
+                          },
                         ),
 
                       verticalSpace(40),
