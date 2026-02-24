@@ -18,7 +18,7 @@ if (keystorePropertiesFile.exists()) {
 android {
     namespace = "com.mery.apppp"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+//    ndkVersion = flutter.ndkVersion
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
