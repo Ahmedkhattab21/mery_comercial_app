@@ -25,6 +25,7 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     _listenToNetwork();
+    checkIsFromOutLink();
   }
 
   void _listenToNetwork() {
@@ -34,7 +35,7 @@ class _MyAppState extends State<MyApp> {
       }
     });
   }
-  checkAdminORNot() async {
+  checkIsFromOutLink() async {
     AppLinks appLinks = AppLinks(); // AppLinks is singleton
     appLinks.uriLinkStream.listen((uri) async {
       print("deep link");
