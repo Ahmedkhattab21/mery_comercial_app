@@ -1,7 +1,9 @@
+import 'package:app_links/app_links.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mery_comercial_app/config/routes/app_routes.dart';
+import 'package:mery_comercial_app/config/routes/routes.dart';
 import 'package:mery_comercial_app/core/services/check_network.dart';
 import 'package:mery_comercial_app/core/widgets/offline_alert_dialog.dart';
 import 'config/themes/app_white_theme.dart';
@@ -32,6 +34,20 @@ class _MyAppState extends State<MyApp> {
       }
     });
   }
+  checkAdminORNot() async {
+    AppLinks appLinks = AppLinks(); // AppLinks is singleton
+    appLinks.uriLinkStream.listen((uri) async {
+      print("deep link");
+      print(uri);
+      if (uri == Uri.parse("https://mery.alemtayaz.com/cv/details/")) {
+        // await navigatorKey.currentState?.pushNamedAndRemoveUntil(
+        //   Routes.cvDetailsScreen,
+        //       (routes) => false,
+        // );
+      }
+    });
+  }
+
 
   void _showOfflineDialog() {
     if (navigatorKey.currentContext == null) return;
