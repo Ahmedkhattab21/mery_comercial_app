@@ -35,23 +35,21 @@ class _MyAppState extends State<MyApp> {
       }
     });
   }
+
   checkIsFromOutLink() async {
     AppLinks appLinks = AppLinks(); // AppLinks is singleton
     appLinks.uriLinkStream.listen((uri) async {
-      print("deep link");
-      print(uri);
-      if (uri == Uri.parse("https://mery.alemtayaz.com/cv/details/43")) {
-        await navigatorKey.currentState?.pushNamedAndRemoveUntil(
+      if (uri.scheme == "https" &&
+          uri.host == "mery.alemtayaz.com" &&
+          uri.path.startsWith("/cv/details/")) {
+        await navigatorKey.currentState?.pushNamed(
           Routes.cvDetailsScreen,
-              arguments: {
-
-              },
-              (routes) => false,
+          arguments: {'id': uri.pathSegments.last},
+          // (routes) => false,
         );
       }
     });
   }
-
 
   void _showOfflineDialog() {
     if (navigatorKey.currentContext == null) return;
@@ -71,7 +69,6 @@ class _MyAppState extends State<MyApp> {
         return Container(
           color: AppColors.whiteColor,
           child: MaterialApp(
-
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
             locale: context.locale,
@@ -81,11 +78,9 @@ class _MyAppState extends State<MyApp> {
             theme: themeData(),
             initialRoute: widget.initialRoute,
             onGenerateRoute: RouteGenerator.generateRoute,
-
           ),
         );
       },
-
     );
   }
 }
