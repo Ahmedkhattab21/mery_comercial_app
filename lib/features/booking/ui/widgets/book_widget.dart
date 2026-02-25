@@ -12,6 +12,7 @@ import 'package:mery_comercial_app/core/utils/styles.dart';
 import 'package:mery_comercial_app/core/widgets/button_widget.dart';
 import 'package:mery_comercial_app/features/booking/logic/booking_cubit.dart';
 import 'package:mery_comercial_app/features/booking/logic/booking_state.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:shimmer/shimmer.dart';
 
 class BookWidget extends StatelessWidget {
@@ -100,7 +101,7 @@ class BookWidget extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     GestureDetector(
-                                      onTap: (){
+                                      onTap: () {
                                         AppConstant.openUrl(item.cv.cvFile.url);
                                       },
                                       child: Container(
@@ -108,7 +109,9 @@ class BookWidget extends StatelessWidget {
                                         width: 74,
                                         padding: EdgeInsets.all(8),
                                         decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(8),
+                                          borderRadius: BorderRadius.circular(
+                                            8,
+                                          ),
                                           border: Border.all(
                                             color: AppColors.greyColorEE,
                                           ),
@@ -121,12 +124,12 @@ class BookWidget extends StatelessWidget {
                                     Spacer(),
                                     IconButton(
                                       onPressed: () {
-                                        // AllCvsCubit.get(
-                                        //   context,
-                                        // ).addToFavorite(
-                                        //   context,
-                                        //   item.id,
-                                        // );
+                                        SharePlus.instance.share(
+                                          ShareParams(
+                                            text:
+                                                'https://mery.alemtayaz.com/cv/details/${item.cv.id}',
+                                          ),
+                                        );
                                       },
                                       icon: Icon(Icons.share),
                                       color: AppColors.greyColorAC,

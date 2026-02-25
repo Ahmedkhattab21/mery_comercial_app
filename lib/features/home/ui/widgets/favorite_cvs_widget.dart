@@ -12,6 +12,7 @@ import 'package:mery_comercial_app/core/utils/styles.dart';
 import 'package:mery_comercial_app/core/widgets/button_widget.dart';
 import 'package:mery_comercial_app/features/home/logic/home_cubit.dart';
 import 'package:mery_comercial_app/features/home/logic/home_state.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:shimmer/shimmer.dart';
 
 class FavoriteCvsWidget extends StatelessWidget {
@@ -135,13 +136,12 @@ class FavoriteCvsWidget extends StatelessWidget {
                                     ),
                                     Spacer(),
                                     IconButton(
-                                      onPressed: () {
-                                        // AllCvsCubit.get(
-                                        //   context,
-                                        // ).addToFavorite(
-                                        //   context,
-                                        //   item.id,
-                                        // );
+
+                                        onPressed: () {
+                                          SharePlus.instance.share(
+                                              ShareParams(text: 'https://mery.alemtayaz.com/cv/details/${item.id}')
+                                          );
+
                                       },
                                       icon: Icon(Icons.share),
                                       color: AppColors.greyColorAC,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 import 'package:mery_comercial_app/core/utils/app_colors_white_theme.dart';
@@ -166,12 +167,12 @@ class CvDetailsScreen extends StatelessWidget {
                           ),
                           IconButton(
                             onPressed: () {
-                              // AllCvsCubit.get(
-                              //   context,
-                              // ).addToFavorite(
-                              //   context,
-                              //   item.id,
-                              // );
+                              SharePlus.instance.share(
+                                ShareParams(
+                                  text:
+                                      'https://mery.alemtayaz.com/cv/details/${CvDetailsCubit.get(context).cvDetailsResponseModel!.id}',
+                                ),
+                              );
                             },
                             icon: Icon(Icons.share),
                             color: AppColors.greyColorAC,
