@@ -39,6 +39,8 @@
 	<string>Main</string>
 	<key>UIStatusBarHidden</key>
 	<false/>
+	<key>FlutterDeepLinkingEnabled</key>
+    <false/>
 	<key>NSPhotoLibraryUsageDescription</key>
     <string>This app requires access to the photo library.</string>
 
@@ -55,5 +57,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+
+
 </dict>
 </plist>
