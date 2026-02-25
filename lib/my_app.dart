@@ -44,7 +44,7 @@ class _MyAppState extends State<MyApp> {
           uri.path.startsWith("/cv/details/")) {
         await navigatorKey.currentState?.pushNamed(
           Routes.cvDetailsScreen,
-          arguments: {'id': uri.pathSegments.last},
+          arguments: {'id': int.tryParse(uri.pathSegments.last) ?? 0},
           // (routes) => false,
         );
       }
