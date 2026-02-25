@@ -40,11 +40,14 @@ class _MyAppState extends State<MyApp> {
     appLinks.uriLinkStream.listen((uri) async {
       print("deep link");
       print(uri);
-      if (uri == Uri.parse("https://mery.alemtayaz.com/cv/details/")) {
-        // await navigatorKey.currentState?.pushNamedAndRemoveUntil(
-        //   Routes.cvDetailsScreen,
-        //       (routes) => false,
-        // );
+      if (uri == Uri.parse("https://mery.alemtayaz.com/cv/details/43")) {
+        await navigatorKey.currentState?.pushNamedAndRemoveUntil(
+          Routes.cvDetailsScreen,
+              arguments: {
+
+              },
+              (routes) => false,
+        );
       }
     });
   }

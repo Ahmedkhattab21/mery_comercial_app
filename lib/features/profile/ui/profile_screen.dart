@@ -1,3 +1,4 @@
+import 'package:app_links/app_links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mery_comercial_app/config/routes/routes.dart';
@@ -10,6 +11,7 @@ import 'package:mery_comercial_app/core/utils/spacing.dart';
 import 'package:mery_comercial_app/core/utils/styles.dart';
 import 'package:mery_comercial_app/core/widgets/button_widget.dart';
 import 'package:mery_comercial_app/features/profile/logic/profile_cubit.dart';
+import 'package:mery_comercial_app/my_app.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -554,3 +556,4 @@ class ProfileScreen extends StatelessWidget {
   //   );
   // }
 }
+
