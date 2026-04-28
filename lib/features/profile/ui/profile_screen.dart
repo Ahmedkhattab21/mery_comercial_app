@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mery_comercial_app/config/routes/routes.dart';
 import 'package:mery_comercial_app/core/services/cache_helper.dart';
 import 'package:mery_comercial_app/core/utils/app_colors_white_theme.dart';
+import 'package:mery_comercial_app/core/utils/app_constant.dart';
 import 'package:mery_comercial_app/core/utils/assets_manager.dart';
 import 'package:mery_comercial_app/core/utils/constant_keys.dart';
 import 'package:mery_comercial_app/core/utils/extentions.dart';
@@ -42,51 +43,53 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
               verticalSpace(50),
-              GestureDetector(
-                onTap: () {
-                  context.pushNamed(Routes.editProfileScreen);
-                },
-                child: Row(
-                  children: [
-                    Container(
-                      height: 35.r,
-                      width: 35.r,
-                      padding: EdgeInsets.all(8.r),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        gradient: LinearGradient(
-                          begin: Alignment.topRight,
-                          end: Alignment.bottomLeft,
-                          colors: [
-                            AppColors.greenColor31,
-                            AppColors.greenColor31,
-                          ],
+              if (isLoggedInUser) ...[
+                GestureDetector(
+                  onTap: () {
+                    context.pushNamed(Routes.editProfileScreen);
+                  },
+                  child: Row(
+                    children: [
+                      Container(
+                        height: 35.r,
+                        width: 35.r,
+                        padding: EdgeInsets.all(8.r),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          gradient: LinearGradient(
+                            begin: Alignment.topRight,
+                            end: Alignment.bottomLeft,
+                            colors: [
+                              AppColors.greenColor31,
+                              AppColors.greenColor31,
+                            ],
+                          ),
+                        ),
+                        child: Icon(
+                          Icons.person,
+                          color: AppColors.whiteColor,
+                          size: 15.r,
                         ),
                       ),
-                      child: Icon(
-                        Icons.person,
-                        color: AppColors.whiteColor,
-                        size: 15.r,
+                      horizontalSpace(16),
+                      Expanded(
+                        child: Text(
+                          'الملف الشخصي',
+                          style: TextStyles.font14blackColor13w500,
+                        ),
                       ),
-                    ),
-                    horizontalSpace(16),
-                    Expanded(
-                      child: Text(
-                        'الملف الشخصي',
-                        style: TextStyles.font14blackColor13w500,
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        size: 16.r,
+                        color: AppColors.greenColor31,
                       ),
-                    ),
-                    Icon(
-                      Icons.arrow_forward_ios,
-                      size: 16.r,
-                      color: AppColors.greenColor31,
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              verticalSpace(8),
-              Divider(color: AppColors.greyColor.withValues(alpha: .6)),
-              verticalSpace(8),
+                verticalSpace(8),
+                Divider(color: AppColors.greyColor.withOpacity(.6)),
+                verticalSpace(8),
+              ],
               GestureDetector(
                 onTap: () {
                   context.pushNamed(
@@ -133,7 +136,7 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
               verticalSpace(8),
-              Divider(color: AppColors.greyColor.withValues(alpha: .6)),
+              Divider(color: AppColors.greyColor.withOpacity(.6)),
               verticalSpace(8),
               GestureDetector(
                 onTap: () {
@@ -181,7 +184,7 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
               verticalSpace(8),
-              Divider(color: AppColors.greyColor.withValues(alpha: .6)),
+              Divider(color: AppColors.greyColor.withOpacity(.6)),
               verticalSpace(8),
               GestureDetector(
                 onTap: () {
@@ -229,7 +232,7 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
               verticalSpace(8),
-              Divider(color: AppColors.greyColor.withValues(alpha: .6)),
+              Divider(color: AppColors.greyColor.withOpacity(.6)),
               verticalSpace(8),
               GestureDetector(
                 onTap: () {
@@ -277,26 +280,50 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
               verticalSpace(8),
-              Divider(color: AppColors.greyColor.withValues(alpha: .6)),
+              Divider(color: AppColors.greyColor.withOpacity(.6)),
               verticalSpace(24),
 
-              GestureDetector(
-                onTap: () {
-                  showLogOutBottomSheet(context, ProfileCubit.get(context));
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(Icons.logout, size: 16.r, color: AppColors.redColor26),
-                    horizontalSpace(14),
-                    Text(
-                      'تسجيل الخروج',
-                      style: TextStyles.font16bredColor26Bold,
-                    ),
-                    horizontalSpace(24),
-                  ],
+              if (isLoggedInUser)
+                GestureDetector(
+                  onTap: () {
+                    showLogOutBottomSheet(context, ProfileCubit.get(context));
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.logout, size: 16.r, color: AppColors.redColor26),
+                      horizontalSpace(14),
+                      Text(
+                        'تسجيل الخروج',
+                        style: TextStyles.font16bredColor26Bold,
+                      ),
+                      horizontalSpace(24),
+                    ],
+                  ),
+                )
+              else
+                GestureDetector(
+                  onTap: () {
+                    context.pushNamedAndRemoveUntil(
+                      Routes.loginScreen,
+                      predicate: (predicate) => false,
+                    );
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.login, size: 16.r, color: AppColors.greenColor31),
+                      horizontalSpace(14),
+                      Text(
+                        'تسجيل الدخول',
+                        style: TextStyles.font16WhiteColorBold.copyWith(
+                          color: AppColors.greenColor31,
+                        ),
+                      ),
+                      horizontalSpace(24),
+                    ],
+                  ),
                 ),
-              ),
 
               verticalSpace(40),
             ],

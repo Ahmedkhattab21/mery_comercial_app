@@ -11,5 +11,6 @@ class Routes {
   static const allCvsScreen = "/AllCvsScreen";
   static const cvDetailsScreen = "/CvDetailsScreen";
   static const notificationsScreen = "/NotificationsScreen";
-
+  static const officesScreen = "/OfficesScreen";
+  static const officeDetailsScreen = "/OfficeDetailsScreen";
 }

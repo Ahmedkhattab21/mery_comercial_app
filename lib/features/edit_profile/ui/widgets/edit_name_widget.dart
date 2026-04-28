@@ -12,7 +12,7 @@ class EditNameWidget extends StatelessWidget {
     return AppTextFormField(
       hintText: "الاسم",
       hintStyle: TextStyles.font14blackColor13W400.copyWith(
-        color: AppColors.blackColor13.withValues(alpha: .4),
+        color: AppColors.blackColor13.withOpacity(.4),
       ),
       contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
 

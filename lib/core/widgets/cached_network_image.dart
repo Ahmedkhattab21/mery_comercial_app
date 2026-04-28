@@ -22,12 +22,9 @@ class CachedNetworkImageWidget extends StatelessWidget {
           padding: EdgeInsets.all(8),
           decoration: BoxDecoration(
             color: AppColors.blackColor,
-            borderRadius: BorderRadius.circular(12)
+            borderRadius: BorderRadius.circular(12),
           ),
-          child: Image.asset(
-            '',
-            fit: BoxFit.fitWidth,
-          ),
+          child: Icon(Icons.broken_image, color: Colors.white),
         ),
       ),
     );
@@ -35,12 +32,12 @@ class CachedNetworkImageWidget extends StatelessWidget {
 
   Widget loadingWidget() {
     return Shimmer.fromColors(
-      baseColor: Colors.grey.withValues(alpha: .8),
-      highlightColor: Colors.grey.withValues(alpha: .4),
+      baseColor: Colors.grey.withOpacity(.8),
+      highlightColor: Colors.grey.withOpacity(.4),
       period: const Duration(seconds: 1),
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.black.withValues(alpha: .6),
+          color: Colors.black.withOpacity(.6),
           borderRadius: radius,
         ),
       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mery_comercial_app/config/routes/routes.dart';
@@ -10,6 +11,8 @@ import 'package:mery_comercial_app/core/utils/styles.dart';
 import 'package:mery_comercial_app/features/home/ui/widgets/cvs_widget.dart';
 import 'package:mery_comercial_app/features/home/ui/widgets/favorite_cvs_widget.dart';
 import 'package:mery_comercial_app/features/home/ui/widgets/nationality_widget.dart';
+import 'package:mery_comercial_app/features/categories/ui/categories_widget.dart';
+import 'package:mery_comercial_app/features/home/ui/widgets/offices_slider_widget.dart';
 import 'package:mery_comercial_app/features/home/ui/widgets/slider_widget.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -17,62 +20,214 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.whiteColor,
-      resizeToAvoidBottomInset: true,
-      appBar: AppBar(
-        leading: Container(
-          margin: EdgeInsets.all(6),
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            border: Border.all(color: AppColors.orangeColor48A),
-          ),
-          child: Image.asset(ImageAsset.meryIcon, fit: BoxFit.cover),
-        ),
-        title: Text('حياك !', style: TextStyles.font14whiteColorBold),
-        backgroundColor: AppColors.greenColor31,
-        actions: [
-          GestureDetector(
-            onTap: () {
-              context.pushNamed(Routes.notificationsScreen);
-            },
-            child: Container(
-              margin: EdgeInsets.all(6),
-              padding: EdgeInsets.all(8.r),
-              decoration: BoxDecoration(
-                color: AppColors.whiteColor,
-                shape: BoxShape.circle,
-              ),
-              child: SvgPicture.asset(ImageAsset.notificationIcon),
-            ),
-          ),
-          horizontalSpace(8),
-        ],
-        centerTitle: false,
-      ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: 16.w),
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle.light,
+      child: Scaffold(
+        backgroundColor: AppColors.whiteColor,
+        resizeToAvoidBottomInset: true,
+        body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              verticalSpace(16),
-              SliderWidget(),
-              verticalSpace(16),
-              Text(
-                'الجنسيات المتاحة',
-                style: TextStyles.font18BlackColor13bold,
+              // ── Green header ──────────────────────────────────────
+              Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: AppColors.greenColor31,
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(28.r),
+                    bottomRight: Radius.circular(28.r),
+                  ),
+                ),
+                child: SafeArea(
+                  bottom: false,
+                  child: Padding(
+                    padding:
+                        EdgeInsets.fromLTRB(16.w, 12.h, 16.w, 20.h),
+                    child: Column(
+                      children: [
+                        // Top row: avatar + greeting + notification
+                        Row(
+                          children: [
+                            // Avatar
+                            Container(
+                              width: 46.r,
+                              height: 46.r,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                  color: AppColors.orangeColor48A,
+                                  width: 2,
+                                ),
+                                color: Colors.white,
+                              ),
+                              child: ClipOval(
+                                child: Image.asset(
+                                  ImageAsset.meryIcon,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                            horizontalSpace(12),
+                            // Greeting
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment:
+                                    CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'أهلاً بك! 👋',
+                                    style: TextStyles.font18WhiteColorW600,
+                                  ),
+                                  verticalSpace(2),
+                                  Text(
+                                    'ابحث عن أفضل العمالة المنزلية',
+                                    style:
+                                        TextStyles.font14WhiteColorW400
+                                            .copyWith(
+                                      color: Colors.white70,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            // Notification bell
+                            GestureDetector(
+                              onTap: () => context
+                                  .pushNamed(Routes.notificationsScreen),
+                              child: Container(
+                                padding: EdgeInsets.all(10.r),
+                                decoration: const BoxDecoration(
+                                  color: Colors.white24,
+                                  shape: BoxShape.circle,
+                                ),
+                                child: SvgPicture.asset(
+                                  ImageAsset.notificationIcon,
+                                  width: 20.r,
+                                  height: 20.r,
+                                  colorFilter: const ColorFilter.mode(
+                                    Colors.white,
+                                    BlendMode.srcIn,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        verticalSpace(16),
+                        // Promo banner card
+                        Container(
+                          width: double.infinity,
+                          height: 130.h,
+                          decoration: BoxDecoration(
+                            color: Colors.white.withOpacity(0.15),
+                            borderRadius: BorderRadius.circular(20.r),
+                            border: Border.all(
+                              color: Colors.white.withOpacity(0.25),
+                            ),
+                          ),
+                          child: Row(
+                            children: [
+                              // Text side
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: 16.w,
+                                    vertical: 12.h,
+                                  ),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        'آلاف السير الذاتية',
+                                        style:
+                                            TextStyles.font18WhiteColorW600,
+                                      ),
+                                      verticalSpace(4),
+                                      Text(
+                                        'اختر الكفاءات المناسبة\nمن العمالة المنزلية',
+                                        style: TextStyles.font12WhiteColorW400
+                                            .copyWith(
+                                          color: Colors.white70,
+                                        ),
+                                      ),
+                                      verticalSpace(10),
+                                      GestureDetector(
+                                        onTap: () => context.pushNamed(
+                                            Routes.allCvsScreen),
+                                        child: Container(
+                                          padding: EdgeInsets.symmetric(
+                                            horizontal: 14.w,
+                                            vertical: 6.h,
+                                          ),
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(20.r),
+                                          ),
+                                          child: Text(
+                                            'اعرف أكثر',
+                                            style: TextStyles
+                                                .font12blackColor13W400
+                                                .copyWith(
+                                              color: AppColors.greenColor31,
+                                              fontWeight: FontWeight.w700,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              // Image side
+                              ClipRRect(
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(20.r),
+                                  bottomLeft: Radius.circular(20.r),
+                                ),
+                                child: Image.asset(
+                                  ImageAsset.sliderImage,
+                                  width: 130.w,
+                                  height: 130.h,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ),
-              verticalSpace(12),
-              NationalityWidget(),
-              verticalSpace(16),
-              FavoriteCvsWidget(),
-              verticalSpace(16),
-
-              Text('كل العمالة', style: TextStyles.font18BlackColor13bold),
-              verticalSpace(12),
-              CvsWidget(),
-              verticalSpace(40),
+              // ── Body content ─────────────────────────────────────
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.w),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    verticalSpace(16),
+                    SliderWidget(),
+                    verticalSpace(16),
+                    CategoriesWidget(),
+                    verticalSpace(16),
+                    OfficesSliderWidget(),
+                    verticalSpace(16),
+                    NationalityWidget(),
+                    verticalSpace(16),
+                    FavoriteCvsWidget(),
+                    verticalSpace(16),
+                    Text('كل العمالة', style: TextStyles.font18BlackColor13bold),
+                    verticalSpace(12),
+                    CvsWidget(),
+                    verticalSpace(40),
+                  ],
+                ),
+              ),
             ],
           ),
         ),

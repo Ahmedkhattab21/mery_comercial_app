@@ -26,6 +26,9 @@ import 'package:mery_comercial_app/features/register/logic/register_cubit.dart';
 import 'package:mery_comercial_app/features/register/ui/register_screen.dart';
 import 'package:mery_comercial_app/features/reset_password/logic/reset_password_cubit.dart';
 import 'package:mery_comercial_app/features/reset_password/ui/reset_password_screen.dart';
+import 'package:mery_comercial_app/features/offices/logic/offices_cubit.dart';
+import 'package:mery_comercial_app/features/offices/ui/offices_screen.dart';
+import 'package:mery_comercial_app/features/offices/ui/office_details_screen.dart';
 
 class RouteGenerator {
   static Route<dynamic>? generateRoute(RouteSettings settings) {
@@ -121,6 +124,23 @@ class RouteGenerator {
           builder: (_) => BlocProvider(
             create: (context) => NotificationsCubit(getIt())..getNotification(),
             child: NotificationsScreen(),
+          ),
+        );
+
+      case Routes.officesScreen:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => OfficesCubit(getIt())..getOffices(),
+            child: const OfficesScreen(),
+          ),
+        );
+
+      case Routes.officeDetailsScreen:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) =>
+                OfficesCubit(getIt())..getOfficeDetails(args['id']),
+            child: OfficeDetailsScreen(id: args['id']),
           ),
         );
 

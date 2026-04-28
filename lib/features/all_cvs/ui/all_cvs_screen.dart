@@ -48,9 +48,7 @@ class AllCvsScreen extends StatelessWidget {
                       children: [
                         Text(
                           'الديانة',
-                          selectionColor: AppColors.greenColor31.withValues(
-                            alpha: .2,
-                          ),
+                          selectionColor: AppColors.greenColor31.withOpacity(.2),
                           style: TextStyles.font14greenColor31W500,
                         ),
                         verticalSpace(8),
@@ -96,9 +94,7 @@ class AllCvsScreen extends StatelessWidget {
                       children: [
                         Text(
                           'الخبره',
-                          selectionColor: AppColors.greenColor31.withValues(
-                            alpha: .2,
-                          ),
+                          selectionColor: AppColors.greenColor31.withOpacity(.2),
                           style: TextStyles.font14greenColor31W500,
                         ),
                         verticalSpace(8),

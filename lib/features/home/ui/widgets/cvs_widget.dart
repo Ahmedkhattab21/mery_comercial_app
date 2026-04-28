@@ -28,7 +28,8 @@ class CvsWidget extends StatelessWidget {
             current is OnGetCVSCatchErrorState;
       },
       builder: (context, state) {
-        if (HomeCubit.get(context).cvs.isEmpty) {
+        if (state is OnGetCVSLoadingState &&
+            HomeCubit.get(context).cvs.isEmpty) {
           return SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Column(
@@ -63,6 +64,13 @@ class CvsWidget extends StatelessWidget {
               ),
             ),
           );
+        } else if (HomeCubit.get(context).cvs.isEmpty) {
+          return Center(
+            child: Text(
+              'لا توجد سير ذاتية',
+              style: TextStyles.font16WhiteColorBold,
+            ),
+          );
         } else {
           return SingleChildScrollView(
             scrollDirection: Axis.vertical,
@@ -95,7 +103,10 @@ class CvsWidget extends StatelessWidget {
                               children: [
                                 GestureDetector(
                                   onTap: () {
-                                    AppConstant.openUrl(item.cvFile.url);
+                                    context.pushNamed(
+                                      Routes.cvDetailsScreen,
+                                      arguments: {'id': item.id},
+                                    );
                                   },
                                   child: Container(
                                     height: 74,
@@ -137,9 +148,7 @@ class CvsWidget extends StatelessWidget {
                             Text(
                               item.cvFile.name,
                               maxLines: 2,
-                              selectionColor: AppColors.greenColor31.withValues(
-                                alpha: .2,
-                              ),
+                              selectionColor: AppColors.greenColor31.withOpacity(.2),
                               style: TextStyles.font14BlackColorBold,
                             ),
                             verticalSpace(8),
@@ -156,7 +165,7 @@ class CvsWidget extends StatelessWidget {
                                     item.nationality.name,
                                     maxLines: 1,
                                     selectionColor: AppColors.greenColor31
-                                        .withValues(alpha: .2),
+                                        .withOpacity(.2),
                                     style: TextStyles.font14BlackColorW400,
                                   ),
                                 ),
@@ -178,7 +187,7 @@ class CvsWidget extends StatelessWidget {
                                         : 'ليس لديها خبره ',
                                     maxLines: 1,
                                     selectionColor: AppColors.greenColor31
-                                        .withValues(alpha: .2),
+                                        .withOpacity(.2),
                                     style: TextStyles.font14BlackColorW400,
                                   ),
                                 ),
@@ -198,7 +207,7 @@ class CvsWidget extends StatelessWidget {
                                     item.isMuslim ? 'مسلمة' : 'غير مسلمة',
                                     maxLines: 1,
                                     selectionColor: AppColors.greenColor31
-                                        .withValues(alpha: .2),
+                                        .withOpacity(.2),
                                     style: TextStyles.font14BlackColorW400,
                                   ),
                                 ),
@@ -230,7 +239,7 @@ class CvsWidget extends StatelessWidget {
                                       buttonText: 'حجز العامله ',
                                       borderRadius: 6,
                                       backGroundColor: AppColors.greenColor31
-                                          .withValues(alpha: .9),
+                                          .withOpacity(.9),
                                       borderColor: AppColors.greenColor31,
                                       textStyle:
                                           TextStyles.font16WhiteColorBold,

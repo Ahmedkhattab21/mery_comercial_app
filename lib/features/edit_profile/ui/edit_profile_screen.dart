@@ -48,9 +48,7 @@ class EditProfileScreen extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerRight,
                   child: Text.rich(
-                    selectionColor: AppColors.greenColor31.withValues(
-                      alpha: .2,
-                    ),
+                    selectionColor: AppColors.greenColor31.withOpacity(.2),
                     TextSpan(
                       children: [
                         TextSpan(
@@ -67,9 +65,7 @@ class EditProfileScreen extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerRight,
                   child: Text.rich(
-                    selectionColor: AppColors.greenColor31.withValues(
-                      alpha: .2,
-                    ),
+                    selectionColor: AppColors.greenColor31.withOpacity(.2),
                     TextSpan(
                       children: [
                         TextSpan(
@@ -87,9 +83,7 @@ class EditProfileScreen extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerRight,
                   child: Text.rich(
-                    selectionColor: AppColors.greenColor31.withValues(
-                      alpha: .2,
-                    ),
+                    selectionColor: AppColors.greenColor31.withOpacity(.2),
                     TextSpan(
                       children: [
                         TextSpan(

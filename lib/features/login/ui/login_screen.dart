@@ -111,9 +111,7 @@ class LoginScreen extends StatelessWidget {
                         },
                         child: Text(
                           'نسيت كلمة المرور ؟',
-                          selectionColor: AppColors.greenColor31.withValues(
-                            alpha: .2,
-                          ),
+                          selectionColor: AppColors.greenColor31.withOpacity(.2),
                           style: TextStyles.font14greenColor31Bold.copyWith(
                             decoration: TextDecoration.underline,
                             decorationColor: AppColors.greenColor31,
@@ -177,9 +175,7 @@ class LoginScreen extends StatelessWidget {
                           },
                           child: Text(
                             'ليس لديك حساب ؟',
-                            selectionColor: AppColors.greenColor31.withValues(
-                              alpha: .2,
-                            ),
+                            selectionColor: AppColors.greenColor31.withOpacity(.2),
                             style: TextStyles.font14greenColor31Bold.copyWith(
                               decoration: TextDecoration.underline,
                               decorationColor: AppColors.greenColor31,
@@ -193,9 +189,7 @@ class LoginScreen extends StatelessWidget {
                           },
                           child: Text(
                             'الدخول كزائر',
-                            selectionColor: AppColors.greenColor31.withValues(
-                              alpha: .2,
-                            ),
+                            selectionColor: AppColors.greenColor31.withOpacity(.2),
                             style: TextStyles.font14greenColor31Bold.copyWith(
                               decoration: TextDecoration.underline,
                               decorationColor: AppColors.greenColor31,

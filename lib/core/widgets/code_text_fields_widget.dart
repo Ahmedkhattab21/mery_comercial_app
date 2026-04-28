@@ -26,7 +26,7 @@
 //         decoration: BoxDecoration(
 //           color: Colors.transparent,
 //           border: Border.all(
-//             color: AppColors.greyColorF8.withValues(alpha: .2),
+//             color: AppColors.greyColorF8.withOpacity(.2),
 //             width: 1.3,
 //           ),
 //           shape: BoxShape.circle,
@@ -39,7 +39,7 @@
 //         decoration: BoxDecoration(
 //           color: Colors.transparent,
 //           border: Border.all(
-//             color: AppColors.greyColorF8.withValues(alpha: .2),
+//             color: AppColors.greyColorF8.withOpacity(.2),
 //             width: 1.3,
 //           ),
 //           shape: BoxShape.circle,
@@ -52,7 +52,7 @@
 //         decoration: BoxDecoration(
 //           color: Colors.transparent,
 //           border: Border.all(
-//             color: AppColors.greyColorF8.withValues(alpha: .2),
+//             color: AppColors.greyColorF8.withOpacity(.2),
 //             width: 1.3,
 //           ),
 //           shape: BoxShape.circle,

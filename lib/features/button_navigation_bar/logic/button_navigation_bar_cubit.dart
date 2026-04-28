@@ -11,6 +11,8 @@ import 'package:mery_comercial_app/features/favorite/logic/favorite_cubit.dart';
 import 'package:mery_comercial_app/features/favorite/ui/favorite_screen.dart';
 import 'package:mery_comercial_app/features/home/logic/home_cubit.dart';
 import 'package:mery_comercial_app/features/home/ui/home_screen.dart';
+import 'package:mery_comercial_app/features/offices/logic/offices_cubit.dart';
+import 'package:mery_comercial_app/features/offices/ui/offices_screen.dart';
 import 'package:mery_comercial_app/features/profile/logic/profile_cubit.dart';
 import 'package:mery_comercial_app/features/profile/ui/profile_screen.dart';
 
@@ -39,6 +41,12 @@ class ButtonNavigationBarCubit extends Cubit<ButtonNavigationBarState> {
     ),
     ButtonModel(
       id: 4,
+      image: ImageAsset.officeIcon,
+      selectedImage: ImageAsset.selectedOfficeIcon,
+      text: 'المكاتب',
+    ),
+    ButtonModel(
+      id: 5,
       image: ImageAsset.profileIcon,
       selectedImage: ImageAsset.selectedProfileIcon,
       text: 'البروفايل',
@@ -73,6 +81,12 @@ class ButtonNavigationBarCubit extends Cubit<ButtonNavigationBarState> {
         );
 
       case 3:
+        return BlocProvider(
+          create: (_) => OfficesCubit(getIt())..getOffices(),
+          child: const OfficesScreen(),
+        );
+
+      case 4:
         return BlocProvider(
           create: (_) => ProfileCubit(getIt()),
           child: ProfileScreen(),

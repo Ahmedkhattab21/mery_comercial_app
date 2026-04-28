@@ -65,11 +65,11 @@ class ButtonWidget extends StatelessWidget {
         child: isLoading
             ? LoadingWidget(color: fourGroundColor ?? AppColors.whiteColor)
             : (icon == null && svgIcon == null
-                  ? Text(buttonText, style: textStyle, selectionColor: AppColors.greenColor31.withValues(alpha: .2),)
+                  ? Text(buttonText, style: textStyle, selectionColor: AppColors.greenColor31.withOpacity(.2),)
                   : Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(buttonText, style: textStyle,selectionColor: AppColors.greenColor31.withValues(alpha: .2),),
+                        Text(buttonText, style: textStyle,selectionColor: AppColors.greenColor31.withOpacity(.2),),
                         horizontalSpace(5),
                         svgIcon ?? Icon(icon, color: iconColor, size: 18),
                       ],

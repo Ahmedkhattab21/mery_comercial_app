@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mery_comercial_app/core/api/end_points.dart';
 import 'package:mery_comercial_app/core/utils/app_colors_white_theme.dart';
 import 'package:mery_comercial_app/core/utils/spacing.dart';
 import 'package:mery_comercial_app/core/utils/styles.dart';
@@ -41,7 +42,7 @@ class SliderWidget extends StatelessWidget {
                   width: double.infinity,
                   margin: EdgeInsets.symmetric(horizontal: 16.w),
                   decoration: BoxDecoration(
-                    color: AppColors.orangeColor48A.withValues(alpha: .4),
+                    color: AppColors.orangeColor48A.withOpacity(.4),
                     borderRadius: BorderRadius.circular(12.r),
                   ),
                 );
@@ -53,7 +54,7 @@ class SliderWidget extends StatelessWidget {
                           height: 170,
                           width: double.infinity,
                           child: CachedNetworkImage(
-                            imageUrl: item.image ?? "",
+                            imageUrl: EndPoints.getImageFromApi(item.image),
                             fit: BoxFit.fill,
                             errorWidget: (context, error, stackTrace) {
                               return Container(
@@ -61,9 +62,7 @@ class SliderWidget extends StatelessWidget {
                                 width: double.infinity,
                                 margin: EdgeInsets.symmetric(horizontal: 16.w),
                                 decoration: BoxDecoration(
-                                  color: AppColors.orangeColor48A.withValues(
-                                    alpha: .4,
-                                  ),
+                                  color: AppColors.orangeColor48A.withOpacity(.4),
                                   borderRadius: BorderRadius.circular(12.r),
                                 ),
                               );

@@ -56,7 +56,7 @@ class PageContainContentScreen extends StatelessWidget {
                       color: AppColors.whiteColor,
                       borderRadius: BorderRadius.circular(32.r),
                       border: Border.all(
-                        color: AppColors.greyColor44.withValues(alpha: .2),
+                        color: AppColors.greyColor44.withOpacity(.2),
                       ),
                     ),
                     child: SingleChildScrollView(

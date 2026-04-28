@@ -29,6 +29,10 @@ class OnAddToBookingLoadingState extends CvDetailsState {}
 
 class OnAddToBookingErrorState extends CvDetailsState {}
 
+class OnPdfLoadingState extends CvDetailsState {}
+class OnPdfLoadedState extends CvDetailsState {}
+class OnPdfErrorState extends CvDetailsState {}
+
 class OnAddToBookingSuccessState extends CvDetailsState {}
 
 class OnAddToBookingCatchErrorState extends CvDetailsState {}

@@ -79,7 +79,7 @@ class AppTextFormField extends StatelessWidget {
           onTapOutside!();
         }
       },
-      cursorColor: cursorColor ?? AppColors.blackColor.withValues(alpha: .6),
+      cursorColor: cursorColor ?? AppColors.blackColor.withOpacity(.6),
       enableSuggestions: true,
       autocorrect: true,
       autofillHints: const [AutofillHints.email],

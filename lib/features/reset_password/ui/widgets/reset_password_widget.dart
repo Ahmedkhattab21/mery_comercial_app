@@ -19,7 +19,7 @@ class ResetPasswordWidget extends StatelessWidget {
         return AppTextFormField(
           hintText: "",
           hintStyle: TextStyles.font14blackColor13W400.copyWith(
-            color: AppColors.blackColor13.withValues(alpha: .6),
+            color: AppColors.blackColor13.withOpacity(.6),
           ),
           contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
           isObscureText: ResetPasswordCubit.get(context).isPasswordVisible,

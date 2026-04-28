@@ -147,7 +147,7 @@ class FavoritesWidget extends StatelessWidget {
                                   item.cvFile.name,
                                   maxLines: 2,
                                   selectionColor: AppColors.greenColor31
-                                      .withValues(alpha: .2),
+                                      .withOpacity(.2),
                                   style: TextStyles.font14BlackColorBold,
                                 ),
                                 verticalSpace(8),
@@ -164,7 +164,7 @@ class FavoritesWidget extends StatelessWidget {
                                         item.nationality.name,
                                         maxLines: 1,
                                         selectionColor: AppColors.greenColor31
-                                            .withValues(alpha: .2),
+                                            .withOpacity(.2),
                                         style: TextStyles.font14BlackColorW400,
                                       ),
                                     ),
@@ -186,7 +186,7 @@ class FavoritesWidget extends StatelessWidget {
                                             : 'ليس لديها خبره ',
                                         maxLines: 1,
                                         selectionColor: AppColors.greenColor31
-                                            .withValues(alpha: .2),
+                                            .withOpacity(.2),
                                         style: TextStyles.font14BlackColorW400,
                                       ),
                                     ),
@@ -206,7 +206,7 @@ class FavoritesWidget extends StatelessWidget {
                                         item.isMuslim ? 'مسلمة' : 'غير مسلمة',
                                         maxLines: 1,
                                         selectionColor: AppColors.greenColor31
-                                            .withValues(alpha: .2),
+                                            .withOpacity(.2),
                                         style: TextStyles.font14BlackColorW400,
                                       ),
                                     ),
@@ -242,7 +242,7 @@ class FavoritesWidget extends StatelessWidget {
                                           borderRadius: 6,
                                           backGroundColor: AppColors
                                               .greenColor31
-                                              .withValues(alpha: .9),
+                                              .withOpacity(.9),
                                           borderColor: AppColors.greenColor31,
                                           textStyle:
                                               TextStyles.font16WhiteColorBold,

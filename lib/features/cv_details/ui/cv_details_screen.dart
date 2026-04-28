@@ -94,19 +94,47 @@ class CvDetailsScreen extends StatelessWidget {
                     children: [
                       verticalSpace(16),
 
-                      Container(
-                        height: 400.h,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          color: AppColors.whiteColor,
-                          borderRadius: BorderRadius.circular(16.r),
-                          border: Border.all(color: AppColors.greyColorEE),
-                        ),
-                        child: SfPdfViewer.network(
-                          CvDetailsCubit.get(
-                            context,
-                          ).cvDetailsResponseModel!.cvFile.url,
-                        ),
+                      BlocBuilder<CvDetailsCubit, CvDetailsState>(
+                        buildWhen: (previous, current) =>
+                            current is OnPdfLoadingState ||
+                            current is OnPdfLoadedState ||
+                            current is OnPdfErrorState,
+                        builder: (context, state) {
+                          final cubit = CvDetailsCubit.get(context);
+                          return Container(
+                            height: 400.h,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              color: AppColors.whiteColor,
+                              borderRadius: BorderRadius.circular(16.r),
+                              border: Border.all(color: AppColors.greyColorEE),
+                            ),
+                            child: state is OnPdfLoadingState
+                                ? Center(
+                                    child: CircularProgressIndicator(
+                                      color: AppColors.greenColor31,
+                                    ),
+                                  )
+                                : state is OnPdfErrorState
+                                    ? Center(
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Icon(Icons.picture_as_pdf, size: 48, color: AppColors.greyColorAC),
+                                            verticalSpace(8),
+                                            Text('تعذر تحميل الملف', style: TextStyles.font14greyColor64w400),
+                                          ],
+                                        ),
+                                      )
+                                    : cubit.pdfBytes != null
+                                        ? SfPdfViewer.memory(cubit.pdfBytes!)
+                                        : Center(
+                                            child: CircularProgressIndicator(
+                                              color: AppColors.greenColor31,
+                                            ),
+                                          ),
+                          );
+                        },
                       ),
 
                       verticalSpace(24),
@@ -117,9 +145,7 @@ class CvDetailsScreen extends StatelessWidget {
                               CvDetailsCubit.get(
                                 context,
                               ).cvDetailsResponseModel!.cvFile.name,
-                              selectionColor: AppColors.greenColor31.withValues(
-                                alpha: .2,
-                              ),
+                              selectionColor: AppColors.greenColor31.withOpacity(.2),
                               style: TextStyles.font18BlackColorBold,
                             ),
                           ),
@@ -129,9 +155,7 @@ class CvDetailsScreen extends StatelessWidget {
                             buttonWidth: 60.w,
                             buttonText: 'فتح',
                             borderRadius: 12,
-                            backGroundColor: AppColors.greenColor31.withValues(
-                              alpha: .9,
-                            ),
+                            backGroundColor: AppColors.greenColor31.withOpacity(.9),
                             borderColor: AppColors.greenColor31,
                             textStyle: TextStyles.font14WhiteColorW400,
                             onPressed: () {
@@ -159,9 +183,7 @@ class CvDetailsScreen extends StatelessWidget {
                                 context,
                               ).cvDetailsResponseModel!.nationality.name,
                               maxLines: 1,
-                              selectionColor: AppColors.greenColor31.withValues(
-                                alpha: .2,
-                              ),
+                              selectionColor: AppColors.greenColor31.withOpacity(.2),
                               style: TextStyles.font16BlackColorW400,
                             ),
                           ),
@@ -208,9 +230,7 @@ class CvDetailsScreen extends StatelessWidget {
                                   ? 'لديها خبره'
                                   : 'ليس لديها خبره ',
                               maxLines: 1,
-                              selectionColor: AppColors.greenColor31.withValues(
-                                alpha: .2,
-                              ),
+                              selectionColor: AppColors.greenColor31.withOpacity(.2),
                               style: TextStyles.font16BlackColorW400,
                             ),
                           ),
@@ -233,9 +253,7 @@ class CvDetailsScreen extends StatelessWidget {
                                   ? 'مسلمة'
                                   : 'غير مسلمة',
                               maxLines: 1,
-                              selectionColor: AppColors.greenColor31.withValues(
-                                alpha: .2,
-                              ),
+                              selectionColor: AppColors.greenColor31.withOpacity(.2),
                               style: TextStyles.font16BlackColorW400,
                             ),
                           ),
@@ -262,7 +280,7 @@ class CvDetailsScreen extends StatelessWidget {
                                 buttonText: 'حجز العامله ',
                                 borderRadius: 12,
                                 backGroundColor: AppColors.greenColor31
-                                    .withValues(alpha: .9),
+                                    .withOpacity(.9),
                                 borderColor: AppColors.greenColor31,
                                 textStyle: TextStyles.font18WhiteColorBold,
                                 onPressed: () {

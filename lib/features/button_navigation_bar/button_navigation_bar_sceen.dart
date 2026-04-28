@@ -39,8 +39,8 @@ class _ButtonNavigationBarScreenState extends State<ButtonNavigationBarScreen> {
                 borderRadius: BorderRadius.circular(14),
                 border: Border(
                   top: BorderSide(
-                    color: AppColors.greyColro8D.withValues(
-                      alpha: .12,
+                    color: AppColors.greyColro8D.withOpacity(
+                      .12,
                     ), // your color
                     width: 1, // border width
                   ),

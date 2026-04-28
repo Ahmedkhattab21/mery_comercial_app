@@ -141,7 +141,7 @@ class BookWidget extends StatelessWidget {
                                   item.cv.cvFile.name,
                                   maxLines: 2,
                                   selectionColor: AppColors.greenColor31
-                                      .withValues(alpha: .2),
+                                      .withOpacity(.2),
                                   style: TextStyles.font14BlackColorBold,
                                 ),
                                 verticalSpace(8),
@@ -158,7 +158,7 @@ class BookWidget extends StatelessWidget {
                                         item.cv.nationality.name,
                                         maxLines: 1,
                                         selectionColor: AppColors.greenColor31
-                                            .withValues(alpha: .2),
+                                            .withOpacity(.2),
                                         style: TextStyles.font14BlackColorW400,
                                       ),
                                     ),
@@ -180,7 +180,7 @@ class BookWidget extends StatelessWidget {
                                             : 'ليس لديها خبره ',
                                         maxLines: 1,
                                         selectionColor: AppColors.greenColor31
-                                            .withValues(alpha: .2),
+                                            .withOpacity(.2),
                                         style: TextStyles.font14BlackColorW400,
                                       ),
                                     ),
@@ -202,7 +202,7 @@ class BookWidget extends StatelessWidget {
                                             : 'غير مسلمة',
                                         maxLines: 1,
                                         selectionColor: AppColors.greenColor31
-                                            .withValues(alpha: .2),
+                                            .withOpacity(.2),
                                         style: TextStyles.font14BlackColorW400,
                                       ),
                                     ),

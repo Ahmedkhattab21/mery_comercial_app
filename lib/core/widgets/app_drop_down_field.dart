@@ -53,9 +53,7 @@ class AppDropDownField extends StatelessWidget {
           value: element,
           child: Text(
             element.name,
-            selectionColor: AppColors.greenColor31.withValues(
-              alpha: .2,
-            ),
+            selectionColor: AppColors.greenColor31.withOpacity(.2),
             style: textStyle ?? TextStyles.font16BlackColorWeight400,
           ),
         );
@@ -105,9 +103,7 @@ class AppDropDownField extends StatelessWidget {
       ),
       hint: Text(
         hintText,
-        selectionColor: AppColors.greenColor31.withValues(
-          alpha: .2,
-        ),
+        selectionColor: AppColors.greenColor31.withOpacity(.2),
         style: hintStyle ?? TextStyles.font16BlackColorWeight400,
       ),
 

@@ -44,9 +44,7 @@ class ForgetMeWidget extends StatelessWidget {
               horizontalSpace(12),
               Text(
                 'تذكرنى',
-                selectionColor: AppColors.greenColor31.withValues(
-                  alpha: .2,
-                ),
+                selectionColor: AppColors.greenColor31.withOpacity(.2),
                 style: TextStyles.font14greenColor31W500,
               ),
             ],

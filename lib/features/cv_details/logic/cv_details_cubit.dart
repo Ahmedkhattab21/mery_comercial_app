@@ -1,6 +1,11 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:http/http.dart' as http;
+import 'package:mery_comercial_app/core/services/cache_helper.dart';
 import 'package:mery_comercial_app/core/utils/app_constant.dart';
+import 'package:mery_comercial_app/core/utils/constant_keys.dart';
 import 'package:mery_comercial_app/features/booking/data/models/booking_request_model.dart';
 import 'package:mery_comercial_app/features/booking/data/repo/booking_repo.dart';
 import 'package:mery_comercial_app/features/cv_details/data/models/cv_details_response_model.dart'
@@ -19,6 +24,7 @@ class CvDetailsCubit extends Cubit<CvDetailsState> {
     : super(InitialState());
 
   cvd.CV? cvDetailsResponseModel;
+  Uint8List? pdfBytes;
 
   getCvDetails(int id) {
     emit(OnGetDetailsLoadingState());
@@ -29,15 +35,39 @@ class CvDetailsCubit extends Cubit<CvDetailsState> {
             (l) {
               emit(OnGetDetailsErrorState());
             },
-            (r) {
+            (r) async {
               cvDetailsResponseModel = r.data;
+              debugPrint('PDF URL: ${cvDetailsResponseModel!.cvFile.url}');
               emit(OnGetDetailsSuccessState());
+              _loadPdfBytes(cvDetailsResponseModel!.cvFile.url);
             },
           );
         })
         .catchError((error) {
           emit(OnGetDetailsCatchErrorState());
         });
+  }
+
+  _loadPdfBytes(String url) async {
+    emit(OnPdfLoadingState());
+    try {
+      final token = await CacheHelper.getSecuredString(ConstantKeys.saveTokenToShared);
+      final headers = <String, String>{};
+      if (token != null && token.isNotEmpty) {
+        headers[ConstantKeys.appAuthorization] = '${ConstantKeys.appBearer} $token';
+      }
+      final response = await http.get(Uri.parse(url), headers: headers);
+      if (response.statusCode == 200) {
+        pdfBytes = response.bodyBytes;
+        emit(OnPdfLoadedState());
+      } else {
+        debugPrint('PDF download failed: ${response.statusCode}');
+        emit(OnPdfErrorState());
+      }
+    } catch (e) {
+      debugPrint('PDF download error: $e');
+      emit(OnPdfErrorState());
+    }
   }
 
   addToFavorite(BuildContext context, int id) {

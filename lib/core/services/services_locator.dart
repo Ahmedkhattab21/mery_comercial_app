@@ -22,6 +22,10 @@ import 'package:mery_comercial_app/features/home/data/repo/home_repo.dart';
 import 'package:mery_comercial_app/features/home/data/services/home_service.dart';
 import 'package:mery_comercial_app/features/login/data/repo/login_repo.dart';
 import 'package:mery_comercial_app/features/login/data/services/login_service.dart';
+import 'package:mery_comercial_app/features/categories/data/repo/categories_repo.dart';
+import 'package:mery_comercial_app/features/categories/data/services/categories_service.dart';
+import 'package:mery_comercial_app/features/offices/data/repo/offices_repo.dart';
+import 'package:mery_comercial_app/features/offices/data/services/offices_service.dart';
 import 'package:mery_comercial_app/features/notifications/data/repo/notifications_repo.dart';
 import 'package:mery_comercial_app/features/notifications/data/services/notifications_service.dart';
 import 'package:mery_comercial_app/features/page_contain_content/data/repo/page_contain_content_repo.dart';
@@ -133,6 +137,20 @@ class ServicesLocator {
     );
     getIt.registerFactory<NotificationsService>(
       () => NotificationsService(apiConsumer: getIt()),
+    );
+
+    /// Offices
+    getIt.registerLazySingleton<OfficesRepo>(() => OfficesRepo(getIt()));
+    getIt.registerFactory<OfficesService>(
+      () => OfficesService(apiConsumer: getIt()),
+    );
+
+    /// Categories
+    getIt.registerLazySingleton<CategoriesRepo>(
+      () => CategoriesRepo(getIt()),
+    );
+    getIt.registerFactory<CategoriesService>(
+      () => CategoriesService(apiConsumer: getIt()),
     );
 
     ///constant
