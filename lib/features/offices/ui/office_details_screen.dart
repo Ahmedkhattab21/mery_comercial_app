@@ -4,9 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mery_comercial_app/core/utils/app_colors_white_theme.dart';
 import 'package:mery_comercial_app/core/utils/app_constant.dart';
+import 'package:mery_comercial_app/core/utils/assets_manager.dart';
 import 'package:mery_comercial_app/core/utils/extentions.dart';
 import 'package:mery_comercial_app/core/utils/spacing.dart';
 import 'package:mery_comercial_app/core/utils/styles.dart';
+import 'package:mery_comercial_app/core/widgets/empty_state_widget.dart';
 import 'package:mery_comercial_app/features/offices/data/models/offices_response_model.dart';
 import 'package:mery_comercial_app/features/offices/logic/offices_cubit.dart';
 import 'package:mery_comercial_app/features/offices/logic/offices_state.dart';
@@ -52,22 +54,10 @@ class OfficeDetailsScreen extends StatelessWidget {
           final Office? office = OfficesCubit.get(context).selectedOffice;
 
           if (office == null) {
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.business_outlined,
-                    size: 64.r,
-                    color: AppColors.greyColorAC,
-                  ),
-                  verticalSpace(12),
-                  Text(
-                    'تعذر تحميل بيانات المكتب',
-                    style: TextStyles.font14greyColor64w400,
-                  ),
-                ],
-              ),
+            return EmptyStateWidget(
+              svgAsset: ImageAsset.officeIcon,
+              title: 'تعذر تحميل بيانات المكتب',
+              subtitle: 'حدث خطأ أثناء تحميل بيانات المكتب، يرجى المحاولة مرة أخرى',
             );
           }
 

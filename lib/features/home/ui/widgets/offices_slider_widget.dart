@@ -4,9 +4,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mery_comercial_app/config/routes/routes.dart';
 import 'package:mery_comercial_app/core/services/services_locator.dart';
 import 'package:mery_comercial_app/core/utils/app_colors_white_theme.dart';
+import 'package:mery_comercial_app/core/utils/assets_manager.dart';
 import 'package:mery_comercial_app/core/utils/extentions.dart';
 import 'package:mery_comercial_app/core/utils/spacing.dart';
 import 'package:mery_comercial_app/core/utils/styles.dart';
+import 'package:mery_comercial_app/core/widgets/empty_state_widget.dart';
 import 'package:mery_comercial_app/features/offices/data/models/offices_response_model.dart';
 import 'package:mery_comercial_app/features/offices/logic/offices_cubit.dart';
 import 'package:mery_comercial_app/features/offices/logic/offices_state.dart';
@@ -85,11 +87,9 @@ class _OfficesSliderContent extends StatelessWidget {
             if (offices.isEmpty) {
               return SizedBox(
                 height: 190.h,
-                child: Center(
-                  child: Text(
-                    'لا توجد مكاتب',
-                    style: TextStyles.font14greyColor64w400,
-                  ),
+                child: EmptyStateWidget(
+                  svgAsset: ImageAsset.officeIcon,
+                  title: 'لا توجد مكاتب',
                 ),
               );
             }

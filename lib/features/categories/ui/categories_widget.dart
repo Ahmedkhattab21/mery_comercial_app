@@ -116,32 +116,17 @@ class _CategoryCard extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Container(
-            width: 62.r,
-            height: 62.r,
-            decoration: BoxDecoration(
-              color: AppColors.greenColorEA,
-              shape: BoxShape.circle,
-              boxShadow: [
-                BoxShadow(
-                  color: AppColors.greenColor31.withOpacity(0.15),
-                  blurRadius: 8,
-                  offset: const Offset(0, 3),
-                ),
-              ],
-            ),
-            child: Padding(
-              padding: EdgeInsets.all(14.r),
-              child: category.imageUrl != null
-                  ? Image.network(
-                      category.imageUrl!,
-                      fit: BoxFit.contain,
-                      color: AppColors.greenColor31,
-                      errorBuilder: (_, __, ___) => _fallbackIcon(),
-                    )
-                  : _fallbackIcon(),
-            ),
-          ),
+          category.imageUrl != null
+              ? ClipOval(
+                  child: Image.network(
+                    category.imageUrl!,
+                    width: 68.r,
+                    height: 68.r,
+                    fit: BoxFit.cover,
+                    errorBuilder: (_, __, ___) => _fallbackContainer(),
+                  ),
+                )
+              : _fallbackContainer(),
           verticalSpace(8),
           SizedBox(
             width: 70.w,
@@ -160,11 +145,19 @@ class _CategoryCard extends StatelessWidget {
     );
   }
 
-  Widget _fallbackIcon() {
-    return Icon(
-      Icons.work_outline_rounded,
-      size: 28.r,
-      color: AppColors.greenColor31,
+  Widget _fallbackContainer() {
+    return Container(
+      width: 68.r,
+      height: 68.r,
+      decoration: BoxDecoration(
+        color: AppColors.greenColorEA,
+        shape: BoxShape.circle,
+      ),
+      child: Icon(
+        Icons.work_outline_rounded,
+        size: 30.r,
+        color: AppColors.greenColor31,
+      ),
     );
   }
 }

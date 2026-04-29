@@ -7,6 +7,7 @@ import 'package:mery_comercial_app/core/utils/app_colors_white_theme.dart';
 import 'package:mery_comercial_app/core/utils/app_constant.dart';
 import 'package:mery_comercial_app/core/utils/assets_manager.dart';
 import 'package:mery_comercial_app/core/utils/extentions.dart';
+import 'package:mery_comercial_app/core/widgets/empty_state_widget.dart';
 import 'package:mery_comercial_app/core/utils/spacing.dart';
 import 'package:mery_comercial_app/core/utils/styles.dart';
 import 'package:mery_comercial_app/core/widgets/button_widget.dart';
@@ -68,7 +69,12 @@ class FavoritesWidget extends StatelessWidget {
           );
         } else {
           if (FavoriteCubit.get(context).favorites.isEmpty) {
-            return Center(child: Icon(Icons.image_not_supported_outlined));
+            return EmptyStateWidget(
+              svgAsset: ImageAsset.favoriteIcon,
+              title: 'لا توجد مفضلة',
+              subtitle: 'لم تقم بإضافة أي سيرة ذاتية إلى المفضلة بعد',
+              expanded: true,
+            );
           } else {
             return Expanded(
               child: SingleChildScrollView(

@@ -7,6 +7,7 @@ import 'package:mery_comercial_app/core/utils/app_colors_white_theme.dart';
 import 'package:mery_comercial_app/core/utils/app_constant.dart';
 import 'package:mery_comercial_app/core/utils/assets_manager.dart';
 import 'package:mery_comercial_app/core/utils/extentions.dart';
+import 'package:mery_comercial_app/core/widgets/empty_state_widget.dart';
 import 'package:mery_comercial_app/core/utils/spacing.dart';
 import 'package:mery_comercial_app/core/utils/styles.dart';
 import 'package:mery_comercial_app/core/widgets/button_widget.dart';
@@ -65,11 +66,10 @@ class CvsWidget extends StatelessWidget {
             ),
           );
         } else if (HomeCubit.get(context).cvs.isEmpty) {
-          return Center(
-            child: Text(
-              'لا توجد سير ذاتية',
-              style: TextStyles.font16WhiteColorBold,
-            ),
+          return EmptyStateWidget(
+            svgAsset: ImageAsset.profileIcon,
+            title: 'لا توجد سير ذاتية',
+            subtitle: 'لا تتوفر سير ذاتية حالياً',
           );
         } else {
           return SingleChildScrollView(

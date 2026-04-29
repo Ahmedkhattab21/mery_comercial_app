@@ -28,10 +28,19 @@ class Category {
   Category({required this.id, required this.name, this.imageUrl});
 
   factory Category.fromJson(Map<String, dynamic> json) {
+    final raw = json['icon'] ?? json['image_url'] ?? json['image'];
+    String? imageUrl;
+    if (raw != null && raw.toString().isNotEmpty) {
+      if (raw.toString().startsWith('http')) {
+        imageUrl = raw.toString();
+      } else {
+        imageUrl = 'https://mery.alemtayaz.com/public/${raw.toString()}';
+      }
+    }
     return Category(
       id: json['id'] ?? 0,
       name: json['name'] ?? '',
-      imageUrl: json['image_url'] ?? json['image'],
+      imageUrl: imageUrl,
     );
   }
 }
