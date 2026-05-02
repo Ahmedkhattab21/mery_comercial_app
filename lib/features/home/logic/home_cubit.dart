@@ -12,6 +12,7 @@ import 'package:mery_comercial_app/features/home/data/models/get_cvs_response_mo
 import 'package:mery_comercial_app/features/home/data/models/get_nationality_response_model.dart'
     as nationality;
 import 'package:mery_comercial_app/features/home/data/repo/home_repo.dart';
+import 'package:mery_comercial_app/config/routes/routes.dart';
 import 'package:mery_comercial_app/features/home/logic/home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
@@ -118,6 +119,10 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   addToFavorite(BuildContext context, int id) {
+    if (!isLoggedInUser) {
+      Navigator.of(context).pushNamed(Routes.loginScreen);
+      return;
+    }
     emit(OnAddToFavoritesLoadingState());
     _favoriteRepo
         .addToFavorite(AddFavoriteRequestModel(cvId: id))
@@ -170,6 +175,10 @@ class HomeCubit extends Cubit<HomeState> {
   int? bookingLoadingId;
 
   addBooking(BuildContext context, int id) {
+    if (!isLoggedInUser) {
+      Navigator.of(context).pushNamed(Routes.loginScreen);
+      return;
+    }
     bookingLoadingId = id;
     emit(OnAddToBookingLoadingState());
     _bookingRepo

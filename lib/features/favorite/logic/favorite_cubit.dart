@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mery_comercial_app/core/utils/app_constant.dart';
 import 'package:mery_comercial_app/features/booking/data/models/booking_request_model.dart';
-import 'package:mery_comercial_app/features/booking/data/repo/booking_repo.dart';
+import 'package:mery_comercial_app/config/routes/routes.dart';
 import 'package:mery_comercial_app/features/favorite/data/models/get_favorite_response_model.dart';
 import 'package:mery_comercial_app/features/favorite/data/repo/favorite_repo.dart';
+import 'package:mery_comercial_app/features/booking/data/repo/booking_repo.dart';
 import 'package:mery_comercial_app/features/favorite/logic/favorite_state.dart';
 
 class FavoriteCubit extends Cubit<FavoriteState> {
@@ -64,6 +65,10 @@ class FavoriteCubit extends Cubit<FavoriteState> {
   int? bookingLoadingId;
 
   addBooking(BuildContext context, int id) {
+    if (!isLoggedInUser) {
+      Navigator.of(context).pushNamed(Routes.loginScreen);
+      return;
+    }
     bookingLoadingId = id;
     emit(OnAddToBookingLoadingState());
     _bookingRepo

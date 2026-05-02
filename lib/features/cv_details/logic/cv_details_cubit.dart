@@ -7,10 +7,11 @@ import 'package:mery_comercial_app/core/services/cache_helper.dart';
 import 'package:mery_comercial_app/core/utils/app_constant.dart';
 import 'package:mery_comercial_app/core/utils/constant_keys.dart';
 import 'package:mery_comercial_app/features/booking/data/models/booking_request_model.dart';
-import 'package:mery_comercial_app/features/booking/data/repo/booking_repo.dart';
+import 'package:mery_comercial_app/config/routes/routes.dart';
+import 'package:mery_comercial_app/features/cv_details/data/repo/cv_details_repo.dart';
 import 'package:mery_comercial_app/features/cv_details/data/models/cv_details_response_model.dart'
     as cvd;
-import 'package:mery_comercial_app/features/cv_details/data/repo/cv_details_repo.dart';
+import 'package:mery_comercial_app/features/booking/data/repo/booking_repo.dart';
 import 'package:mery_comercial_app/features/cv_details/logic/cv_details_state.dart';
 import 'package:mery_comercial_app/features/favorite/data/models/add_favorite_request_model.dart';
 import 'package:mery_comercial_app/features/favorite/data/repo/favorite_repo.dart';
@@ -95,6 +96,10 @@ class CvDetailsCubit extends Cubit<CvDetailsState> {
   }
 
   addBooking(BuildContext context, int id) {
+    if (!isLoggedInUser) {
+      Navigator.of(context).pushNamed(Routes.loginScreen);
+      return;
+    }
     emit(OnAddToBookingLoadingState());
     _bookingRepo
         .addBooking(BookingRequestModel(cvId: id))

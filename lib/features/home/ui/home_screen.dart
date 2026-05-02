@@ -221,8 +221,6 @@ class HomeScreen extends StatelessWidget {
                     verticalSpace(16),
                     FavoriteCvsWidget(),
                     verticalSpace(16),
-                    Text('كل العمالة', style: TextStyles.font18BlackColor13bold),
-                    verticalSpace(12),
                     CvsWidget(),
                     verticalSpace(40),
                   ],
