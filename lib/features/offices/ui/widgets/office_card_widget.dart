@@ -17,82 +17,125 @@ class OfficeCardWidget extends StatelessWidget {
       onTap: onTap,
       child: Container(
         margin: EdgeInsets.only(bottom: 12.h),
-        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
         decoration: BoxDecoration(
-          color: AppColors.whiteColor,
-          borderRadius: BorderRadius.circular(16.r),
-          border: Border.all(color: AppColors.greyColorEE),
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(18.r),
           boxShadow: [
             BoxShadow(
-              color: AppColors.greyColorEE,
-              blurRadius: 6,
-              offset: const Offset(0, 2),
+              color: Colors.black.withOpacity(0.06),
+              blurRadius: 14,
+              offset: const Offset(0, 4),
             ),
           ],
         ),
         child: Row(
           children: [
+            // Green left accent bar
             Container(
-              height: 56.r,
-              width: 56.r,
+              width: 5.w,
+              height: 80.h,
+              decoration: BoxDecoration(
+                color: AppColors.greenColor31,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(18.r),
+                  bottomLeft: Radius.circular(18.r),
+                ),
+              ),
+            ),
+            horizontalSpace(14),
+            // Logo
+            Container(
+              height: 54.r,
+              width: 54.r,
               decoration: BoxDecoration(
                 color: AppColors.greenColorEA,
-                borderRadius: BorderRadius.circular(12.r),
+                borderRadius: BorderRadius.circular(14.r),
               ),
               child: office.imageUrl != null
                   ? ClipRRect(
-                      borderRadius: BorderRadius.circular(12.r),
+                      borderRadius: BorderRadius.circular(14.r),
                       child: Image.network(
                         office.imageUrl!,
                         fit: BoxFit.cover,
                         errorBuilder: (_, __, ___) => Icon(
-                          Icons.business,
+                          Icons.business_rounded,
                           color: AppColors.greenColor31,
                           size: 28.r,
                         ),
                       ),
                     )
                   : Icon(
-                      Icons.business,
+                      Icons.business_rounded,
                       color: AppColors.greenColor31,
                       size: 28.r,
                     ),
             ),
-            horizontalSpace(12),
+            horizontalSpace(14),
+            // Info
             Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    office.name,
-                    style: TextStyles.font14BlackColorBold,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  if (office.phone != null) ...[
-                    verticalSpace(4),
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.phone_outlined,
-                          size: 14.r,
-                          color: AppColors.greyColor64,
-                        ),
-                        horizontalSpace(4),
-                        Text(
-                          office.phone!,
-                          style: TextStyles.font12greyColor64w400,
-                        ),
-                      ],
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 14.h),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      office.name,
+                      style: TextStyles.font14BlackColorBold,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
+                    if (office.phone != null) ...[
+                      verticalSpace(5),
+                      Row(
+                        children: [
+                          Icon(Icons.phone_outlined,
+                              size: 13.r, color: AppColors.greenColor31),
+                          horizontalSpace(5),
+                          Text(
+                            office.phone!,
+                            style: TextStyles.font12greyColor64w400,
+                          ),
+                        ],
+                      ),
+                    ],
+                    if (office.address != null) ...[
+                      verticalSpace(3),
+                      Row(
+                        children: [
+                          Icon(Icons.location_on_outlined,
+                              size: 13.r, color: AppColors.greyColorAC),
+                          horizontalSpace(5),
+                          Expanded(
+                            child: Text(
+                              office.address!,
+                              style: TextStyles.font12greyColor64w400.copyWith(
+                                color: AppColors.greyColorAC,
+                              ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ],
-                ],
+                ),
               ),
             ),
-            Icon(
-              Icons.arrow_forward_ios,
-              size: 16.r,
-              color: AppColors.greenColor31,
+            // Arrow
+            Container(
+              margin: EdgeInsets.only(left: 12.w, right: 14.w),
+              width: 32.r,
+              height: 32.r,
+              decoration: BoxDecoration(
+                color: AppColors.greenColorEA,
+                shape: BoxShape.circle,
+              ),
+              child: Icon(
+                Icons.arrow_forward_ios_rounded,
+                size: 14.r,
+                color: AppColors.greenColor31,
+              ),
             ),
           ],
         ),
@@ -100,3 +143,4 @@ class OfficeCardWidget extends StatelessWidget {
     );
   }
 }
+

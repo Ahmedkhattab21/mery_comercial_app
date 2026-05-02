@@ -156,8 +156,7 @@ class _FilterBar extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
           child: Row(
             children: [
-              SvgPicture.asset(ImageAsset.filterIcon, width: 16.r, height: 16.r,
-                  colorFilter: ColorFilter.mode(AppColors.greenColor31, BlendMode.srcIn)),
+              Icon(Icons.tune_rounded, size: 18.r, color: AppColors.greenColor31),
               horizontalSpace(8),
               _FilterChip(
                 label: "الديانة",
