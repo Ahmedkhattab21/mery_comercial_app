@@ -214,7 +214,61 @@ class BookWidget extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                verticalSpace(18),
+                                verticalSpace(12),
+                                Container(
+                                  width: double.infinity,
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: 12.w,
+                                    vertical: 8.h,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: item.status == 'accepted'
+                                        ? AppColors.greenColor31.withOpacity(0.08)
+                                        : item.status == 'rejected' || item.status == 'cancelled'
+                                            ? Colors.red.withOpacity(0.08)
+                                            : Colors.orange.withOpacity(0.08),
+                                    borderRadius: BorderRadius.circular(8.r),
+                                    border: Border.all(
+                                      color: item.status == 'accepted'
+                                          ? AppColors.greenColor31.withOpacity(0.3)
+                                          : item.status == 'rejected' || item.status == 'cancelled'
+                                              ? Colors.red.withOpacity(0.3)
+                                              : Colors.orange.withOpacity(0.3),
+                                    ),
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      Icon(
+                                        item.status == 'accepted'
+                                            ? Icons.check_circle_rounded
+                                            : item.status == 'rejected' || item.status == 'cancelled'
+                                                ? Icons.cancel_rounded
+                                                : Icons.access_time_rounded,
+                                        size: 16.r,
+                                        color: item.status == 'accepted'
+                                            ? AppColors.greenColor31
+                                            : item.status == 'rejected' || item.status == 'cancelled'
+                                                ? Colors.red.shade700
+                                                : Colors.orange.shade700,
+                                      ),
+                                      horizontalSpace(6),
+                                      Text(
+                                        item.status == 'accepted'
+                                            ? 'سيتم التواصل معاك'
+                                            : item.statusLabel,
+                                        style: TextStyles.font12greyColor64w400.copyWith(
+                                          color: item.status == 'accepted'
+                                              ? AppColors.greenColor31
+                                              : item.status == 'rejected' || item.status == 'cancelled'
+                                                  ? Colors.red.shade700
+                                                  : Colors.orange.shade700,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                verticalSpace(8),
                               ],
                             ),
                           ),

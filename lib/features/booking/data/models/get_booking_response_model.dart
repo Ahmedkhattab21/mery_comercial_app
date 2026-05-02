@@ -35,12 +35,14 @@ class BookData {
 class BookingModel {
   int id;
   String status;
+  String statusLabel;
   String createdAt;
   CvModel cv;
 
   BookingModel({
     required this.id,
     required this.status,
+    required this.statusLabel,
     required this.createdAt,
     required this.cv,
   });
@@ -49,6 +51,7 @@ class BookingModel {
     return BookingModel(
       id: json['id'] ?? 0,
       status: json['status'] ?? '',
+      statusLabel: json['status_label'] ?? json['status'] ?? '',
       createdAt: json['created_at'] ?? '',
       cv: CvModel.fromJson(json['cv']),
     );

@@ -84,40 +84,6 @@ class OfficeCardWidget extends StatelessWidget {
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    if (office.phone != null) ...[
-                      verticalSpace(5),
-                      Row(
-                        children: [
-                          Icon(Icons.phone_outlined,
-                              size: 13.r, color: AppColors.greenColor31),
-                          horizontalSpace(5),
-                          Text(
-                            office.phone!,
-                            style: TextStyles.font12greyColor64w400,
-                          ),
-                        ],
-                      ),
-                    ],
-                    if (office.address != null) ...[
-                      verticalSpace(3),
-                      Row(
-                        children: [
-                          Icon(Icons.location_on_outlined,
-                              size: 13.r, color: AppColors.greyColorAC),
-                          horizontalSpace(5),
-                          Expanded(
-                            child: Text(
-                              office.address!,
-                              style: TextStyles.font12greyColor64w400.copyWith(
-                                color: AppColors.greyColorAC,
-                              ),
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
                   ],
                 ),
               ),
