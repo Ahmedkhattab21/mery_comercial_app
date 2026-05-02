@@ -38,11 +38,15 @@ class PhoneWidget extends StatelessWidget {
       ),
       validator: (String? value) {
         if (value == null || value.isEmpty) {
-          return "ادخل قيمة ";
+          return 'رقم الجوال مطلوب';
+        }
+        if (!RegExp(r'^05[0-9]{8}$').hasMatch(value)) {
+          return 'صيغة غير صحيحة (مثال: 0512345678)';
         }
         return null;
       },
       keyboardType: TextInputType.phone,
+      maxLength: 10,
     );
   }
 }

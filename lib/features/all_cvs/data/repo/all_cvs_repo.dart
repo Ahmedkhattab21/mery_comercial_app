@@ -20,4 +20,12 @@ class AllCvsRepo {
       return Left(ServerFailure(message: failure.serverFailure.message));
     }
   }
+
+  Future<Either<Failure, AllCvsResponseModel>> getOfficeCvs(int officeId, {bool? isMuslim, bool? isExperience}) async {
+    try {
+      return Right(await _allCvsService.getOfficeCvs(officeId, isMuslim: isMuslim, isExperience: isExperience));
+    } on ServerException catch (failure) {
+      return Left(ServerFailure(message: failure.serverFailure.message));
+    }
+  }
 }

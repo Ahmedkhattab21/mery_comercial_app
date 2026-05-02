@@ -94,7 +94,7 @@ class RegisterScreen extends StatelessWidget {
                               style: TextStyles.font14greenColor31W500,
                             ),
                             TextSpan(
-                              text: '',
+                              text: '  *',
                               style: TextStyles.font14orangeColor09W500,
                             ),
                           ],
@@ -173,7 +173,7 @@ class RegisterScreen extends StatelessWidget {
                       builder: (context, state) {
                         return ButtonWidget(
                           isLoading: state is OnRegisterLoadingState,
-                          buttonText: 'تسجيل الدخول',
+                          buttonText: 'إنشاء حساب',
                           buttonHeight: 44,
                           borderRadius: 8,
                           backGroundColor: AppColors.greenColor31,

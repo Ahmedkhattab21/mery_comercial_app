@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mery_comercial_app/core/services/cache_helper.dart';
+import 'package:mery_comercial_app/core/utils/app_constant.dart';
 import 'package:mery_comercial_app/core/utils/constant_keys.dart';
 import 'package:mery_comercial_app/features/register/data/models/register_request_model.dart';
 import 'package:mery_comercial_app/features/register/data/repo/register_repo.dart';
@@ -49,12 +50,13 @@ class RegisterCubit extends Cubit<RegisterState> {
             },
             (r) async {
               await cashUserData(r.useModel.token);
+              isLoggedInUser = true;
               emit(OnRegisterSuccessState(message: r.message));
             },
           );
         })
         .catchError((error) {
-          emit(OnRegisterCatchErrorState(message: error.message.toString()));
+          emit(OnRegisterCatchErrorState(message: error.toString()));
         });
   }
 

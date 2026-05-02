@@ -22,17 +22,17 @@ class FavoriteCubit extends Cubit<FavoriteState> {
     _favoriteRepo
         .getFavorites()
         .then((value) {
+          if (isClosed) return;
           value.fold(
-            (l) {
-              emit(OnGetFavoritesErrorState());
-            },
-            (r) async {
+            (l) => emit(OnGetFavoritesErrorState()),
+            (r) {
               favorites = r.data;
               emit(OnGetFavoritesSuccessState());
             },
           );
         })
         .catchError((error) {
+          if (isClosed) return;
           emit(OnGetFavoritesCatchErrorState());
         });
   }

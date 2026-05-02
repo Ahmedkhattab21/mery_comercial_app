@@ -31,3 +31,5 @@ class OnAddToBookingErrorState extends AllCvsState {}
 class OnAddToBookingSuccessState extends AllCvsState {}
 
 class OnAddToBookingCatchErrorState extends AllCvsState {}
+
+class OnOfficeFilterChangedState extends AllCvsState {}

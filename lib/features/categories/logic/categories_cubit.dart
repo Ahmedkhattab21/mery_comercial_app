@@ -16,6 +16,7 @@ class CategoriesCubit extends Cubit<CategoriesState> {
     _categoriesRepo
         .getCategories()
         .then((value) {
+          if (isClosed) return;
           value.fold(
             (l) => emit(OnGetCategoriesErrorState()),
             (r) {
@@ -24,7 +25,7 @@ class CategoriesCubit extends Cubit<CategoriesState> {
             },
           );
         })
-        .catchError((_) => emit(OnGetCategoriesCatchErrorState()));
+        .catchError((_) { if (!isClosed) emit(OnGetCategoriesCatchErrorState()); });
   }
 
   static CategoriesCubit get(context) => BlocProvider.of(context);

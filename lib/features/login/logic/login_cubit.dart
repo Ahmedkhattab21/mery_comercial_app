@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mery_comercial_app/core/services/cache_helper.dart';
 import 'package:mery_comercial_app/core/services/firebase_notification_service.dart';
+import 'package:mery_comercial_app/core/utils/app_constant.dart';
 import 'package:mery_comercial_app/core/utils/constant_keys.dart';
 import 'package:mery_comercial_app/features/login/data/models/login_request_model.dart';
 import 'package:mery_comercial_app/features/login/data/repo/login_repo.dart';
@@ -48,6 +49,7 @@ class LoginCubit extends Cubit<LoginState> {
             },
             (r) async {
               await cashUserData(r.useModel.token, r.useModel.userData.name);
+              isLoggedInUser = true;
               emit(OnLoginSuccessState());
             },
           );

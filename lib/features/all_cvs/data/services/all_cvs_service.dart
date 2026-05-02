@@ -35,4 +35,18 @@ class AllCvsService {
       );
     }
   }
+
+  Future<AllCvsResponseModel> getOfficeCvs(int officeId, {bool? isMuslim, bool? isExperience}) async {
+    final response = await apiConsumer.get(
+      AllCvsApiEndPoints.getOfficeCvsUrl(officeId, isMuslim: isMuslim, isExperience: isExperience),
+      null,
+    );
+    if (response.statusCode == StatusCode.ok) {
+      return AllCvsResponseModel.fromJson(jsonDecode(response.body));
+    } else {
+      throw ServerException(
+        serverFailure: ServerFailure.fromJson(jsonDecode(response.body)),
+      );
+    }
+  }
 }

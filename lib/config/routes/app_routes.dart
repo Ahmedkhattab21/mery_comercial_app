@@ -138,9 +138,9 @@ class RouteGenerator {
       case Routes.officeDetailsScreen:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (context) =>
-                OfficesCubit(getIt())..getOfficeDetails(args['id']),
-            child: OfficeDetailsScreen(id: args['id']),
+            create: (_) => AllCvsCubit(getIt(), getIt(), getIt())
+              ..getOfficeCvs(args['office'].id),
+            child: OfficeDetailsScreen(office: args['office']),
           ),
         );
 

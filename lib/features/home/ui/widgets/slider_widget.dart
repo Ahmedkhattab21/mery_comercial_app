@@ -9,6 +9,7 @@ import 'package:mery_comercial_app/core/utils/spacing.dart';
 import 'package:mery_comercial_app/core/utils/styles.dart';
 import 'package:mery_comercial_app/features/home/logic/home_cubit.dart';
 import 'package:mery_comercial_app/features/home/logic/home_state.dart';
+import 'package:shimmer/shimmer.dart';
 
 class SliderWidget extends StatelessWidget {
   const SliderWidget({super.key});
@@ -37,15 +38,21 @@ class SliderWidget extends StatelessWidget {
             },
             builder: (context, state) {
               if (HomeCubit.get(context).sliders.isEmpty) {
-                return Container(
-                  height: 120.h,
-                  width: double.infinity,
-                  margin: EdgeInsets.symmetric(horizontal: 16.w),
-                  decoration: BoxDecoration(
-                    color: AppColors.orangeColor48A.withOpacity(.4),
-                    borderRadius: BorderRadius.circular(12.r),
-                  ),
-                );
+                if (state is OnGetSliderLoadingState) {
+                  return Shimmer.fromColors(
+                    baseColor: Colors.grey.shade700,
+                    highlightColor: Colors.grey.shade500,
+                    child: Container(
+                      height: 120.h,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: Colors.white24,
+                        borderRadius: BorderRadius.circular(12.r),
+                      ),
+                    ),
+                  );
+                }
+                return const SizedBox.shrink();
               } else {
                 return CarouselSlider(
                   items: HomeCubit.get(context).sliders

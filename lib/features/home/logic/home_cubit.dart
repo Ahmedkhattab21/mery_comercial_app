@@ -36,17 +36,17 @@ class HomeCubit extends Cubit<HomeState> {
     _homeRepo
         .getSliders()
         .then((value) {
+          if (isClosed) return;
           value.fold(
-            (l) {
-              emit(OnGetSliderErrorState());
-            },
-            (r) async {
+            (l) => emit(OnGetSliderErrorState()),
+            (r) {
               sliders = r.data;
               emit(OnGetSliderSuccessState());
             },
           );
         })
         .catchError((error) {
+          if (isClosed) return;
           emit(OnGetSliderCatchErrorState());
         });
   }
@@ -58,17 +58,17 @@ class HomeCubit extends Cubit<HomeState> {
     _homeRepo
         .getNationality()
         .then((value) {
+          if (isClosed) return;
           value.fold(
-            (l) {
-              emit(OnGetNationalityErrorState());
-            },
-            (r) async {
+            (l) => emit(OnGetNationalityErrorState()),
+            (r) {
               nationalities = r.data;
               emit(OnGetNationalitySuccessState());
             },
           );
         })
         .catchError((error) {
+          if (isClosed) return;
           emit(OnGetNationalityCatchErrorState());
         });
   }
@@ -80,17 +80,17 @@ class HomeCubit extends Cubit<HomeState> {
     _homeRepo
         .getCV()
         .then((value) {
+          if (isClosed) return;
           value.fold(
-            (l) {
-              emit(OnGetCVSErrorState());
-            },
-            (r) async {
+            (l) => emit(OnGetCVSErrorState()),
+            (r) {
               cvs = r.data;
               emit(OnGetCVSSuccessState());
             },
           );
         })
         .catchError((error) {
+          if (isClosed) return;
           emit(OnGetCVSCatchErrorState());
         });
   }
@@ -103,17 +103,17 @@ class HomeCubit extends Cubit<HomeState> {
     _favoriteRepo
         .getFavorites()
         .then((value) {
+          if (isClosed) return;
           value.fold(
-            (l) {
-              emit(OnGetFavoritesErrorState());
-            },
-            (r) async {
+            (l) => emit(OnGetFavoritesErrorState()),
+            (r) {
               favorites = r.data;
               emit(OnGetFavoritesSuccessState());
             },
           );
         })
         .catchError((error) {
+          if (isClosed) return;
           emit(OnGetFavoritesCatchErrorState());
         });
   }

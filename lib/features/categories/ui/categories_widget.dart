@@ -27,29 +27,36 @@ class _CategoriesContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text('خدمات سريعة', style: TextStyles.font18BlackColor13bold),
-        verticalSpace(12),
-        BlocBuilder<CategoriesCubit, CategoriesState>(
-          buildWhen: (previous, current) =>
-              current is OnGetCategoriesLoadingState ||
-              current is OnGetCategoriesSuccessState ||
-              current is OnGetCategoriesErrorState ||
-              current is OnGetCategoriesCatchErrorState,
-          builder: (context, state) {
-            if (state is OnGetCategoriesLoadingState) {
-              return _buildShimmer();
-            }
+    return BlocBuilder<CategoriesCubit, CategoriesState>(
+      buildWhen: (previous, current) =>
+          current is OnGetCategoriesLoadingState ||
+          current is OnGetCategoriesSuccessState ||
+          current is OnGetCategoriesErrorState ||
+          current is OnGetCategoriesCatchErrorState,
+      builder: (context, state) {
+        if (state is OnGetCategoriesLoadingState) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('خدمات سريعة', style: TextStyles.font18BlackColor13bold),
+              verticalSpace(12),
+              _buildShimmer(),
+            ],
+          );
+        }
 
-            final categories = CategoriesCubit.get(context).categories;
+        final categories = CategoriesCubit.get(context).categories;
 
-            if (categories.isEmpty) {
-              return const SizedBox.shrink();
-            }
+        if (categories.isEmpty) {
+          return const SizedBox.shrink();
+        }
 
-            return SizedBox(
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('خدمات سريعة', style: TextStyles.font18BlackColor13bold),
+            verticalSpace(12),
+            SizedBox(
               height: 100.h,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
@@ -58,10 +65,10 @@ class _CategoriesContent extends StatelessWidget {
                 itemBuilder: (context, index) =>
                     _CategoryCard(category: categories[index]),
               ),
-            );
-          },
-        ),
-      ],
+            ),
+          ],
+        );
+      },
     );
   }
 

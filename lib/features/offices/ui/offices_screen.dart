@@ -137,7 +137,7 @@ class _OfficesScreenState extends State<OfficesScreen> {
                         onTap: () {
                           context.pushNamed(
                             Routes.officeDetailsScreen,
-                            arguments: {'id': offices[index].id},
+                            arguments: {'office': offices[index]},
                           );
                         },
                       ),

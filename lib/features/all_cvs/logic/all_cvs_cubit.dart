@@ -108,5 +108,41 @@ class AllCvsCubit extends Cubit<AllCvsState> {
     getNationalityCvs(code);
   }
 
+  getOfficeCvs(int officeId) {
+    _currentOfficeId = officeId;
+    nationalityCvs = [];
+    emit(OnGetNationalityCvsLoadingState());
+    _allCvsRepo
+        .getOfficeCvs(officeId, isMuslim: isMuslims, isExperience: isExperience)
+        .then((value) {
+          if (isClosed) return;
+          value.fold(
+            (l) => emit(OnGetNationalityCvsErrorState()),
+            (r) {
+              nationalityCvs = r.data;
+              emit(OnGetNationalityCvsSuccessState());
+            },
+          );
+        })
+        .catchError((error) {
+          if (isClosed) return;
+          emit(OnGetNationalityCvsCatchErrorState());
+        });
+  }
+
+  int? _currentOfficeId;
+
+  changeOfficeIsMuslims(bool? value) {
+    isMuslims = value;
+    emit(OnOfficeFilterChangedState());
+    if (_currentOfficeId != null) getOfficeCvs(_currentOfficeId!);
+  }
+
+  changeOfficeIsExperience(bool? value) {
+    isExperience = value;
+    emit(OnOfficeFilterChangedState());
+    if (_currentOfficeId != null) getOfficeCvs(_currentOfficeId!);
+  }
+
   static AllCvsCubit get(context) => BlocProvider.of(context);
 }

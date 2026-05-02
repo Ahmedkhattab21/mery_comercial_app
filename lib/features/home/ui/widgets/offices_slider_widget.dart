@@ -86,10 +86,18 @@ class _OfficesSliderContent extends StatelessWidget {
 
             if (offices.isEmpty) {
               return SizedBox(
-                height: 190.h,
-                child: EmptyStateWidget(
-                  svgAsset: ImageAsset.officeIcon,
-                  title: 'لا توجد مكاتب',
+                height: 60.h,
+                child: Center(
+                  child: TextButton.icon(
+                    onPressed: () => OfficesCubit.get(context).getOffices(),
+                    icon: Icon(Icons.refresh, color: AppColors.greenColor31, size: 18.r),
+                    label: Text(
+                      'إعادة المحاولة',
+                      style: TextStyles.font14greyColor64w500.copyWith(
+                        color: AppColors.greenColor31,
+                      ),
+                    ),
+                  ),
                 ),
               );
             }
@@ -121,7 +129,7 @@ class _OfficeSliderCard extends StatelessWidget {
     return GestureDetector(
       onTap: () => context.pushNamed(
         Routes.officeDetailsScreen,
-        arguments: {'id': office.id},
+        arguments: {'office': office},
       ),
       child: Container(
         width: 150.w,

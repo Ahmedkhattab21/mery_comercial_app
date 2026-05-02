@@ -37,12 +37,16 @@ class RegisterNationalIdWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
       ),
       validator: (String? value) {
-        // if (value == null || value.isEmpty) {
-        //   return "ادخل قيمة ";
-        // }
-        // return null;
+        if (value == null || value.isEmpty) {
+          return 'رقم الهوية مطلوب';
+        }
+        if (!RegExp(r'^[0-9]{10}$').hasMatch(value)) {
+          return 'رقم الهوية يجب أن يكون 10 أرقام';
+        }
+        return null;
       },
-      keyboardType: TextInputType.phone,
+      keyboardType: TextInputType.number,
+      maxLength: 10,
     );
   }
 }

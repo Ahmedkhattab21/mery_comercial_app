@@ -15,10 +15,9 @@ class PageContainContentCubit extends Cubit<PageContainContentState> {
     _pageContainContentRepo
         .pages(id)
         .then((value) {
+          if (isClosed) return;
           value.fold(
-            (l) {
-              emit(OnGetPagesErrorState());
-            },
+            (l) => emit(OnGetPagesErrorState()),
             (r) {
               metaDescription = r.tokenModel.metaDescription;
               emit(OnGetPagesSuccessState());
@@ -26,7 +25,7 @@ class PageContainContentCubit extends Cubit<PageContainContentState> {
           );
         })
         .catchError((error) {
-
+          if (isClosed) return;
           emit(OnGetPagesCatchErrorState());
         });
   }

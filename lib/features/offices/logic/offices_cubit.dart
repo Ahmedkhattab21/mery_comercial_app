@@ -22,6 +22,7 @@ class OfficesCubit extends Cubit<OfficesState> {
     _officesRepo
         .getOffices(q: q, cityId: cityId)
         .then((value) {
+          if (isClosed) return;
           value.fold(
             (l) => emit(OnGetOfficesErrorState()),
             (r) {
@@ -30,10 +31,18 @@ class OfficesCubit extends Cubit<OfficesState> {
             },
           );
         })
-        .catchError((_) => emit(OnGetOfficesCatchErrorState()));
+        .catchError((_) { if (!isClosed) emit(OnGetOfficesCatchErrorState()); });
   }
 
   getOfficeDetails(int id) {
+    // Try to find office in already-loaded list first (avoids broken details API)
+    final cached = offices.where((o) => o.id == id).firstOrNull;
+    if (cached != null) {
+      selectedOffice = cached;
+      emit(OnGetOfficeDetailsSuccessState());
+      return;
+    }
+
     selectedOffice = null;
     emit(OnGetOfficeDetailsLoadingState());
     _officesRepo
