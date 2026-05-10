@@ -118,7 +118,6 @@ class HomeScreen extends StatelessWidget {
                         // Promo banner card
                         Container(
                           width: double.infinity,
-                          height: 130.h,
                           decoration: BoxDecoration(
                             color: Colors.white.withOpacity(0.15),
                             borderRadius: BorderRadius.circular(20.r),
@@ -126,8 +125,10 @@ class HomeScreen extends StatelessWidget {
                               color: Colors.white.withOpacity(0.25),
                             ),
                           ),
-                          child: Row(
-                            children: [
+                          child: IntrinsicHeight(
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
                               // Text side
                               Expanded(
                                 child: Padding(
@@ -192,11 +193,11 @@ class HomeScreen extends StatelessWidget {
                                 child: Image.asset(
                                   ImageAsset.sliderImage,
                                   width: 130.w,
-                                  height: 130.h,
                                   fit: BoxFit.cover,
                                 ),
                               ),
                             ],
+                          ),
                           ),
                         ),
                       ],
